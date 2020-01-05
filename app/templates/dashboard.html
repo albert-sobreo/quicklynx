@@ -160,7 +160,6 @@
                     
                     {%for classroom in account.classroom.all%}
                     {%if todays_date > classroom.date_end|date:"Y-m-d"%}
-                    hello   
                     {%endif%}
                         <div class="row">
                             {% if classroom.headerpix|length == 0%}

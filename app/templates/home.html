@@ -14,8 +14,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="https://cdn.tiny.cloud/1/h7ncil8yogyrne1lyybkhxt64mn1uvf750wiac1b8randi5n/tinymce/5/tinymce.min.js"></script> 
-    <script>tinymce.init({selector:'textarea', height: "175px", menubar:true, statusbar: false, plugins: "save image media link lists fullscreen", toolbar: "styleselect | bold italic | numlist bullist | image media link | fullscreen | save"});</script>
+    <!-- <script src="https://cdn.tiny.cloud/1/h7ncil8yogyrne1lyybkhxt64mn1uvf750wiac1b8randi5n/tinymce/5/tinymce.min.js"></script> 
+    <script>tinymce.init({selector:'textarea', height: "175px", menubar:true, statusbar: false, plugins: "save image media link lists fullscreen", toolbar: "styleselect | bold italic | numlist bullist | image media link | fullscreen | save"});</script> -->
     <title>QuickLynx</title>
     <style>
         body{
@@ -92,18 +92,21 @@
         <div class="container">
             <div class="row">
                 <!-- LEFT COLUMN -->
-                <div class="col-3 border-right border-left" style="min-height: 100vh;">
+                <div class="col-3 " style="min-height: 100vh;">
                     <!-- LOGO -->
-                    <div class="row border-bottom text-center" style="min-height: 75px; background: rgb(10, 0, 81); color: white">
-                        <div class="col">
-                            <h1 style="margin-top: 10px;">QuickLynx</h1>
-                        </div>
-                    </div>
+                    
                     <!-- BUTTONS -->
                     <div class="row sticky-top">
-                        <div class="container border-bottom" style="padding: 20px;">
+                        <div class="container" style="padding-top: 0px; padding-left: 50px">
                             <div class="row">
                                 <ul>
+                                    <li>
+                                        <div class="row" style="min-height: 75px; color: rgb(10, 0, 81)">
+                                            <div class="col">
+                                                <h1 style="margin-top: 10px;">QuickLynx</h1>
+                                            </div>
+                                        </div>
+                                    </li>
                                     <li class="links"><a href="/home/">Home</a></li>
                                     <li class="links"><a href="/dashboard/">Dashboard</a></li>
                                     <li class="links"><a href="/message/">Messages</a></li>
@@ -113,7 +116,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="container border-top" style="padding: 20px;">
+                        <div class="container" style="padding: 20px;">
                             <!-- <div class="row">
                                 <ul>
                                     <li class="links"><a href="#">Materials</a></li>
@@ -126,9 +129,9 @@
                     </div>
                 </div>
                 <!-- MIDDLE COLUMN -->
-                <div class="col-6 border-right border-left" style="min-height: 100vh;" >
+                <div class="col-6 " style="min-height: 100vh;" >
                     <!-- HEADER -->
-                    <div class="row border-bottom" style="min-height: 75px; background: rgb(10, 0, 81); color: white">
+                    <div class="row " style="min-height: 75px; background: rgb(10, 0, 81); color: white">
                         <div class="aligner col">
                             <h3>Home</h3>
                             <span><span data-toggle="modal" data-target="#editaccount" style="font-family: 'Fjalla One', sans-serif; text-shadow: 0 0 5px black; cursor: pointer">{{account.account.first_name}}</span>
@@ -169,7 +172,7 @@
                         </div>
                     </div>
                     <!-- TEXT AREA -->
-                    <form action="/makepostfromhome/" method="POST">{%csrf_token%}
+                    <!-- <form action="/makepostfromhome/" method="POST">{%csrf_token%}
                         <textarea rows="1" cols="auto" style="height:1em;" id="text" class="col" placeholder="Create Post" name="text"></textarea>
                         <div class="form-group">
                             <select name="classroom" id="chooseroom" class="form-control" style="border-radius: 0;">
@@ -179,7 +182,24 @@
                                 {%endfor%}
                             </select>
                         </div>
+                    </form> -->
+                    <form action="#">{%csrf_token%}
+                        <div class="row" style="margin-top: 10px;">
+                            <textarea name="" id="" cols="65" rows="2" class="col" placeholder="Create Post..." style="resize: none;" maxlength="140"></textarea>
+                        </div>
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-10">
+                                <a href="#" style="margin-right: 15px;"><img src="https://img.icons8.com/material-outlined/24/000000/stack-of-photos.png"></a>
+                                <a href="#" style="margin-right: 15px;"><img src="https://img.icons8.com/material-outlined/24/000000/video.png"></a>
+                                <a href="#" style="margin-right: 15px;"><img src="https://img.icons8.com/material-outlined/24/000000/attach.png"></a>
+                                <a href="#" style="margin-right: 15px;"><img src="https://img.icons8.com/material-outlined/24/000000/poll-topic.png"></a>
+                            </div>
+                            <div class="col-2">
+                                <button class="btn btn-sm btn-warning" style="border-radius: 20px; padding-left: 15px; padding-right: 15px;">Post</button>
+                            </div>
+                        </div>
                     </form>
+                    <!-- END TEXT AREA -->
                     <!-- POST CONTROLS -->
                     
                     <!-- BLANK SPACE -->
@@ -191,7 +211,7 @@
                     <div>
                     {%for post in posts reversed%}
                         {%if post.classroom in account.classroom.all%}
-                            <div class="row border-top border-bottom">
+                            <div class="row f">
                                 <div class="col-1 text-center upvotedownvote" >
                                     <div id="refreshup{{post.id}}" class="" onclick=upvote({{post.id}})>{%if post in account.upvoted_post.all%}<i class="fas fa-sort-up" style="color:rgb(184, 75, 184)"></i>{%else%}<i class="fas fa-sort-up"></i>{%endif%}</div>
                                     <div id="nums{{post.id}}"class="">{{post.upvotes|add:post.downvotes}}</div>
@@ -223,14 +243,11 @@
                     </div>
                 </div>
                 <!-- RIGHT COLUMN -->
-                <div class="col-3 border-right border-left text-center" style="min-height: 100vh;">
-                    <div class="row border-bottom sticky-top" style="min-height: 75px;">
+                <div class="col-3 text-center" style="min-height: 100vh;">
+                    <div class="row sticky-top" style="min-height: 75px;">
                         <form action="#" class="text-center">
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Search..">
-                                <div class="input-group-append">
-                                    <span class="input-group-text"><i class="fas fa-search"></i></span>
-                                </div>
                             </div>
                         </form>
                         <span class="links" style="margin: 0 5px 0;font-size: 15px; align-self:flex-end">Upcoming <i class="control-img far fa-calendar" title="Create Event"></i></span>
@@ -239,7 +256,7 @@
             </div>
         </div>
     </div>
-    <script>
+    <!-- <script>
         var observe;
         if (window.attachEvent) {
             observe = function (element, event, handler) {
@@ -269,7 +286,7 @@
             
             resize();
         }
-    </script>
+    </script> -->
     <script>
         function upvote(post_id){
             $.ajax({
@@ -288,6 +305,9 @@
             $("#refreshdown"+post_id).load(location.href + " #refreshdown"+post_id)
             $("#nums"+post_id).load(location.href + " #nums"+post_id)
         }
+    </script>
+    <script>
+        $('textarea').autoResize();
     </script>
 </body>
 </html>

@@ -1,0 +1,675 @@
+Trace file has been created: TraceLog20191006003622.txt
+Mod Manager Version: 0.70.5.0
+OS version: Microsoft Windows NT 6.2.9200.0
+Installed .NET Versions:
+	CDF SP 0
+	v2.0.50727 SP 2
+	v3.0 SP 2
+	v3.5 SP 1
+	v4 SP 0
+	v4.0 SP 0
+	v4.5: 4.6 or later
+Tracing is forced: False
+
+Discovering Game Mode Factories...
+    Looking in: C:\Program Files\Nexus Mod Manager\GameModes
+    Checking: Antlr3.Runtime.dll
+    Checking: BreakingWheel.dll
+        Initializing: Nexus.Client.Games.BreakingWheel.BreakingWheelGameModeFactory
+    Checking: CSharpScript.dll
+    Checking: DarkSouls.dll
+        Initializing: Nexus.Client.Games.DarkSouls.DarkSoulsGameModeFactory
+    Checking: DarkSouls2.dll
+        Initializing: Nexus.Client.Games.DarkSouls2.DarkSouls2GameModeFactory
+    Checking: DragonAge.dll
+        Initializing: Nexus.Client.Games.DragonAge.DragonAgeGameModeFactory
+    Checking: DragonAge2.dll
+        Initializing: Nexus.Client.Games.DragonAge2.DragonAge2GameModeFactory
+    Checking: DragonsDogma.dll
+        Initializing: Nexus.Client.Games.DragonsDogma.DragonsDogmaGameModeFactory
+    Checking: Enderal.dll
+        Initializing: Nexus.Client.Games.Enderal.EnderalGameModeFactory
+    Checking: Fallout3.CSharpScript.dll
+    Checking: Fallout3.dll
+        Initializing: Nexus.Client.Games.Fallout3.Fallout3GameModeFactory
+    Checking: Fallout3.XmlScript.dll
+        Cannot load C:\Program Files\Nexus Mod Manager\GameModes\Fallout3.XmlScript.dll: cannot find dependency Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f
+    Checking: Fallout4.CSharpScript.dll
+    Checking: Fallout4.dll
+        Initializing: Nexus.Client.Games.Fallout4.Fallout4GameModeFactory
+    Checking: Fallout4.XmlScript.dll
+        Cannot load C:\Program Files\Nexus Mod Manager\GameModes\Fallout4.XmlScript.dll: cannot find dependency Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f
+    Checking: Fallout4VR.dll
+        Initializing: Nexus.Client.Games.Fallout4VR.Fallout4VRGameModeFactory
+    Checking: FalloutNV.CSharpScript.dll
+    Checking: FalloutNV.dll
+        Initializing: Nexus.Client.Games.FalloutNV.FalloutNVGameModeFactory
+    Checking: FalloutNV.XmlScript.dll
+        Cannot load C:\Program Files\Nexus Mod Manager\GameModes\FalloutNV.XmlScript.dll: cannot find dependency Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f
+    Checking: GamebryoBase.dll
+    Checking: Grimrock.dll
+        Initializing: Nexus.Client.Games.Grimrock.GrimrockGameModeFactory
+    Checking: ModScript.dll
+        Cannot load C:\Program Files\Nexus Mod Manager\GameModes\ModScript.dll: cannot find dependency Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f
+    Checking: Morrowind.dll
+        Initializing: Nexus.Client.Games.Morrowind.MorrowindGameModeFactory
+    Checking: Morrowind.ModScript.dll
+    Checking: NoMansSky.dll
+        Initializing: Nexus.Client.Games.NoMansSky.NoMansSkyGameModeFactory
+    Checking: Oblivion.dll
+        Initializing: Nexus.Client.Games.Oblivion.OblivionGameModeFactory
+    Checking: Oblivion.ModScript.dll
+    Checking: Skyrim.CSharpScript.dll
+    Checking: Skyrim.dll
+        Initializing: Nexus.Client.Games.Skyrim.SkyrimGameModeFactory
+    Checking: Skyrim.XmlScript.dll
+        Cannot load C:\Program Files\Nexus Mod Manager\GameModes\Skyrim.XmlScript.dll: cannot find dependency Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f
+    Checking: SkyrimSE.CSharpScript.dll
+    Checking: SkyrimSE.dll
+        Initializing: Nexus.Client.Games.SkyrimSE.SkyrimSEGameModeFactory
+    Checking: SkyrimSE.XmlScript.dll
+        Cannot load C:\Program Files\Nexus Mod Manager\GameModes\SkyrimSE.XmlScript.dll: cannot find dependency Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f
+    Checking: SkyrimVR.dll
+        Initializing: Nexus.Client.Games.SkyrimVR.SkyrimVRGameModeFactory
+    Checking: Starbound.dll
+        Initializing: Nexus.Client.Games.Starbound.StarboundGameModeFactory
+    Checking: StateOfDecay.dll
+        Initializing: Nexus.Client.Games.StateOfDecay.StateOfDecayGameModeFactory
+    Checking: TESO.dll
+        Initializing: Nexus.Client.Games.TESO.TESOGameModeFactory
+    Checking: WarThunder.dll
+        Initializing: Nexus.Client.Games.WarThunder.WarThunderGameModeFactory
+    Checking: Witcher2.dll
+        Initializing: Nexus.Client.Games.Witcher2.Witcher2GameModeFactory
+    Checking: Witcher3.dll
+        Initializing: Nexus.Client.Games.Witcher3.Witcher3GameModeFactory
+    Checking: WorldOfTanks.dll
+        Initializing: Nexus.Client.Games.WorldOfTanks.WoTGameModeFactory
+    Checking: XCOM2.dll
+        Initializing: Nexus.Client.Games.XCOM2.XCOM2GameModeFactory
+    Checking: XmlScript.dll
+        Cannot load C:\Program Files\Nexus Mod Manager\GameModes\XmlScript.dll: cannot find dependency Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f
+    Checking: XRebirth.dll
+        Initializing: Nexus.Client.Games.XRebirth.XRebirthGameModeFactory
+Loading Game Mode Factories for Installed Games...
+    Loading Skyrim: Supported
+Determining Game Mode: Skyrim
+Game Mode Factory Selected: Skyrim (Skyrim)
+Creating Game Mode mutex (Attempt: 0)
+Game Mode Built: Skyrim (Skyrim)
+    Installation Path: D:\Games\The Elder Scrolls V Skyrim Legendary Edition
+    Install Info Path: D:\Games\Nexus Mod Manager\Skyrim\Install Info
+    Mod Path: D:\Games\Nexus Mod Manager\Skyrim\Mods
+    Mod Cache Path: D:\Games\Nexus Mod Manager\Skyrim\Mods\cache
+    Mod Download Cache: D:\Games\Nexus Mod Manager\Skyrim\Mods\downloads
+    Overwrite Path: D:\Games\Nexus Mod Manager\Skyrim\Install Info\overwrites
+    Virtual Install Path: D:\Games\Nexus Mod Manager\Skyrim\Mods
+    NMM Link Path: 
+Scanning for read-only files...
+Initializing Mod Repository...
+Registering supported Script Types...
+    Discovering Script Types...
+        Discovering Generic Script Types...
+            Looking in: C:\Program Files\Nexus Mod Manager\ScriptTypes
+            Checking: Antlr3.Runtime.dll
+            Checking: CSharpScript.dll
+                Initializing: Nexus.Client.ModManagement.Scripting.CSharpScript.CSharpScriptType
+            Checking: ModScript.dll
+                Initializing: Nexus.Client.ModManagement.Scripting.ModScript.ModScriptType
+            Checking: XmlScript.dll
+                Initializing: Nexus.Client.ModManagement.Scripting.XmlScript.XmlScriptType
+        Discovering Game Mode Specific Script Types...
+            Looking in: C:\Program Files\Nexus Mod Manager\GameModes
+            Checking: Skyrim.CSharpScript.dll
+                Initializing: Nexus.Client.Games.Skyrim.Scripting.CSharpScript.SkyrimCSharpScriptType
+            Checking: Skyrim.XmlScript.dll
+                Initializing: Nexus.Client.Games.Skyrim.Scripting.XmlScript.SkyrimXmlScriptType
+    Found 3 script types.
+Registering supported mod formats...
+    Discovering Mod Formats...
+        Looking in: C:\Program Files\Nexus Mod Manager\ModFormats
+        Checking: FOMod.dll
+            Initializing: Nexus.Client.Mods.Formats.FOMod.FOModFormat
+    Found 1 formats.
+Finding managed mods...
+    Discovering Managed Mods...
+        Looking in: D:\Games\Nexus Mod Manager\Skyrim\Mods
+        Found: D:\Games\Nexus Mod Manager\Skyrim\Mods\.ini with my preferred settings for lush grass-141-1-1555932136.7z
+            Registered.
+        Found: D:\Games\Nexus Mod Manager\Skyrim\Mods\03 - Leyenda Skin 4.0 CBBE 2K-73512-4-0.7z
+            Registered.
+        Found: D:\Games\Nexus Mod Manager\Skyrim\Mods\All-in-One CBBE HDT AP 4.0 Standard Edition (2K Optimized).7z
+            Registered.
+        Found: D:\Games\Nexus Mod Manager\Skyrim\Mods\BodySlide and Outfit Studio - v4.8.0-49015-4-8-0-1569154259.7z
+            Registered.
+        Found: D:\Games\Nexus Mod Manager\Skyrim\Mods\Caliente's Beautiful Bodies Edition v3.4f-2666-3-4f.7z
+            Registered.
+        Found: D:\Games\Nexus Mod Manager\Skyrim\Mods\Climates Of Tamriel-17802-v5-0.zip
+            Registered.
+        Found: D:\Games\Nexus Mod Manager\Skyrim\Mods\Cosio_Main_5.4.zip
+            Registered.
+        Found: D:\Games\Nexus Mod Manager\Skyrim\Mods\Enhanced Lights and FX-27043-3-04.7z
+            Registered.
+        Found: D:\Games\Nexus Mod Manager\Skyrim\Mods\FNIS Behavior 7_5-11811-7-5-1566571166.7z
+            Registered.
+        Found: D:\Games\Nexus Mod Manager\Skyrim\Mods\FunnyBizAnimationsV25.1.zip
+            Registered.
+        Found: D:\Games\Nexus Mod Manager\Skyrim\Mods\HDT Physics Extensions-53996-14-28.7z
+            Registered.
+        Found: D:\Games\Nexus Mod Manager\Skyrim\Mods\Immersive Citizens - AI Overhaul-65013-0-4-1a.7z
+            Registered.
+        Found: D:\Games\Nexus Mod Manager\Skyrim\Mods\MYSLALPACK v12.0.zip
+            Registered.
+        Found: D:\Games\Nexus Mod Manager\Skyrim\Mods\SexLab Romance V1-0-6.7z
+            Registered.
+        Found: D:\Games\Nexus Mod Manager\Skyrim\Mods\SexLab Tools v3.0.rar
+            Registered.
+        Found: D:\Games\Nexus Mod Manager\Skyrim\Mods\SexLabFramework_v162_FULL.7z
+            Registered.
+        Found: D:\Games\Nexus Mod Manager\Skyrim\Mods\SexLabMatchMaker.Rev7.zip
+            Registered.
+        Found: D:\Games\Nexus Mod Manager\Skyrim\Mods\SexLabSquirt-1.3.7z
+            Registered.
+        Found: D:\Games\Nexus Mod Manager\Skyrim\Mods\SexLab_v161_TO_v162_PATCH.zip
+            Registered.
+        Found: D:\Games\Nexus Mod Manager\Skyrim\Mods\SFO  NO Grass  v2.6-141-2-6.7z
+            Registered.
+        Found: D:\Games\Nexus Mod Manager\Skyrim\Mods\SFO v2.81-141-2-81-1561559543.7z
+            Registered.
+        Found: D:\Games\Nexus Mod Manager\Skyrim\Mods\SLAnimLoader-1.5.7z
+            Registered.
+        Found: D:\Games\Nexus Mod Manager\Skyrim\Mods\SLDialogues20190922.7z
+            Registered.
+        Found: D:\Games\Nexus Mod Manager\Skyrim\Mods\SOS - Schlongs of Skyrim - 3.00.004.7z
+            Registered.
+        Found: D:\Games\Nexus Mod Manager\Skyrim\Mods\XP32 Maximum Skeleton Special Extended 4.51.7z
+            Registered.
+        Found: D:\Games\Nexus Mod Manager\Skyrim\Mods\Zaz Animation Pack CBBE V.8.0.[2017.11.19].7z
+            Registered.
+    Found 26 managed mods.
+Initializing Install Log...
+    Checking if upgrade is required...
+    Path: D:\Games\Nexus Mod Manager\Skyrim\Install Info\InstallLog.xml
+    Loaded from XML.
+    Found Dummy Mod: ORIGINAL_VALUE...OK
+    Found Caliente's Beautiful Bodies Edition v3.4f-2666-3-4f.7z...OK
+    Found Climates Of Tamriel-17802-v5-0.zip...OK
+    Found BodySlide and Outfit Studio - v4.8.0-49015-4-8-0-1569154259.7z...OK
+    Found Immersive Citizens - AI Overhaul-65013-0-4-1a.7z...OK
+    Found SFO v2.81-141-2-81-1561559543.7z...OK
+    Found .ini with my preferred settings for lush grass-141-1-1555932136.7z...OK
+    Found SFO  NO Grass  v2.6-141-2-6.7z...OK
+    Found Enhanced Lights and FX-27043-3-04.7z...OK
+    Found FNIS Behavior 7_5-11811-7-5-1566571166.7z...OK
+    Found SexLab Romance V1-0-6.7z...OK
+    Found SOS - Schlongs of Skyrim - 3.00.004.7z...OK
+    Found MYSLALPACK v12.0.zip...OK
+    Found SLAnimLoader-1.5.7z...OK
+    Found SexLab Tools v3.0.rar...OK
+    Found XP32 Maximum Skeleton Special Extended 4.51.7z...OK
+    Found All-in-One CBBE HDT AP 4.0 Standard Edition (2K Optimized).7z...OK
+    Found SexLabMatchMaker.Rev7.zip...OK
+    Found 03 - Leyenda Skin 4.0 CBBE 2K-73512-4-0.7z...OK
+    Found Zaz Animation Pack CBBE V.8.0.[2017.11.19].7z...OK
+    Found HDT Physics Extensions-53996-14-28.7z...OK
+    Found SexLabFramework_v162_FULL.7z...OK
+    Found Cosio_Main_5.4.zip...OK
+    Found SLDialogues20190922.7z...OK
+    Found SexLabSquirt-1.3.7z...OK
+Initializing Plugin Management Services...
+    Initializing Plugin Registry...
+        Discovering Managed Plugins...
+            Discovering Plugins...
+                Looking in: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\caribougone.esp
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\ClimatesOfTamriel-Dawnguard-Patch.esp
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\ClimatesOfTamriel-Dragonborn-Patch.esp
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\ClimatesOfTamriel-Interiors-Warm.esp
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\ELFX - Exteriors.esp
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\ELFX - Weathers.esp
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\EnhancedLightsandFX.esp
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\FNIS.esp
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\HighResTexturePack01.esp
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\HighResTexturePack02.esp
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\HighResTexturePack03.esp
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Immersive Citizens - AI Overhaul.esp
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Immersive Citizens - ELE patch.esp
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Immersive Citizens - ELFXEnhancer patch.esp
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Immersive Citizens - MTE patch.esp
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Immersive Citizens - OCS patch.esp
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Immersive Citizens - RRR patch.esp
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Immersive Citizens - TC patch.esp
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\iNeed.esp
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Schlongs of Skyrim.esp
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SexLabMatchMaker.esp
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SexLabSquirt.esp
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SexLabTools.esp
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Skyrim Flora Overhaul.esp
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SkyUI.esp
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SLALAnimObj.esp
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SLAnimLoader.esp
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SOS - Shop.esp
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SOS - Smurf Average Addon.esp
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SOS - VectorPlexus Regular Addon.esp
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Unofficial Dawnguard Patch.esp
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Unofficial Dragonborn Patch.esp
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Unofficial Hearthfire Patch.esp
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Unofficial High Resolution Patch.esp
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Unofficial Skyrim Patch.esp
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\ClimatesOfTamriel.esm
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Dawnguard.esm
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Dragonborn.esm
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\HearthFires.esm
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Schlongs of Skyrim - Core.esm
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SexLab.esm
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Skyrim.esm
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Update.esm
+                Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\ZaZAnimationPack.esm
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\caribougone.esp
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\ClimatesOfTamriel-Dawnguard-Patch.esp
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\ClimatesOfTamriel-Dragonborn-Patch.esp
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\ClimatesOfTamriel-Interiors-Warm.esp
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\ELFX - Exteriors.esp
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\ELFX - Weathers.esp
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\EnhancedLightsandFX.esp
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\FNIS.esp
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\HighResTexturePack01.esp
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\HighResTexturePack02.esp
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\HighResTexturePack03.esp
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Immersive Citizens - AI Overhaul.esp
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Immersive Citizens - ELE patch.esp
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Immersive Citizens - ELFXEnhancer patch.esp
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Immersive Citizens - MTE patch.esp
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Immersive Citizens - OCS patch.esp
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Immersive Citizens - RRR patch.esp
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Immersive Citizens - TC patch.esp
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\iNeed.esp
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Schlongs of Skyrim.esp
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SexLabMatchMaker.esp
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SexLabSquirt.esp
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SexLabTools.esp
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Skyrim Flora Overhaul.esp
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SkyUI.esp
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SLALAnimObj.esp
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SLAnimLoader.esp
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SOS - Shop.esp
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SOS - Smurf Average Addon.esp
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SOS - VectorPlexus Regular Addon.esp
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Unofficial Dawnguard Patch.esp
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Unofficial Dragonborn Patch.esp
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Unofficial Hearthfire Patch.esp
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Unofficial High Resolution Patch.esp
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Unofficial Skyrim Patch.esp
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\ClimatesOfTamriel.esm
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Dawnguard.esm
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Dragonborn.esm
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\HearthFires.esm
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Schlongs of Skyrim - Core.esm
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SexLab.esm
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Skyrim.esm
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Update.esm
+                Registered.
+            Found: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\ZaZAnimationPack.esm
+                Registered.
+        Found 44 managed plugins.
+    Initializing Plugin Order Log...
+        Loading Plugin Order...
+            Getting Plugin Load Order from the load order manager...
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Skyrim.esm (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Update.esm (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Dawnguard.esm (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Dragonborn.esm (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\HearthFires.esm (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\ClimatesOfTamriel.esm (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Schlongs of Skyrim - Core.esm (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\ZaZAnimationPack.esm (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SexLab.esm (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\HighResTexturePack01.esp (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\HighResTexturePack02.esp (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\HighResTexturePack03.esp (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Unofficial High Resolution Patch.esp (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Unofficial Hearthfire Patch.esp (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Unofficial Skyrim Patch.esp (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\iNeed.esp (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SkyUI.esp (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\caribougone.esp (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Unofficial Dragonborn Patch.esp (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Unofficial Dawnguard Patch.esp (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\ClimatesOfTamriel-Interiors-Warm.esp (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\ClimatesOfTamriel-Dawnguard-Patch.esp (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\ClimatesOfTamriel-Dragonborn-Patch.esp (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Immersive Citizens - AI Overhaul.esp (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Immersive Citizens - ELE patch.esp (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Immersive Citizens - ELFXEnhancer patch.esp (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Immersive Citizens - OCS patch.esp (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Immersive Citizens - MTE patch.esp (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Immersive Citizens - RRR patch.esp (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Immersive Citizens - TC patch.esp (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Skyrim Flora Overhaul.esp (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\EnhancedLightsandFX.esp (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\ELFX - Exteriors.esp (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\ELFX - Weathers.esp (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\FNIS.esp (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Schlongs of Skyrim.esp (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SOS - Smurf Average Addon.esp (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SOS - VectorPlexus Regular Addon.esp (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SOS - Shop.esp (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SLAnimLoader.esp (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SexLabTools.esp (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SLALAnimObj.esp (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SexLabSquirt.esp (IsNull=False)
+            Loading D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SexLabMatchMaker.esp (IsNull=False)
+    Initializing Active Plugin Log...
+    Initializing Plugin Manager...
+Initializing Activity Monitor...
+Initializing Mod Activation Monitor...
+Initializing Mod Manager...
+Upgrading replaced Mods...
+Uninstalling missing Mods...
+Loading mods that are queued to be added.
+Launch Commands:
+    Plain Command: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\SkyrimLauncher.exe (IsNull=False)
+    SKSE Command: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\skse_loader.exe (IsNull=False)
+    Custom Command:  (IsNull=True)
+Launch Commands:
+    BOSS Command:  (IsNull=True)
+    LOOT Command:  (IsNull=True)
+    Wrye Bash Command:  (IsNull=False)
+    TES5Edit Command:  (IsNull=False)
+    FNIS Command: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\tools\GenerateFNIS_for_Users\GenerateFNISforUsers.exe (IsNull=False)
+    BodySlide Command: D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\CalienteTools\BodySlide\BodySlide.exe (IsNull=False)
+    Dual Sheat Redux Patch Command:  (IsNull=False)
+    Patchus Maximus Command:  (IsNull=False)
+Loading Plugins into Plugin List: 44
+    Loading: Skyrim.esm (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Skyrim.esm) (False)
+    Loading: Update.esm (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Update.esm) (False)
+    Loading: Dawnguard.esm (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Dawnguard.esm) (False)
+    Loading: Dragonborn.esm (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Dragonborn.esm) (False)
+    Loading: HearthFires.esm (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\HearthFires.esm) (False)
+    Loading: ClimatesOfTamriel.esm (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\ClimatesOfTamriel.esm) (False)
+    Loading: Schlongs of Skyrim - Core.esm (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Schlongs of Skyrim - Core.esm) (False)
+    Loading: ZaZAnimationPack.esm (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\ZaZAnimationPack.esm) (False)
+    Loading: SexLab.esm (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SexLab.esm) (False)
+    Loading: HighResTexturePack01.esp (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\HighResTexturePack01.esp) (False)
+    Loading: HighResTexturePack02.esp (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\HighResTexturePack02.esp) (False)
+    Loading: HighResTexturePack03.esp (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\HighResTexturePack03.esp) (False)
+    Loading: Unofficial High Resolution Patch.esp (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Unofficial High Resolution Patch.esp) (False)
+    Loading: Unofficial Hearthfire Patch.esp (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Unofficial Hearthfire Patch.esp) (False)
+    Loading: Unofficial Skyrim Patch.esp (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Unofficial Skyrim Patch.esp) (False)
+    Loading: iNeed.esp (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\iNeed.esp) (False)
+    Loading: SkyUI.esp (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SkyUI.esp) (False)
+    Loading: caribougone.esp (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\caribougone.esp) (False)
+    Loading: Unofficial Dragonborn Patch.esp (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Unofficial Dragonborn Patch.esp) (False)
+    Loading: Unofficial Dawnguard Patch.esp (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Unofficial Dawnguard Patch.esp) (False)
+    Loading: ClimatesOfTamriel-Interiors-Warm.esp (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\ClimatesOfTamriel-Interiors-Warm.esp) (False)
+    Loading: ClimatesOfTamriel-Dawnguard-Patch.esp (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\ClimatesOfTamriel-Dawnguard-Patch.esp) (False)
+    Loading: ClimatesOfTamriel-Dragonborn-Patch.esp (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\ClimatesOfTamriel-Dragonborn-Patch.esp) (False)
+    Loading: Immersive Citizens - AI Overhaul.esp (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Immersive Citizens - AI Overhaul.esp) (False)
+    Loading: Immersive Citizens - ELE patch.esp (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Immersive Citizens - ELE patch.esp) (False)
+    Loading: Immersive Citizens - ELFXEnhancer patch.esp (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Immersive Citizens - ELFXEnhancer patch.esp) (False)
+    Loading: Immersive Citizens - OCS patch.esp (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Immersive Citizens - OCS patch.esp) (False)
+    Loading: Immersive Citizens - MTE patch.esp (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Immersive Citizens - MTE patch.esp) (False)
+    Loading: Immersive Citizens - RRR patch.esp (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Immersive Citizens - RRR patch.esp) (False)
+    Loading: Immersive Citizens - TC patch.esp (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Immersive Citizens - TC patch.esp) (False)
+    Loading: Skyrim Flora Overhaul.esp (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Skyrim Flora Overhaul.esp) (False)
+    Loading: EnhancedLightsandFX.esp (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\EnhancedLightsandFX.esp) (False)
+    Loading: ELFX - Exteriors.esp (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\ELFX - Exteriors.esp) (False)
+    Loading: ELFX - Weathers.esp (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\ELFX - Weathers.esp) (False)
+    Loading: FNIS.esp (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\FNIS.esp) (False)
+    Loading: Schlongs of Skyrim.esp (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\Schlongs of Skyrim.esp) (False)
+    Loading: SOS - Smurf Average Addon.esp (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SOS - Smurf Average Addon.esp) (False)
+    Loading: SOS - VectorPlexus Regular Addon.esp (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SOS - VectorPlexus Regular Addon.esp) (False)
+    Loading: SOS - Shop.esp (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SOS - Shop.esp) (False)
+    Loading: SLAnimLoader.esp (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SLAnimLoader.esp) (False)
+    Loading: SexLabTools.esp (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SexLabTools.esp) (False)
+    Loading: SLALAnimObj.esp (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SLALAnimObj.esp) (False)
+    Loading: SexLabSquirt.esp (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SexLabSquirt.esp) (False)
+    Loading: SexLabMatchMaker.esp (D:\Games\The Elder Scrolls V Skyrim Legendary Edition\Data\SexLabMatchMaker.esp) (False)
+Setting up listener on Nexus Mod Manager-SkyrimIpcServer/SkyrimListener at 2019-10-06 00:36:27
+Running Application.
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\loadorder.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\loadorder.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+[file:///D:/Albert's Files/Web Downloads/SexLab Submit 01SEP14 1133.7z] Adding Mod to AddModQueue
+[file:///D:/Albert's Files/Web Downloads/SexLab Submit 01SEP14 1133.7z] Starting Add Mod Task.
+AggregateException:Message: One or more errors occurred.
+Stacktrace:
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Nexus.Client.ModRepositories.NexusModsApiRepository.GetModInfoForFile(String fileName)
+Inner exceptions:
+----------------
+Pathoschild.Http.Client.ApiException: File hash does not exist
+   at Pathoschild.FluentNexus.Framework.NexusErrorFilter.OnResponse(IResponse response, Boolean httpErrorAsException)
+   at Pathoschild.Http.Client.Internal.Request.<Execute>d__45.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pathoschild.Http.Client.Internal.Request.<As>d__37`1.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pathoschild.FluentNexus.Endpoints.NexusModsClient.<GetModsByFileHash>d__5.MoveNext()
+----------------
+
+[D:\Albert's Files\Web Downloads\SexLab Submit 01SEP14 1133.7z] Adding mod from archive.
+AggregateException:Message: One or more errors occurred.
+Stacktrace:
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Nexus.Client.ModRepositories.NexusModsApiRepository.GetModInfoForFile(String fileName)
+Inner exceptions:
+----------------
+Pathoschild.Http.Client.ApiException: File hash does not exist
+   at Pathoschild.FluentNexus.Framework.NexusErrorFilter.OnResponse(IResponse response, Boolean httpErrorAsException)
+   at Pathoschild.Http.Client.Internal.Request.<Execute>d__45.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pathoschild.Http.Client.Internal.Request.<As>d__37`1.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pathoschild.FluentNexus.Endpoints.NexusModsClient.<GetModsByFileHash>d__5.MoveNext()
+----------------
+
+AggregateException:Message: One or more errors occurred.
+Stacktrace:
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Nexus.Client.ModRepositories.NexusModsApiRepository.GetModInfoForFile(String fileName)
+Inner exceptions:
+----------------
+Pathoschild.Http.Client.ApiException: File hash does not exist
+   at Pathoschild.FluentNexus.Framework.NexusErrorFilter.OnResponse(IResponse response, Boolean httpErrorAsException)
+   at Pathoschild.Http.Client.Internal.Request.<Execute>d__45.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pathoschild.Http.Client.Internal.Request.<As>d__37`1.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pathoschild.FluentNexus.Endpoints.NexusModsClient.<GetModsByFileHash>d__5.MoveNext()
+----------------
+
+AggregateException:Message: One or more errors occurred.
+Stacktrace:
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Nexus.Client.ModRepositories.NexusModsApiRepository.GetModInfoForFile(String fileName)
+Inner exceptions:
+----------------
+Pathoschild.Http.Client.ApiException: File hash does not exist
+   at Pathoschild.FluentNexus.Framework.NexusErrorFilter.OnResponse(IResponse response, Boolean httpErrorAsException)
+   at Pathoschild.Http.Client.Internal.Request.<Execute>d__45.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pathoschild.Http.Client.Internal.Request.<As>d__37`1.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pathoschild.FluentNexus.Endpoints.NexusModsClient.<GetModsByFileHash>d__5.MoveNext()
+----------------
+
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\loadorder.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\loadorder.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\loadorder.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\loadorder.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\loadorder.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\loadorder.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\loadorder.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\loadorder.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\loadorder.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\loadorder.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\loadorder.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\loadorder.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\loadorder.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\loadorder.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\loadorder.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\loadorder.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\loadorder.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\loadorder.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\loadorder.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\loadorder.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\loadorder.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\loadorder.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\loadorder.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\loadorder.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\loadorder.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\loadorder.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\loadorder.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\loadorder.txt".
+Preparing to write load order to file "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+Got access to "C:\Users\janal\AppData\Local\Skyrim\plugins.txt".
+
+Tracing an Unhandled Exception:
+Exception: 
+Message: 
+	Failed to roll back.
+Full Trace: 
+	Nexus.Transactions.TransactionException: Failed to roll back. ---> System.Security.SecurityException: The source was not found, but some or all event logs could not be searched.  To create the source, you need permission to read all event logs to make sure that the new source name is unique.  Inaccessible logs: Security, State.
+   at System.Diagnostics.EventLog.FindSourceRegistration(String source, String machineName, Boolean readOnly, Boolean wantToCreate)
+   at System.Diagnostics.EventLog.SourceExists(String source, String machineName, Boolean wantToCreate)
+   at System.Diagnostics.EventLogInternal.VerifyAndCreateSource(String sourceName, String currentMachineName)
+   at System.Diagnostics.EventLogInternal.WriteEntry(String message, EventLogEntryType type, Int32 eventID, Int16 category, Byte[] rawData)
+   at System.Diagnostics.EventLog.WriteEntry(String source, String message, EventLogEntryType type, Int32 eventID, Int16 category, Byte[] rawData)
+   at ChinhDo.Transactions.TxFileManager.TxEnlistment.RollbackDirectory.Rollback()
+   at ChinhDo.Transactions.TxFileManager.TxEnlistment.Rollback(Enlistment enlistment)
+   --- End of inner exception stack trace ---
+   at ChinhDo.Transactions.TxFileManager.TxEnlistment.Rollback(Enlistment enlistment)
+   at Nexus.Transactions.Transaction.NotifyInDoubt()
+   at Nexus.Transactions.Transaction.Commit()
+   at Nexus.Transactions.TransactionScope.Complete()
+   at Nexus.Client.ModManagement.ModUninstaller.RunTasks()
+   at Nexus.Client.Util.Threading.TrackedThread.RunThread()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.ThreadHelper.ThreadStart()
+Inner Exception:
+System.Security.SecurityException: The source was not found, but some or all event logs could not be searched.  To create the source, you need permission to read all event logs to make sure that the new source name is unique.  Inaccessible logs: Security, State.
+   at System.Diagnostics.EventLog.FindSourceRegistration(String source, String machineName, Boolean readOnly, Boolean wantToCreate)
+   at System.Diagnostics.EventLog.SourceExists(String source, String machineName, Boolean wantToCreate)
+   at System.Diagnostics.EventLogInternal.VerifyAndCreateSource(String sourceName, String currentMachineName)
+   at System.Diagnostics.EventLogInternal.WriteEntry(String message, EventLogEntryType type, Int32 eventID, Int16 category, Byte[] rawData)
+   at System.Diagnostics.EventLog.WriteEntry(String source, String message, EventLogEntryType type, Int32 eventID, Int16 category, Byte[] rawData)
+   at ChinhDo.Transactions.TxFileManager.TxEnlistment.RollbackDirectory.Rollback()
+   at ChinhDo.Transactions.TxFileManager.TxEnlistment.Rollback(Enlistment enlistment)
+The Zone of the assembly that failed was:
+MyComputer
+
