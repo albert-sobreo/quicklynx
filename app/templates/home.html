@@ -29,22 +29,13 @@
             font-weight: bolder;
             margin: 10px 0 10px;
         }
-        li a{
-            text-decoration: none !important;
-            color: rgb(33,37, 41);
-            transition: 0.1s;
-            outline: 0;
-        }
-        a{
-            text-decoration: none !important;
-        }
-        li a:hover{
-            filter: opacity(50%);
-        }
         textarea {
-            border: 0 none white;
+            border: 1px solid white;
+            margin: 15px 15px;
+            border-radius: 15px;
+            box-shadow: inset 4px 4px 8px rgba(0,0,0,.1), inset -4px -4px 8px rgba(255, 255, 255, .8); 
             overflow: hidden;
-            padding: 0;
+            padding: 5px 5px;
             outline: none;
             background-color: rgba(0,0,0,0);
             width: auto;
@@ -101,18 +92,16 @@
                             <div class="row">
                                 <ul>
                                     <li>
-                                        <div class="row" style="min-height: 75px; color: rgb(10, 0, 81)">
-                                            <div class="col">
-                                                <h1 style="margin-top: 10px;">QuickLynx</h1>
-                                            </div>
+                                        <div class="row" style="min-height: 75px;">
+                                            <h1 style="margin-top: 10px;" class="QuickLynx"><span>QuickLynx</span></h1>
                                         </div>
                                     </li>
-                                    <li class="links"><a href="/home/">Home</a></li>
-                                    <li class="links"><a href="/dashboard/">Dashboard</a></li>
-                                    <li class="links"><a href="/message/">Messages</a></li>
-                                    <li class="links"><a href="#">Notifications</a></li>
-                                    <li class="links"><a href="#">Video Calls</a></li>
-                                    <li class="links"><a href="/logout/">Log Out</a></li>
+                                    <li class="links" style="margin-bottom: 20px;"><a href="/home/" class="navigation-buttons"><i class="fas fa-home nav-links"></i> Home</a></li>
+                                    <li class="links" style="margin-bottom: 20px;"><a href="/dashboard/" class="navigation-buttons"><i class="fas fa-columns nav-links"></i> Dash</a></li>
+                                    <li class="links" style="margin-bottom: 20px;"><a href="/message/" class="navigation-buttons"><i class="fas fa-comment nav-links"></i> Messages</a></li>
+                                    <li class="links" style="margin-bottom: 20px;"><a href="#" class="navigation-buttons"><i class="fas fa-bell nav-links"></i> Notifications</a></li>
+                                    <li class="links" style="margin-bottom: 20px;"><a href="#" class="navigation-buttons"><i class="fas fa-video nav-links"></i> Duo</a></li>
+                                    <li class="links" style="margin-bottom: 20px;"><a href="/logout/" class="navigation-buttons negative"><i class="fas fa-sign-out-alt" style="color: rgb(231, 106, 106)"></i> Sign Out</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -131,10 +120,10 @@
                 <!-- MIDDLE COLUMN -->
                 <div class="col-6 " style="min-height: 100vh;" >
                     <!-- HEADER -->
-                    <div class="row " style="min-height: 75px; background: rgb(10, 0, 81); color: white">
-                        <div class="aligner col">
-                            <h3>Home</h3>
-                            <span><span data-toggle="modal" data-target="#editaccount" style="font-family: 'Fjalla One', sans-serif; text-shadow: 0 0 5px black; cursor: pointer">{{account.account.first_name}}</span>
+                    <div class="row header">
+                        <div class="aligner col-12" style="margin-top: 10px;">
+                            <h3 style="color: rgb(142, 150, 166); text-shadow: 2px 2px 4px rgba(0,0,0,.2), -2px -2px 4px rgba(255, 255, 255, 1); ">Home</h3>
+                            <span><span data-toggle="modal" data-target="#editaccount" style="font-family: 'Fjalla One', sans-serif; text-shadow: 2px 2px 4px rgba(0,0,0,.2), -2px -2px 4px rgba(255, 255, 255, 1); color: rgb(142, 150, 166); cursor: pointer">{{account.account.first_name}}</span>
                                 <div class="modal" id="editaccount" style="color: black; text-shadow: 0 0 0 white">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -170,6 +159,25 @@
                                 {%endif%}
                             </span>
                         </div>
+                        <div class="col-12">
+                            <form action="#">{%csrf_token%}
+                                <div class="row" style="margin-top: 10px;">
+                                    <textarea name="" id="" cols="65" rows="2" class="col" placeholder="Create Post..." style="resize: none;" maxlength="240"></textarea>
+                                </div>
+                                <div class="row" style="margin-bottom: 10px;">
+                                    <div class="col-10">
+                                        <a href="#" style="margin-right: 15px;"><img class="post-icons" src="https://img.icons8.com/material-outlined/24/000000/stack-of-photos.png"></a>
+                                        <a href="#" style="margin-right: 15px;"><img class="post-icons" src="https://img.icons8.com/material-outlined/24/000000/video.png"></a>
+                                        <a href="#" style="margin-right: 15px;"><img class="post-icons" src="https://img.icons8.com/material-outlined/24/000000/attach.png"></a>
+                                        <a href="#" style="margin-right: 15px;"><img class="post-icons" src="https://img.icons8.com/material-outlined/24/000000/poll-topic.png"></a>
+                                    </div>
+                                    <div class="col-2">
+                                        <button class="btn btn-sm btn-warning post-btn">Post</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        
                     </div>
                     <!-- TEXT AREA -->
                     <!-- <form action="/makepostfromhome/" method="POST">{%csrf_token%}
@@ -183,28 +191,12 @@
                             </select>
                         </div>
                     </form> -->
-                    <form action="#">{%csrf_token%}
-                        <div class="row" style="margin-top: 10px;">
-                            <textarea name="" id="" cols="65" rows="2" class="col" placeholder="Create Post..." style="resize: none;" maxlength="140"></textarea>
-                        </div>
-                        <div class="row" style="margin-bottom: 10px;">
-                            <div class="col-10">
-                                <a href="#" style="margin-right: 15px;"><img src="https://img.icons8.com/material-outlined/24/000000/stack-of-photos.png"></a>
-                                <a href="#" style="margin-right: 15px;"><img src="https://img.icons8.com/material-outlined/24/000000/video.png"></a>
-                                <a href="#" style="margin-right: 15px;"><img src="https://img.icons8.com/material-outlined/24/000000/attach.png"></a>
-                                <a href="#" style="margin-right: 15px;"><img src="https://img.icons8.com/material-outlined/24/000000/poll-topic.png"></a>
-                            </div>
-                            <div class="col-2">
-                                <button class="btn btn-sm btn-warning" style="border-radius: 20px; padding-left: 15px; padding-right: 15px;">Post</button>
-                            </div>
-                        </div>
-                    </form>
+                    
                     <!-- END TEXT AREA -->
                     <!-- POST CONTROLS -->
                     
                     <!-- BLANK SPACE -->
-                    <div class="row" style="height: 10px; background: rgb(222, 226,230)">
-                    </div>
+                    
                     
                     <!-- INSERT POSTS HERE -->
                     <!-- CREATE YOUR OWN CSS STYLES FOR POSTS -->

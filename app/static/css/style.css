@@ -4,6 +4,10 @@
 html {
     overflow-y: scroll;
 }
+body{
+    
+    background: #e0e0e0;
+}
 @media (min-width: 1200px) {
     body .container{
         max-width: 1250px;
@@ -71,4 +75,73 @@ input{
 
 .select-buttons-materials{
     font-family: 'Fjalla One', sans-serif;
+}
+.navigation-buttons{
+    padding: 5px 20px; 
+    border-radius: 15px; 
+    box-shadow: 4px 4px 8px rgba(0,0,0,.1), -4px -4px 8px rgba(255, 255, 255, .4); 
+    border: 1px #f9f9f9 solid;
+    background: #f0f0f0;
+}
+.QuickLynx{
+    padding: 20px 15px; 
+    border-radius: 15px; 
+    box-shadow: inset 4px 4px 8px rgba(0,0,0,.1), inset -4px -4px 8px rgba(255, 255, 255, .4); 
+    border: 1px #f9f9f9 solid;
+    background: #f0f0f0;
+    color: rgb(142, 150, 166);
+}
+.QuickLynx span{
+    padding: 5px 15px;
+    border-radius: 15px; 
+    box-shadow: 4px 4px 8px rgba(0,0,0,.1), -4px -4px 8px rgba(255, 255, 255, .4); 
+    border: 1px #f9f9f9 solid;
+}
+.nav-links{
+    color: rgb(96, 228, 103)
+}
+li a.navigation-buttons{
+    text-decoration: none !important;
+    color: rgb(33,37, 41);
+    transition: .2s;
+    outline: 0;
+}
+a{
+    text-decoration: none !important;
+}
+li a.navigation-buttons:hover{
+    color: rgb(33,37, 41);
+    text-shadow: 0px 0px 10px rgb(87, 255, 87);
+    transition: .2s;
+}
+li a.negative:hover{
+    color: rgb(33,37, 41);
+    text-shadow: 0px 0px 10px rgb(255, 91, 91);
+    transition: .2s;
+}
+
+.header{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    border: 1px #f9f9f9 solid;
+    background: #f0f0f0;
+    min-height: 75px;
+    color: black;
+    box-shadow: 4px 4px 8px rgba(0,0,0,.1), -4px -4px 8px rgba(255, 255, 255, .4); 
+}
+.f{
+    border: 1px solid black;
+}
+.post-icons{
+    filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.4));
+}
+.post-btn{
+    border-radius: 10px;
+    padding: 2px 15px;
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.150), -4px -4px 8px rgba(255,255,255, 1);
+    font-weight: bolder;
+    font-size: larger;
+    border: 1px #f9f9f9 solid;
+
 }
