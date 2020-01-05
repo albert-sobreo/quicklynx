@@ -31,7 +31,7 @@
         }
         textarea {
             border: 1px solid white;
-            margin: 15px 15px;
+            margin: 0px 10px 10px;
             border-radius: 15px;
             box-shadow: inset 4px 4px 8px rgba(0,0,0,.1), inset -4px -4px 8px rgba(255, 255, 255, .8); 
             overflow: hidden;
@@ -152,10 +152,10 @@
 
                                 </div>
                                 {%if account.account.propix|length == 0 %}
-                                    <img src="../media/pictures/default_avatar-2.gif" alt="" style="object-fit: cover; border-radius: 5px; margin: 0 10px 0" height="50px" width="50px">
+                                    <img src="../media/pictures/default_avatar-2.gif" alt="" style="object-fit: cover; border-radius: 50px; margin: 0 10px 0" height="50px" width="50px">
                                 {%endif%}
                                 {%if account.account.propix|length > 0 %}
-                                    <img src="{{account.account.propix.url}}" alt="" style="object-fit: cover; border-radius: 5px; margin: 0 10px 0" height="50px" width="50px">
+                                    <img src="{{account.account.propix.url}}" alt="" style="object-fit: cover; border-radius: 50px; margin: 0 10px 0" height="50px" width="50px">
                                 {%endif%}
                             </span>
                         </div>
