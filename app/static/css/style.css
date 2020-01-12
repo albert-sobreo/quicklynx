@@ -6,7 +6,7 @@ html {
 }
 body{
     
-    background: #e0e0e0;
+    background: #e1e3e4;
 }
 @media (min-width: 1200px) {
     body .container{
@@ -43,8 +43,8 @@ h3, h6, h1{
     height: 500px;
 }
 input{
-    border:rgb(212, 212, 212) 1px solid !important;
-    border-radius: 2px !important;
+    border:rgb(255,255,255) 1px solid !important;
+    border-radius: 15px !important;
 }
 .card-selector{
     margin: 20px 20px 20px;
@@ -89,7 +89,7 @@ input{
     box-shadow: inset 4px 4px 8px rgba(0,0,0,.1), inset -4px -4px 8px rgba(255, 255, 255, .4); 
     border: 1px #f9f9f9 solid;
     background: #f0f0f0;
-    color: rgb(142, 150, 166);
+    color: rgb(0,0,0);
 }
 .QuickLynx span{
     padding: 5px 15px;
@@ -131,7 +131,11 @@ li a.negative:hover{
     box-shadow: 4px 4px 8px rgba(0,0,0,.1), -4px -4px 8px rgba(255, 255, 255, .4); 
 }
 .f{
-    border: 1px solid black;
+    border-radius: 15px;
+    border: 1px #f9f9f9 solid;
+    background: #f0f0f0;
+    box-shadow: 4px 4px 8px rgba(0,0,0,.1), -4px -4px 8px rgba(255, 255, 255, .4); 
+    margin-bottom: 10px;
 }
 .post-icons{
     filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.4));
@@ -147,4 +151,26 @@ li a.negative:hover{
     font-size: larger;
     border: 1px #f9f9f9 solid;
 
+}
+.search{
+    border: 1px solid white;
+    border-radius: 10px !important;
+    box-shadow: inset 4px 4px 8px rgba(0,0,0,.1), inset -4px -4px 8px rgba(255, 255, 255, .8); 
+    overflow: hidden;
+    padding: 5px 10px;
+    outline: none;
+    background-color: rgba(0,0,0,0);
+    width: 100%;
+}
+.search::placeholder{
+    font-weight: bolder;
+    color:rgb(146, 155, 165)
+}
+.search-container{
+    border-radius: 15px; 
+    box-shadow: 4px 4px 8px rgba(0,0,0,.1), -4px -4px 8px rgba(255, 255, 255, .4); 
+    border: 1px #f9f9f9 solid;
+    background: #f0f0f0;
+    color: rgb(0,0,0);
+    padding: 10px
 }

@@ -29,7 +29,7 @@
             font-weight: bolder;
             margin: 10px 0 10px;
         }
-        textarea {
+        textarea{
             border: 1px solid white;
             margin: 0px 10px 10px;
             border-radius: 15px;
@@ -42,7 +42,7 @@
         }
         textarea::placeholder{
             font-weight: bolder;
-            color:rgb(185, 194, 206)
+            color:rgb(146, 155, 165)
         }
         .control-img{
             margin: 0 5px 0;
@@ -118,12 +118,12 @@
                     </div>
                 </div>
                 <!-- MIDDLE COLUMN -->
-                <div class="col-6 " style="min-height: 100vh;" >
+                <div class="col-6 " style="min-height: 100vh;">
                     <!-- HEADER -->
                     <div class="row header">
                         <div class="aligner col-12" style="margin-top: 10px;">
-                            <h3 style="color: rgb(142, 150, 166); text-shadow: 2px 2px 4px rgba(0,0,0,.2), -2px -2px 4px rgba(255, 255, 255, 1); ">Home</h3>
-                            <span><span data-toggle="modal" data-target="#editaccount" style="font-family: 'Fjalla One', sans-serif; text-shadow: 2px 2px 4px rgba(0,0,0,.2), -2px -2px 4px rgba(255, 255, 255, 1); color: rgb(142, 150, 166); cursor: pointer">{{account.account.first_name}}</span>
+                            <h3 style="color: rgb(0,0,0); text-shadow: 2px 2px 4px rgba(0,0,0,.2), -2px -2px 4px rgba(255, 255, 255, 1); ">Home</h3>
+                            <span><span data-toggle="modal" data-target="#editaccount" style="font-family: 'Fjalla One', sans-serif; text-shadow: 2px 2px 4px rgba(0,0,0,.2), -2px -2px 4px rgba(255, 255, 255, 1); color: rgb(0,0,0); cursor: pointer">{{account.account.first_name}}</span>
                                 <div class="modal" id="editaccount" style="color: black; text-shadow: 0 0 0 white">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -204,12 +204,15 @@
                     {%for post in posts reversed%}
                         {%if post.classroom in account.classroom.all%}
                             <div class="row f">
-                                <div class="col-1 text-center upvotedownvote" >
+                                <!-- LEFT HAND SIDE -->
+                                <div class="col-1 text-center upvotedownvote" style="margin: 10px 0px"> 
                                     <div id="refreshup{{post.id}}" class="" onclick=upvote({{post.id}})>{%if post in account.upvoted_post.all%}<i class="fas fa-sort-up" style="color:rgb(184, 75, 184)"></i>{%else%}<i class="fas fa-sort-up"></i>{%endif%}</div>
                                     <div id="nums{{post.id}}"class="">{{post.upvotes|add:post.downvotes}}</div>
                                     <div id="refreshdown{{post.id}}" class="" onclick=downvote({{post.id}})>{%if post in account.downvoted_post.all%}<i class="fas fa-sort-down" style="color: rgb(56, 121, 121);"></i>{%else%}<i class="fas fa-sort-down"></i>{%endif%}</div>
                                 </div>
-                                <div class="">
+                                <!-- END OF LEFT HAND SIDE -->
+                                <!-- CENTER POST -->
+                                <div class="" style="margin: 10px 0 0 0">
                                     <div class="row">
                                         <div class="col-1">
                                             {%if post.account.propix|length == 0 %}
@@ -235,14 +238,12 @@
                     </div>
                 </div>
                 <!-- RIGHT COLUMN -->
-                <div class="col-3 text-center" style="min-height: 100vh;">
-                    <div class="row sticky-top" style="min-height: 75px;">
-                        <form action="#" class="text-center">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search..">
-                            </div>
-                        </form>
-                        <span class="links" style="margin: 0 5px 0;font-size: 15px; align-self:flex-end">Upcoming <i class="control-img far fa-calendar" title="Create Event"></i></span>
+                <div class="col-3 text-center sticky-top" style="min-height: 100vh; padding-top: 10px; padding-bottom: 10px">
+                    <div class="row text-center" style="margin: 0;">
+                        <div class="search-container col">
+                            <input type="text" class="search" placeholder="Search..">
+                            <!-- <span class="links" style="margin: 0 5px 0;font-size: 15px; align-self:flex-end">Upcoming <i class="control-img far fa-calendar" title="Create Event"></i></span> -->
+                        </div>
                     </div>
                 </div>
             </div>
