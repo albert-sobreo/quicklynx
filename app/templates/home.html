@@ -78,7 +78,7 @@
         }
     </style>
 </head>
-<body onload="init()">
+<body>
     <div class="container-fluid">
         <div class="container">
             <div class="row">
@@ -93,7 +93,7 @@
                                 <ul>
                                     <li>
                                         <div class="row" style="min-height: 75px;">
-                                            <h1 style="margin-top: 10px;" class="QuickLynx"><span>QuickLynx</span></h1>
+                                            <h1 style="margin-top: 10px;" class="QuickLynx"><span onclick="location.href='/home/'">QuickLynx</span></h1>
                                         </div>
                                     </li>
                                     <li class="links" style="margin-bottom: 20px;"><a href="/home/" class="navigation-buttons"><i class="fas fa-home nav-links"></i> Home</a></li>
@@ -108,10 +108,11 @@
                         <div class="container" style="padding: 20px;">
                             <!-- <div class="row">
                                 <ul>
-                                    <li class="links"><a href="#">Materials</a></li>
-                                    <li class="links"><a href="#">Attendance</a></li>
-                                    <li class="links"><a href="#">Grades</a></li>
-                                    <li class="links"><a href="#">Members</a></li>
+                                    <li class="links"><a href="#" id="POST">Posts</a></li>
+                                    <li class="links"><a href="#" id="MATERIALS">Materials</a></li>
+                                    <li class="links"><a href="#" id="ATTENDANCE">Attendance</a></li>
+                                    <li class="links"><a href="#" id="GRADES">Grades</a></li>
+                                    <li class="links"><a href="#" id="MEMBERS">Members</a></li>
                                 </ul>
                             </div> -->
                         </div>
@@ -123,7 +124,8 @@
                     <div class="row header">
                         <div class="aligner col-12" style="margin-top: 10px;">
                             <h3 style="color: rgb(0,0,0); text-shadow: 2px 2px 4px rgba(0,0,0,.2), -2px -2px 4px rgba(255, 255, 255, 1); ">Home</h3>
-                            <span><span data-toggle="modal" data-target="#editaccount" style="font-family: 'Fjalla One', sans-serif; text-shadow: 2px 2px 4px rgba(0,0,0,.2), -2px -2px 4px rgba(255, 255, 255, 1); color: rgb(0,0,0); cursor: pointer">{{account.account.first_name}}</span>
+                            <!-- modal -->
+                            <span><span class="your-name" data-toggle="modal" data-target="#editaccount">{{account.account.first_name}}</span>
                                 <div class="modal" id="editaccount" style="color: black; text-shadow: 0 0 0 white">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -135,11 +137,11 @@
                                                 <form action="/editaccount/" method="POST">{%csrf_token%}
                                                     <div class="form-group">
                                                         <label for="fname">First Name</label>
-                                                        <input type="text" name="first_name" id="fname" class="form-control form-control-sm" value="{{account.account.first_name}}">
+                                                        <input type="text" name="first_name" id="fname" class="form-control-sm" value="{{account.account.first_name}}">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="lname">Last Name</label>
-                                                        <input type="text" name="last_name" id="lname" class="form-control form-control-sm" value="{{account.account.last_name}}">
+                                                        <input type="text" name="last_name" id="lname" class="form-control-sm" value="{{account.account.last_name}}">
                                                     </div>
                                                     <div class="form-group">
                                                         <button type="submit" class="btn btn-info">Confirm Changes</button>
@@ -147,9 +149,7 @@
                                                 </form>
                                             </div>
                                         </div>
-
                                     </div>
-
                                 </div>
                                 {%if account.account.propix|length == 0 %}
                                     <img src="../media/pictures/default_avatar-2.gif" alt="" style="object-fit: cover; border-radius: 50px; margin: 0 10px 0" height="50px" width="50px">
@@ -158,6 +158,7 @@
                                     <img src="{{account.account.propix.url}}" alt="" style="object-fit: cover; border-radius: 50px; margin: 0 10px 0" height="50px" width="50px">
                                 {%endif%}
                             </span>
+                            <!-- end of modal -->
                         </div>
                         <div class="col-12">
                             <form action="#">{%csrf_token%}

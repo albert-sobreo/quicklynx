@@ -14,8 +14,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="https://cdn.tiny.cloud/1/h7ncil8yogyrne1lyybkhxt64mn1uvf750wiac1b8randi5n/tinymce/5/tinymce.min.js"></script> 
-    <script>tinymce.init({selector:'textarea', height: "175px", menubar:true, statusbar: false, plugins: "save image media link lists fullscreen", toolbar: "styleselect | bold italic | numlist bullist | image media link | fullscreen | save"});</script>
     <title>QuickLynx | {{classroom.room_name}}</title>
     <style>
         body{
@@ -39,9 +37,12 @@
             filter: opacity(50%);
         }
         textarea {
-            border: 0 none white;
+            border: 1px solid white;
+            margin: 0px 10px 10px;
+            border-radius: 15px;
+            box-shadow: inset 4px 4px 8px rgba(0,0,0,.1), inset -4px -4px 8px rgba(255, 255, 255, .8); 
             overflow: hidden;
-            padding: 0;
+            padding: 5px 5px;
             outline: none;
             background-color: rgba(0,0,0,0);
             width: auto;
@@ -84,34 +85,35 @@
         }
     </style>
 </head>
-<body onload="init()">
+<body>
     <div class="container-fluid">
         <div class="container">
             <div class="row">
                 <!-- LEFT COLUMN -->
-                <div class="col-3 border-right border-left" style="min-height: 100vh;">
+                <div class="col-3 " style="min-height: 100vh;">
                     <!-- LOGO -->
-                    <div class="row border-bottom text-center" style="min-height: 75px; background: rgb(10, 0, 81); color: white">
-                        <div class="col">
-                            <h1 style="margin-top: 10px;">QuickLynx</h1>
-                        </div>
-                    </div>
+                    
                     <!-- BUTTONS -->
                     <div class="row sticky-top">
-                        <div class="container border-bottom" style="padding: 20px;">
+                        <div class="container" style="padding-top: 0px; padding-left: 50px">
                             <div class="row">
                                 <ul>
-                                    <li class="links"><a href="/home/">Home</a></li>
-                                    <li class="links"><a href="/dashboard/">Dashboard</a></li>
-                                    <li class="links"><a href="/message/">Messages</a></li>
-                                    <li class="links"><a href="#">Notifications</a></li>
-                                    <li class="links"><a href="#">Video Calls</a></li>
-                                    <li class="links"><a href="/logout/">Log Out</a></li>
+                                    <li>
+                                        <div class="row" style="min-height: 75px;">
+                                            <h1 style="margin-top: 10px;" class="QuickLynx"><span onclick="location.href='/home/'">QuickLynx</span></h1>
+                                        </div>
+                                    </li>
+                                    <li class="links" style="margin-bottom: 20px;"><a href="/home/" class="navigation-buttons"><i class="fas fa-home nav-links"></i> Home</a></li>
+                                    <li class="links" style="margin-bottom: 20px;"><a href="/dashboard/" class="navigation-buttons"><i class="fas fa-columns nav-links"></i> Dash</a></li>
+                                    <li class="links" style="margin-bottom: 20px;"><a href="/message/" class="navigation-buttons"><i class="fas fa-comment nav-links"></i> Messages</a></li>
+                                    <li class="links" style="margin-bottom: 20px;"><a href="#" class="navigation-buttons"><i class="fas fa-bell nav-links"></i> Notifications</a></li>
+                                    <li class="links" style="margin-bottom: 20px;"><a href="#" class="navigation-buttons"><i class="fas fa-video nav-links"></i> Duo</a></li>
+                                    <li class="links" style="margin-bottom: 20px;"><a href="/logout/" class="navigation-buttons negative"><i class="fas fa-sign-out-alt" style="color: rgb(231, 106, 106)"></i> Sign Out</a></li>
                                 </ul>
                             </div>
                         </div>
-                        <div class="container border-top" style="padding: 20px;">
-                            <div class="row">
+                        <div class="container" style="padding: 20px;">
+                            <!-- <div class="row">
                                 <ul>
                                     <li class="links"><a href="#" id="POST">Posts</a></li>
                                     <li class="links"><a href="#" id="MATERIALS">Materials</a></li>
@@ -119,12 +121,12 @@
                                     <li class="links"><a href="#" id="GRADES">Grades</a></li>
                                     <li class="links"><a href="#" id="MEMBERS">Members</a></li>
                                 </ul>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
                 <!-- MIDDLE COLUMN-->
-                <div class="col-6 border-right border-left" style="min-height: 100vh;">
+                <div class="col-6" style="min-height: 100vh;">
                     <!-- HEADER -->
                     {% if classroom.headerpix|length == 0 %}
                         <div class="row border-bottom" style="min-height: 75px; background: rgb(10, 0, 81); color: white;">
@@ -253,7 +255,7 @@
                     <div class="MIDDLEPOST" id="MIDDLEPOST" style="display: display;">
                         <form action="/makepost/{{classroom.room_name}}" method="POST">
                             {%csrf_token%}
-                            <textarea rows="1" cols="auto" style="height:1em;" id="text" class="col" placeholder="Create Post" name="text"></textarea>
+                            <textarea name="" id="" cols="65" rows="2" class="col" placeholder="Create Post..." style="resize: none;" maxlength="240"></textarea>
                         </form>
                         <!-- POST CONTROLS -->
 
@@ -268,13 +270,13 @@
                             {%if post.classroom in account.classroom.all%}
                                 {%if post.classroom|stringformat:'s' == classroom|stringformat:'s'%}
                                     {%if classroom|stringformat:'s' in account.classroom.all|stringformat:'s'%}
-                                        <div class="row border-top border-bottom">
-                                            <div class="col-1 text-center upvotedownvote" >
+                                        <div class="row f">
+                                            <div class="col-1 text-center upvotedownvote" style="margin: 10px 0px;">
                                                 <div id="refreshup{{post.id}}" class="" onclick=upvote({{post.id}})>{%if post in account.upvoted_post.all%}<i class="fas fa-sort-up" style="color:rgb(184, 75, 184)"></i>{%else%}<i class="fas fa-sort-up"></i>{%endif%}</div>
                                                 <div id="nums{{post.id}}"class="">{{post.upvotes|add:post.downvotes}}</div>
                                                 <div id="refreshdown{{post.id}}" class="" onclick=downvote({{post.id}})>{%if post in account.downvoted_post.all%}<i class="fas fa-sort-down" style="color: rgb(56, 121, 121);"></i>{%else%}<i class="fas fa-sort-down"></i>{%endif%}</div>
                                             </div>
-                                            <div class="">
+                                            <div class="" style="margin: 10px 0 0 0;">
                                                 <div class="row">
                                                     <div class="col-1">
                                                         {%if post.account.propix|length == 0 %}
@@ -410,37 +412,6 @@
             </div>
         </div>
     </div>
-    <script>
-        var observe;
-        if (window.attachEvent) {
-            observe = function (element, event, handler) {
-                element.attachEvent('on'+event, handler);
-            };
-        }
-        else {
-            observe = function (element, event, handler) {
-                element.addEventListener(event, handler, false);
-            };
-        }
-        function init () {
-            var text = document.getElementById('text');
-            function resize () {
-                text.style.height = 'auto';
-                text.style.height = text.scrollHeight+'px';
-            }
-            /* 0-timeout to get the already changed text */
-            function delayedResize () {
-                window.setTimeout(resize, 0);
-            }
-            observe(text, 'change',  resize);
-            observe(text, 'cut',     delayedResize);
-            observe(text, 'paste',   delayedResize);
-            observe(text, 'drop',    delayedResize);
-            observe(text, 'keydown', delayedResize);
-            
-            resize();
-        }
-    </script>
     <script>
         function upvote(post_id){
             $.ajax({

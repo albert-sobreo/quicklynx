@@ -13,8 +13,6 @@
     <script defer src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="https://cdn.tiny.cloud/1/h7ncil8yogyrne1lyybkhxt64mn1uvf750wiac1b8randi5n/tinymce/5/tinymce.min.js"></script> 
-    <script>tinymce.init({selector:'textarea', height: "175px", menubar:true, statusbar: false, plugins: "save image media link lists fullscreen", toolbar: "styleselect | bold italic | numlist bullist | image media link | fullscreen | save"});</script>
     <title>QuickLynx | Dashboard</title>
     <style>
         body{
@@ -28,26 +26,20 @@
             font-weight: bolder;
             margin: 10px 0 10px;
         }
-        li a{
-            text-decoration: none !important;
-            color: rgb(33,37, 41);
-            transition: 0.1s;
-            outline: 0;
-        }
-        li a:hover{
-            filter: opacity(50%);
-        }
-        textarea {
-            border: 0 none white;
+        textarea{
+            border: 1px solid white;
+            margin: 0px 10px 10px;
+            border-radius: 15px;
+            box-shadow: inset 4px 4px 8px rgba(0,0,0,.1), inset -4px -4px 8px rgba(255, 255, 255, .8); 
             overflow: hidden;
-            padding: 0;
+            padding: 5px 5px;
             outline: none;
             background-color: rgba(0,0,0,0);
             width: auto;
         }
         textarea::placeholder{
             font-weight: bolder;
-            color:rgb(185, 194, 206)
+            color:rgb(146, 155, 165)
         }
         .control-img{
             margin: 0 5px 0;
@@ -78,6 +70,9 @@
         .aligner-item-bottom {
           align-self: flex-end;
         }
+        .upvotedownvote{
+            padding: 0;
+        }
     </style>
 </head>
 <body onload="init()">
@@ -85,28 +80,29 @@
         <div class="container">
             <div class="row">
                 <!-- LEFT COLUMN -->
-                <div class="col-3 border-right border-left" style="min-height: 100vh;">
+                <div class="col-3 " style="min-height: 100vh;">
                     <!-- LOGO -->
-                    <div class="row border-bottom text-center" style="min-height: 75px; background: rgb(10, 0, 81); color: white">
-                        <div class="col">
-                            <h1 style="margin-top: 10px;">QuickLynx</h1>
-                        </div>
-                    </div>
+                    
                     <!-- BUTTONS -->
                     <div class="row sticky-top">
-                        <div class="container border-bottom" style="padding: 20px;">
+                        <div class="container" style="padding-top: 0px; padding-left: 50px">
                             <div class="row">
                                 <ul>
-                                    <li class="links"><a href="/home/">Home</a></li>
-                                    <li class="links"><a href="/dashboard/">Dashboard</a></li>
-                                    <li class="links"><a href="/message/">Messages</a></li>
-                                    <li class="links"><a href="#">Notifications</a></li>
-                                    <li class="links"><a href="#">Video Calls</a></li>
-                                    <li class="links"><a href="/logout/">Log Out</a></li>
+                                    <li>
+                                        <div class="row" style="min-height: 75px;">
+                                            <h1 style="margin-top: 10px;" class="QuickLynx"><span onclick="location.href='/home/'">QuickLynx</span></h1>
+                                        </div>
+                                    </li>
+                                    <li class="links" style="margin-bottom: 20px;"><a href="/home/" class="navigation-buttons"><i class="fas fa-home nav-links"></i> Home</a></li>
+                                    <li class="links" style="margin-bottom: 20px;"><a href="/dashboard/" class="navigation-buttons"><i class="fas fa-columns nav-links"></i> Dash</a></li>
+                                    <li class="links" style="margin-bottom: 20px;"><a href="/message/" class="navigation-buttons"><i class="fas fa-comment nav-links"></i> Messages</a></li>
+                                    <li class="links" style="margin-bottom: 20px;"><a href="#" class="navigation-buttons"><i class="fas fa-bell nav-links"></i> Notifications</a></li>
+                                    <li class="links" style="margin-bottom: 20px;"><a href="#" class="navigation-buttons"><i class="fas fa-video nav-links"></i> Duo</a></li>
+                                    <li class="links" style="margin-bottom: 20px;"><a href="/logout/" class="navigation-buttons negative"><i class="fas fa-sign-out-alt" style="color: rgb(231, 106, 106)"></i> Sign Out</a></li>
                                 </ul>
                             </div>
                         </div>
-                        <div class="container border-top" style="padding: 20px;">
+                        <div class="container" style="padding: 20px;">
                             <!-- <div class="row">
                                 <ul>
                                     <li class="links"><a href="#">Materials</a></li>
@@ -119,9 +115,9 @@
                     </div>
                 </div>
                 <!-- MIDDLE COLUMN -->
-                <div class="col-6 border-right border-left" style="min-height: 100vh;">
+                <div class="col-6" style="min-height: 100vh;">
                     <!-- HEADER -->
-                    <div class="row border-bottom" style="min-height: 75px; background: rgb(10, 0, 81); color: white">
+                    <!-- <div class="row border-bottom" style="min-height: 75px; background: rgb(10, 0, 81); color: white">
                         <div class="aligner col">
                             <h3>Dashboard</h3>
                             <span style="font-family: 'Fjalla One', sans-serif;">{{account.account.first_name}}
@@ -133,28 +129,38 @@
                                 {%endif%}
                             </span>
                         </div>
+                    </div> -->
+                    <div class="row header">
+                        <div class="aligner col-12" style="margin-top: 10px;">
+                            <h3 style="color: rgb(0,0,0); text-shadow: 2px 2px 4px rgba(0,0,0,.2), -2px -2px 4px rgba(255, 255, 255, 1); ">Dashboard</h3>
+                            <!-- modal -->
+                            <span><span class="your-name" data-toggle="modal" data-target="#editaccount">{{account.account.first_name}}</span>
+                                {%if account.account.propix|length == 0 %}
+                                    <img src="../media/pictures/default_avatar-2.gif" alt="" style="object-fit: cover; border-radius: 50px; margin: 0 10px 0" height="50px" width="50px">
+                                {%endif%}
+                                {%if account.account.propix|length > 0 %}
+                                    <img src="{{account.account.propix.url}}" alt="" style="object-fit: cover; border-radius: 50px; margin: 0 10px 0" height="50px" width="50px">
+                                {%endif%}
+                            </span>
+                        </div>
+                        <div class="col-12">
+                            {%if account.account.login.category == "PROFESSOR"%}
+                                <div class="row text-center">
+                                    <div class="col">
+                                        <button class="btn btn-warning btn-sm post-btn" data-toggle="modal" data-target="#myModal" style="margin-bottom: 15px; padding-left: 50px; padding-right: 50px">Create Classroom</button>
+                                    </div>
+                                </div>
+                            {%endif%}
+                            {%if account.account.login.category == "STUDENT"%}
+                            <form action="/joinclassroom/"method="POST" class="text-center">{%csrf_token%}
+                                <input style="margin-top: 10px; margin-bottom: 10px;" type="text" class="col-12" name="token" placeholder="Type token to join classroom and press enter">
+                            {%endif%}
+                        </div>
+                        
                     </div>
                     <!-- COURSES HERE -->
                     <!-- CREATE CLASSROOM SPACE -->
-                    {%if account.account.login.category == "PROFESSOR"%}
-                        <div class="row text-center" style="height: 39px; background: rgb(222, 226,230)">
-                            <div class="col">
-                                <button class="btn btn-warning" data-toggle="modal" data-target="#myModal">Create Classroom</button>
-                            </div>
-                        </div>
-                    {%endif%}
-                    {%if account.account.login.category == "STUDENT"%}
-                    <div class="row text-center">
-                        <form action="/joinclassroom/" class="col" method="POST">{%csrf_token%}
-                            <div class="input-group">
-                                <input type="text" class="form-control form-control-sm" name="token" placeholder="Type token to join classroom">
-                                <div class="input-group-append">
-                                    <button class="btn btn-warning btn-sm" type="submit">Go</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    {%endif%}
+                    
                     <!-- add javascript function to select active and ended classrooms page <br> -->
                     {% now "Y-m-d" as todays_date%}
                     
@@ -168,53 +174,57 @@
                             {% if classroom.headerpix|length > 0 %}
                                 <div class="card-selector col text-center row-course" style="color: white; background: url({{classroom.headerpix.url}}); background-size: cover; background-position:center" onclick="location.href='/classroom/{{classroom.room_name}}'">
                             {%endif%}
-                                <p style="text-shadow: 0 0 5px black;">{%if todays_date < classroom.date_end|date:"Y-m-d"%}<i class="far fa-circle" style="color: rgb(105, 255, 92); font-size: 1rem; vertical-align:5px"></i>{%else%}<i class="far fa-circle" style="color: rgb(255, 92, 92); font-size: 1rem; vertical-align:5px">{%endif%}</i>&nbsp;{{classroom.room_name}} <br><span style="font-size: 1rem; font-weight: lighter">{{classroom.date_start|date:"M d"}} - {{classroom.date_end|date:"M d Y"}} {{classroom.days}}</span></p>
+                                <p >{%if todays_date < classroom.date_end|date:"Y-m-d"%}<i class="far fa-circle" style="color: rgb(105, 255, 92); font-size: 1rem; vertical-align:5px"></i>{%else%}<i class="far fa-circle" style="color: rgb(255, 92, 92); font-size: 1rem; vertical-align:5px">{%endif%}</i>
+                                    &nbsp;{{classroom.room_name}}<br/>
+                                    <span style="font-size: 1rem; font-weight: lighter">{{classroom.date_start|date:"M d"}} - {{classroom.date_end|date:"M d Y"}} {{classroom.days}}</span>
+                                </p>
                                 
                             </div>
                         </div>
                     {%endfor%}
                     
                 </div>
-                <!-- MODAL HERE -->
+                <!-- MODAL HERE FOR CREATING CLASSROOM-->
                 <div class="modal" id="myModal">
                     <div class="modal-dialog">
                         <div class="modal-content">
 
                             <!-- MODAL HEADER -->
                             <div class="modal-header">
-                                <h4 class="modal-title">Create Classroom</h4>
+                                <span class="modal-title">Create Classroom</span>
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                             </div>
                             
                             <!-- MODAL BODY -->
                             <div class="modal-body">
-                                <form action="/makeclassroom/" class="form-group" method="POST" enctype="multipart/form-data">{%csrf_token%}
+                                <form action="/makeclassroom/" method="POST" enctype="multipart/form-data">{%csrf_token%}
                                     <div class="form-group">
-                                        <input type="text" placeholder="Classroom Name" name="room_name" class="form-control form-control-sm" required>
+                                        <label for="room_name">Classroom Name</label>
+                                        <input type="text" name="room_name" class="col" placeholder="Enter Classroom name" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="time_start">Time Start</label>
-                                        <input type="time" name="time_start" id="time_start" class="form-control form-control-sm" required>
+                                        <input type="time" name="time_start" id="time_start" class="col" required>
                                         <label for="time_end">Time End</label>
-                                        <input type="time" name="time_end" id="time_end" class="form-control form-control-sm" required>
+                                        <input type="time" name="time_end" id="time_end" class="col" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="days">Days</label>
-                                        <input type="text" name="days" id="days" class="form-control form-control-sm" placeholder="MTh/TF/W/S" required>
+                                        <input type="text" name="days" id="days" class="col" placeholder="MTh/TF/W/S" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="date_start">Date Start</label>
-                                        <input type="date" name="date_start" id="date_start" class="form-control form-control-sm" required>
+                                        <input type="date" name="date_start" id="date_start" class="col" required>
                                         <label for="date_end">Date End</label>
-                                        <input type="date" name="date_end" id="date_end" class="form-control form-control-sm" required>
+                                        <input type="date" name="date_end" id="date_end" class="col" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="year">Year</label>
-                                        <input type="text" name="year_start" id="year" class="form-control form-control-sm" required>
+                                        <input type="text" name="year_start" id="year" class="col" placeholder="Enter Year" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="semester">Semester</label>
-                                        <select class="form-control form-control-sm" id="semester" name="semester" required>
+                                        <select class="col form-control" id="semester" name="semester" required>
                                             <option value="" style="color:#999">Choose Semester</option>
                                             <option value="FIRST">1st Semester</option>
                                             <option value="SECOND">2nd Semester</option>
@@ -225,7 +235,7 @@
                                         <label for="headerpix">Header Picture (Optional)</label>
                                         <input type="file" name="headerpix" id="headerpix" class="form-control-file">
                                     </div>
-                                    <button type="submit" class="btn btn-info">Create</button>
+                                    <button type="submit" class="btn btn-warning post-btn">Create</button>
                                 </form>
                             </div>
 
@@ -233,52 +243,16 @@
                     </div>
                 </div>
                 <!-- RIGHT COLUMN -->
-                <div class="col-3 border-right border-left text-center" style="min-height: 100vh;">
-                    <div class="row border-bottom sticky-top" style="min-height: 75px;">
-                        <form action="#" class="text-center">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search..">
-                                <div class="input-group-append">
-                                    <span class="input-group-text"><i class="fas fa-search"></i></span>
-                                </div>
-                            </div>
-                        </form>
-                        <span class="links" style="margin: 0 5px 0;font-size: 15px; align-self:flex-end">Upcoming <i class="control-img far fa-calendar" title="Create Event"></i></span>
+                <div class="col-3 text-center sticky-top" style="min-height: 100vh; padding-top: 10px; padding-bottom: 10px">
+                    <div class="row text-center" style="margin: 0;">
+                        <div class="search-container col">
+                            <input type="text" class="search" placeholder="Search..">
+                            <!-- <span class="links" style="margin: 0 5px 0;font-size: 15px; align-self:flex-end">Upcoming <i class="control-img far fa-calendar" title="Create Event"></i></span> -->
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        var observe;
-        if (window.attachEvent) {
-            observe = function (element, event, handler) {
-                element.attachEvent('on'+event, handler);
-            };
-        }
-        else {
-            observe = function (element, event, handler) {
-                element.addEventListener(event, handler, false);
-            };
-        }
-        function init () {
-            var text = document.getElementById('text');
-            function resize () {
-                text.style.height = 'auto';
-                text.style.height = text.scrollHeight+'px';
-            }
-            /* 0-timeout to get the already changed text */
-            function delayedResize () {
-                window.setTimeout(resize, 0);
-            }
-            observe(text, 'change',  resize);
-            observe(text, 'cut',     delayedResize);
-            observe(text, 'paste',   delayedResize);
-            observe(text, 'drop',    delayedResize);
-            observe(text, 'keydown', delayedResize);
-            
-            resize();
-        }
-    </script>
 </body>
 </html>

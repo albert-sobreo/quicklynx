@@ -1,3 +1,4 @@
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,16 +12,16 @@
     <script defer src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../static/css/style.css">
     <title>QuickLynx | Log In</title>
     <style>
+        html{
+            overflow: hidden;
+        }
         body{
             font-family: Arial, Helvetica, sans-serif;
             margin: 0;
             padding: 0;
-        }
-        input{
-            border:rgb(212, 212, 212) 1px solid !important;
-            border-radius: 2px !important;
         }
         .vertical-center {
             min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
@@ -50,54 +51,85 @@
         .title{
             font-family: 'Fjalla One', sans-serif
         }
+        .center-my-login{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .flex{
+            display: flex;
+            align-items: center;
+            padding: 50px;
+        }
+        .this{
+            height: 600px;
+            width: 900px;
+            box-shadow: 0px 4px 16px rgba(0,0,0,.1);
+            padding: 20px;
+        }
+        .bigger-font{
+            font-size: 80px;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="picture col-7 h-50 my-auto vertical-center">
-                <span style="font-size: 40px; font-weight:900">
-                    <ul>
-                        <li><img src="https://img.icons8.com/nolan/64/000000/file.png">Manage files</li>
-                        <li><img src="https://img.icons8.com/nolan/64/000000/classroom.png">Deliver lectures</li>
-                        <li><img src="https://img.icons8.com/nolan/64/000000/upload-to-cloud.png">Submit projects</li>
-                    </ul>
-                </span>
-            </div>
-            <div class="col-5 " style="min-height: 100vh; width: 50px; color: black; padding: 10px">
-                <div class="container" style="padding: 50px">
-                    <div class="row">
-                        <div class="col ">
-                            <form action="/makelogins/" method="POST">{%csrf_token%}
-                                <div class="form-group">
-                                    <input type="email" class="form-control my-3 w-50" id="email" placeholder="Enter email" name="email" required>
-                                    <input type="password" class="form-control my-3 w-50" id="password" placeholder="Enter password" name="password" required>
-                                    <button type="submit" class="btn btn-info my-3 mx-1">Log in</button>
+    <div class="center-my-login">
+        <div class="this" style="background-image: linear-gradient(100deg, #1A535C 50%, #e1e3e4 0%);">
+            <div class="row">
+                <div class="col-7 flex">
+                    <span>
+                        <h1 class="bigger-font" style="color: rgb(241, 241, 241);">QuickLynx</h1>
+                        <h3 style="color: #e1e3e4;">The Official LMS of College of Computer Studies</h3>
+                    </span>
+                </div>
+                <!-- <div class="picture col-6 h-50 my-auto vertical-center">
+                    <span style="font-size: 40px; font-weight:900">
+                        <ul>
+                            <li><img src="https://img.icons8.com/nolan/64/000000/file.png">Manage files</li>
+                            <li><img src="https://img.icons8.com/nolan/64/000000/classroom.png">Deliver lectures</li>
+                            <li><img src="https://img.icons8.com/nolan/64/000000/upload-to-cloud.png">Submit projects</li>
+                        </ul>
+                    </span>
+                </div> -->
+                <div class="col-5" style="color: black; padding: 10px; display:flex; justify-content: center;">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col ">
+                                <form action="/makelogins/" method="POST">{%csrf_token%}
+                                    <div class="form-group" style="width: 300px;">
+                                        <h1>&nbsp;Login</h1>
+                                        <div class="form-group">
+                                            <label for="email" style="font-size:larger;">Email</label>
+                                            <input type="email" class="col" id="email" placeholder="Enter email" name="email" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password" style="font-size: larger;">Password</label>
+                                            <input type="password" class="col" id="password" placeholder="Enter password" name="password" required>
+                                        </div>
+                                        <button type="submit" class="btn btn-danger post-btn col">Log in</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group" style="width:300px">
+                                    <span style="font-weight: bold;">Get started as:</span>
+                                    <div class="text-center">
+                                        <button class="post-btn btn btn-warning" onclick="location.href='/register-as-professor'">Professor</button>
+                                        <button class="post-btn btn btn-warning" onclick="location.href='/register-as-student'">Student</button>
+                                    </div>
                                 </div>
-                            </form>
+                            </div>
+                        </div>
+                        <div class="page-footer font-small" style="font-size: 10px;font-family: 'Oswald', sans-serif">
+                            <div class="footer-copyright text-center py-3">
+                                © 2020 Copyright: QuickLynx
+                            </div>
                         </div>
                     </div>
-                    <div class="row" style="margin-top:50px">
-                        <div class="col title">
-                            <h1 style="font-weight: 900;">QuickLynx</h1>
-                            <h2 style="font-weight: 700;">Your classroom in the cloud</h2>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-top: 50px; font-weight: bold">
-                            Get started as:
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <button class="btn btn-warning mx-1" onclick="location.href='/register-as-professor'">Professor</button>
-                            <button class="btn btn-warning mx-1" onclick="location.href='/register-as-student'">Student</button>
-                            <button class="btn btn-warning mx-1">Administrator</button>
-                        </div>
-                    </div>
-                    <footer class="page-footer font-small" style="position: fixed; bottom: 0; right:17.5%; font-size: 10px;font-family: 'Fjalla One', sans-serif">
-                        <div class="footer-copyright text-center py-3">
-                            © 2019 Copyright: QuickLynx
-                        </div>
-                    </footer>
                 </div>
             </div>
         </div>
