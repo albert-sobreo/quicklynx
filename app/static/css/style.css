@@ -138,7 +138,26 @@ li a.negative:hover{
     text-shadow: 0px 0px 10px rgb(255, 91, 91);
     transition: .2s;
 }
-
+.navers{
+    border: 1px solid rgba(0,0,0,0);
+    text-decoration: none;
+    color: rgb(33,37,41);
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 1px 5px;
+    border-radius: 10px;
+    transition: .2s;
+}
+.navers:hover{
+    border: 1px solid #f9f9f9;
+    color: rgb(33,37,41);
+    box-shadow: 2px 2px 4px rgba(0,0,0,.2), -2px -2px 4px rgba(255,255,255,.4);
+}
+.navers:active, .navers:focus{
+    border: 1px solid #f9f9f9;
+    color: rgb(33,37,41);
+    box-shadow: inset 2px 2px 4px rgba(0,0,0,0.2), -2px -2px 4px rgba(255,255,255,.4);
+}
 .header{
     margin-top: 10px;
     margin-bottom: 10px;
@@ -154,6 +173,7 @@ li a.negative:hover{
     border: 1px #f9f9f9 solid;
     background: #f0f0f0;
     box-shadow: 4px 4px 8px rgba(0,0,0,.1), -4px -4px 8px rgba(255, 255, 255, .4); 
+    margin-top: 10px;
     margin-bottom: 10px;
 }
 .post-icons{
