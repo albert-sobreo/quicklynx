@@ -158,67 +158,66 @@
                             </div>
                         </div>
                     </div>
+                    {% if account.account.login.category == "PROFESSOR" %}
+                        <div class="modal" id="editroom" style="color: black">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Edit this classroom</h4>
+                                        <button class="close" type="button" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="/editclassroom/{{classroom.room_name}}" method="POST">{%csrf_token%}
+                                            <div class="form-group">
+                                                <label for="invite_token">Token</label>
+                                                <input type="text" id="invite_token" readonly="readonly" value="{{classroom.invite_token}}" class="col">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="room_name">Classroom Name</label>
+                                                <input type="text" placeholder="Classroom Name" name="room_name" class="col" value="{{classroom.room_name}}" id="room_name"required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="time_start">Time Start</label>
+                                                <input type="time" name="time_start" id="time_start" class="col" value="{{classroom.time_start|time:'H:i'}}" required>
+                                                <label for="time_end">Time End</label>
+                                                <input type="time" name="time_end" id="time_end" class="col" value="{{classroom.time_end|time:'H:i'}}" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="days">Days</label>
+                                                <input type="text" name="days" id="days" class="col" placeholder="MTh/TF/W/S" value="{{classroom.days}}" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="date_start">Date Start</label>
+                                                <input type="date" name="date_start" id="date_start" class="col" value="{{classroom.date_start|date:'Y-m-d'}}" required>
+                                                <label for="date_end">Date End</label>
+                                                <input type="date" name="date_end" id="date_end" class="col" value="{{classroom.date_end|date:'Y-m-d'}}" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="year">Year</label>
+                                                <input type="text" name="year_start" id="year" class="col" value="{{classroom.year_start}}" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="semester">Semester</label>
+                                                <select class="form-control form-control-sm" id="semester" name="semester" required>
+                                                    <option value="" style="color:#999">Choose Semester</option>
+                                                    <option value="FIRST" {% if classroom.semester == "FIRST" %} selected {%endif%}>1st Semester</option>
+                                                    <option value="SECOND" {% if classroom.semester == "SECOND" %} selected {%endif%}>2nd Semester</option>
+                                                    <option value="SUMMER" {% if classroom.semester == "SUMMER" %} selected {%endif%}>Summer</option>
+                                                </select>
+                                            </div>
+                                            <button type="submit" class="btn btn-info">Confirm Changes</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {%endif%}
                     <!-- end of modoal -->
                     <!-- HEADER -->
                     <div class="row header">
                         <div class="aligner col-12" style="margin-top: 10px;">
                             <h3 style="color: rgb(0,0,0); text-shadow: 2px 2px 4px rgba(0,0,0,.2), -2px -2px 4px rgba(255, 255, 255, 1);cursor: pointer" data-toggle="modal" data-target="#editroom" title="Edit this Room">{{classroom.room_name}}</h3>
-                            {% if account.account.login.category == "PROFESSOR" %}
-                            <div class="modal" id="editroom" style="color: black">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h4 class="modal-title">Edit this classroom</h4>
-                                            <button class="close" type="button" data-dismiss="modal">&times;</button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form action="/editclassroom/{{classroom.room_name}}" method="POST">{%csrf_token%}
-                                                <div class="form-group">
-                                                    <label for="invite_token">Token</label>
-                                                    <input type="text" id="invite_token" readonly="readonly" value="{{classroom.invite_token}}" class="col">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="room_name">Classroom Name</label>
-                                                    <input type="text" placeholder="Classroom Name" name="room_name" class="col" value="{{classroom.room_name}}" id="room_name"required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="time_start">Time Start</label>
-                                                    <input type="time" name="time_start" id="time_start" class="col" value="{{classroom.time_start|time:'H:i'}}" required>
-                                                    <label for="time_end">Time End</label>
-                                                    <input type="time" name="time_end" id="time_end" class="col" value="{{classroom.time_end|time:'H:i'}}" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="days">Days</label>
-                                                    <input type="text" name="days" id="days" class="col" placeholder="MTh/TF/W/S" value="{{classroom.days}}" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="date_start">Date Start</label>
-                                                    <input type="date" name="date_start" id="date_start" class="col" value="{{classroom.date_start|date:'Y-m-d'}}" required>
-                                                    <label for="date_end">Date End</label>
-                                                    <input type="date" name="date_end" id="date_end" class="col" value="{{classroom.date_end|date:'Y-m-d'}}" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="year">Year</label>
-                                                    <input type="text" name="year_start" id="year" class="col" value="{{classroom.year_start}}" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="semester">Semester</label>
-                                                    <select class="form-control form-control-sm" id="semester" name="semester" required>
-                                                        <option value="" style="color:#999">Choose Semester</option>
-                                                        <option value="FIRST" {% if classroom.semester == "FIRST" %} selected {%endif%}>1st Semester</option>
-                                                        <option value="SECOND" {% if classroom.semester == "SECOND" %} selected {%endif%}>2nd Semester</option>
-                                                        <option value="SUMMER" {% if classroom.semester == "SUMMER" %} selected {%endif%}>Summer</option>
-                                                    </select>
-                                                </div>
-                                                <button type="submit" class="btn btn-info">Confirm Changes</button>
-                                            </form>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
                             <div style="height: 100%; width: 100px; cursor: pointer" title="Change Header" data-toggle="modal" data-target="#changeheaderpix"></div>
-                            {%endif%}
                             <span><span class="your-name" data-toggle="modal" data-target="#editaccount">{{account.account.first_name}}</span>
                                 {%if account.account.propix|length == 0 %}
                                     <img src="../media/pictures/default_avatar-2.gif" alt="" style="object-fit: cover; border-radius: 50px; margin: 0 10px 0" height="50px" width="50px">
