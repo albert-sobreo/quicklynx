@@ -419,6 +419,84 @@
                         <!-- END QUIZZES -->
                     </div>
                     <!-- END OF MATERIALS TAB -->
+
+                    <!-- ATTENDANCE TAB -->
+                    <div id="MIDDLEATTENDANCE" style="display: none;">
+                        <div class="row header">
+                            <div class="aligner col-12" style="margin-top: 10px;">
+                                <h3 style="color: rgb(0,0,0); text-shadow: 2px 2px 4px rgba(0,0,0,.2), -2px -2px 4px rgba(255, 255, 255, 1);cursor: pointer" data-toggle="modal" data-target="#editroom" title="Edit this Room">{{classroom.room_name}}</h3>
+                                <div style="height: 100%; width: 100px; cursor: pointer" title="Change Header" data-toggle="modal" data-target="#changeheaderpix"></div>
+                                <span><span class="your-name" data-toggle="modal" data-target="#editaccount">{{account.account.first_name}}</span>
+                                    {%if account.account.propix|length == 0 %}
+                                        <img src="../media/pictures/default_avatar-2.gif" alt="" style="object-fit: cover; border-radius: 50px; margin: 0 10px 0" height="50px" width="50px">
+                                    {%endif%}
+                                    {%if account.account.propix|length > 0 %}
+                                        <img src="{{account.account.propix.url}}" alt="" style="object-fit: cover; border-radius: 50px; margin: 0 10px 0" height="50px" width="50px">
+                                    {%endif%}
+                                </span>
+                            </div>
+                            <div class="col-12">
+                                <div class="row">
+                                    <h1 class="text-center col">Attendance</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END OF ATTENDANCE TAB -->
+
+                    <!-- GRADES TAB -->
+                    <div id="MIDDLEGRADES" style="display: none;">
+                        <div class="row header">
+                            <div class="aligner col-12" style="margin-top: 10px;">
+                                <h3 style="color: rgb(0,0,0); text-shadow: 2px 2px 4px rgba(0,0,0,.2), -2px -2px 4px rgba(255, 255, 255, 1);cursor: pointer" data-toggle="modal" data-target="#editroom" title="Edit this Room">{{classroom.room_name}}</h3>
+                                <div style="height: 100%; width: 100px; cursor: pointer" title="Change Header" data-toggle="modal" data-target="#changeheaderpix"></div>
+                                <span><span class="your-name" data-toggle="modal" data-target="#editaccount">{{account.account.first_name}}</span>
+                                    {%if account.account.propix|length == 0 %}
+                                        <img src="../media/pictures/default_avatar-2.gif" alt="" style="object-fit: cover; border-radius: 50px; margin: 0 10px 0" height="50px" width="50px">
+                                    {%endif%}
+                                    {%if account.account.propix|length > 0 %}
+                                        <img src="{{account.account.propix.url}}" alt="" style="object-fit: cover; border-radius: 50px; margin: 0 10px 0" height="50px" width="50px">
+                                    {%endif%}
+                                </span>
+                            </div>
+                            <div class="col-12">
+                                <div class="row">
+                                    <h1 class="text-center col">Grades</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END OF GRADES TAB -->
+
+                    <!-- MEMBERS TAB -->
+                    <div id="MIDDLEMEMBERS" style="display: none;">
+                        <div class="row header">
+                            <div class="aligner col-12" style="margin-top: 10px;">
+                                <h3 style="color: rgb(0,0,0); text-shadow: 2px 2px 4px rgba(0,0,0,.2), -2px -2px 4px rgba(255, 255, 255, 1);cursor: pointer" data-toggle="modal" data-target="#editroom" title="Edit this Room">{{classroom.room_name}}</h3>
+                                <div style="height: 100%; width: 100px; cursor: pointer" title="Change Header" data-toggle="modal" data-target="#changeheaderpix"></div>
+                                <span><span class="your-name" data-toggle="modal" data-target="#editaccount">{{account.account.first_name}}</span>
+                                    {%if account.account.propix|length == 0 %}
+                                        <img src="../media/pictures/default_avatar-2.gif" alt="" style="object-fit: cover; border-radius: 50px; margin: 0 10px 0" height="50px" width="50px">
+                                    {%endif%}
+                                    {%if account.account.propix|length > 0 %}
+                                        <img src="{{account.account.propix.url}}" alt="" style="object-fit: cover; border-radius: 50px; margin: 0 10px 0" height="50px" width="50px">
+                                    {%endif%}
+                                </span>
+                            </div>
+                            <div class="col-12">
+                                <div class="row">
+                                    <h1 class="text-center col">Members</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            {%for student in students%}
+                            <span>{{student}}</span>
+                            {%endfor%}
+                        </div>
+                    </div>
+                    <!-- END OF MEMBERS TAB -->
+
                 </div>
 
                 
@@ -479,10 +557,37 @@
             $("#POST").click(function(e){
                 $("#MIDDLEPOST").css("display", "block")
                 $("#MIDDLEMATERIALS").css("display", "none")
+                $("#MIDDLEATTENDANCE").css("display", "none")
+                $("#MIDDLEGRADES").css("display", "none")
+                $("#MIDDLEMEMBERS").css("display", "none")
             })
             $("#MATERIALS").click(function(e){
                 $("#MIDDLEPOST").css("display", "none")
                 $("#MIDDLEMATERIALS").css("display", "block")
+                $("#MIDDLEATTENDANCE").css("display", "none")
+                $("#MIDDLEGRADES").css("display", "none")
+                $("#MIDDLEMEMBERS").css("display", "none")
+            })
+            $("#ATTENDANCE").click(function(e){
+                $("#MIDDLEPOST").css("display", "none")
+                $("#MIDDLEMATERIALS").css("display", "none")
+                $("#MIDDLEATTENDANCE").css("display", "block")
+                $("#MIDDLEGRADES").css("display", "none")
+                $("#MIDDLEMEMBERS").css("display", "none")
+            })
+            $("#GRADES").click(function(e){
+                $("#MIDDLEPOST").css("display", "none")
+                $("#MIDDLEMATERIALS").css("display", "none")
+                $("#MIDDLEATTENDANCE").css("display", "none")
+                $("#MIDDLEGRADES").css("display", "block")
+                $("#MIDDLEMEMBERS").css("display", "none")
+            })
+            $("#MEMBERS").click(function(e){
+                $("#MIDDLEPOST").css("display", "none")
+                $("#MIDDLEMATERIALS").css("display", "none")
+                $("#MIDDLEATTENDANCE").css("display", "none")
+                $("#MIDDLEGRADES").css("display", "none")
+                $("#MIDDLEMEMBERS").css("display", "block")
             })
         })
     </script>
