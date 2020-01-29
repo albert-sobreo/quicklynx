@@ -154,6 +154,7 @@
                             {%if account.account.login.category == "STUDENT"%}
                             <form action="/joinclassroom/"method="POST" class="text-center">{%csrf_token%}
                                 <input style="margin-top: 10px; margin-bottom: 10px;" type="text" class="col-12" name="token" placeholder="Type token to join classroom and press enter">
+                            </form>
                             {%endif%}
                         </div>
                         
