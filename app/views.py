@@ -284,7 +284,7 @@ def classroom(request, room_name):
             'posts': Post.objects.all(),
             'events': Event.objects.all(),
             'account': Student.objects.select_related().get(account__login__email=email_session),
-            'students': Student.objects.all(),
+            'students': Student.objects.filter(classroom__room_name=room_name),
             'classroom': Classroom.objects.get(room_name=room_name),
             'lectures': Lecture.objects.select_related().filter(classroom__room_name=room_name)
         }
@@ -293,7 +293,7 @@ def classroom(request, room_name):
             'posts': Post.objects.all(),
             'events': Event.objects.all(),
             'account': Professor.objects.select_related().get(account__login__email=email_session),
-            'students': Student.objects.all(),
+            'students': Student.objects.filter(classroom__room_name=room_name),
             'classroom': Classroom.objects.get(room_name=room_name),
             'lectures': Lecture.objects.select_related().filter(classroom__room_name=room_name)
         }
