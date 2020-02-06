@@ -259,3 +259,74 @@ li a.negative:hover{
 .form-group label{
     font-family: "Oswald", sans-serif;
 }
+.upcoming{
+    border-radius: 15px;
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.1), -4px -4px 8px rgba(255,255,255,.5);
+    border: 1px #f9f9f9 solid;
+    background: #f0f0f0;
+    color: rgb(0,0,0);
+    padding: 15px 15px;
+    margin-top: 10px;
+}
+.upcoming-title{
+    font-family: "Oswald", sans-serif;
+    font-weight: bolder;
+    text-shadow: 4px 4px 8px rgba(0,0,0,.2);
+    font-size: 30px;
+}
+.upcoming-event{
+    border-radius: 15px;
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.1), -4px -4px 8px rgba(255,255,255,.5);
+    border: 1px #f9f9f9 solid;
+    background: #f0f0f0;
+    color: rgb(0,0,0);
+}
+.upcoming-date{
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0;
+    width: 55px;
+}
+.upcoming-date-date{
+    display: inline-block;
+    font-size: 36px;
+    font-family: "Oswald", sans-serif;
+    padding: 0;
+}
+.upcoming-date-daymonth{
+    display: inline-block;
+    padding: 0;
+    font-size: 12px;
+    font-family: "Oswald", sans-serif;
+}
+.upcoming-date-day{
+    display: block;
+    padding: 0;
+}
+.upcoming-date-month{
+    display: block;
+    padding: 0;
+}
+.upcoming-name{
+    display: inline-flex;
+    justify-content: right;
+    vertical-align: middle;
+    font-family: "Oswald", sans-serif;
+    font-size: 24px;
+    width: 160px;text-overflow: ellipsis;
+    height: 55px;
+
+    /* Required for text-overflow to do anything */
+    white-space: nowrap;
+    overflow: hidden;
+}
+.upcoming-name span{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+.upcoming-name:hover{
+    text-overflow: clip;
+    white-space: normal;
+    word-break: break-all;
+}
