@@ -107,20 +107,6 @@ class Student(models.Model):
         return self.account.last_name + ", " + self.account.first_name
 
 
-class Lecture(models.Model):
-    fileloc = models.FileField(upload_to='media', blank=True, null=True) #add validators
-    date = models.DateTimeField()
-    account = models.ForeignKey(Account, on_delete=models.CASCADE)
-    classroom = models.ForeignKey(Classroom, on_delete=models.CASCADE)
-
-    class Meta:
-        db_table = 'lecture'
-
-    def __str__(self):
-        name, extension = os.path.splitext(self.fileloc.name)
-        return name
-
-
 class Event(models.Model):
     title = models.CharField(max_length=50)
     date = models.DateField()
