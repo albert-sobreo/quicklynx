@@ -161,16 +161,25 @@
                             </span>
                         </div>
                         <div class="col-12">
-                            <form action="/makepostfromhome"/>{%csrf_token%}
+                            <form action="/makepostfromhome/">{%csrf_token%}
                                 <div class="row" style="margin-top: 10px;">
                                     <textarea name="" id="" cols="65" rows="2" class="col" placeholder="Create Post..." style="resize: none;" maxlength="240"></textarea>
                                 </div>
+                                
                                 <div class="row" style="margin-bottom: 10px;">
-                                    <div class="col-10">
+                                    <div class="col-4">
                                         <a href="#" style="margin-right: 15px;"><img class="post-icons" src="https://img.icons8.com/material-outlined/24/000000/stack-of-photos.png"></a>
                                         <a href="#" style="margin-right: 15px;"><img class="post-icons" src="https://img.icons8.com/material-outlined/24/000000/video.png"></a>
                                         <a href="#" style="margin-right: 15px;"><img class="post-icons" src="https://img.icons8.com/material-outlined/24/000000/attach.png"></a>
                                         <a href="#" style="margin-right: 15px;"><img class="post-icons" src="https://img.icons8.com/material-outlined/24/000000/poll-topic.png"></a>
+                                    </div>
+                                    <div class="col-6">
+                                        <select name="classroom" id="chooseroom" class="form-control" style="border-radius: 0;">
+                                            <option value="" selected style="color:#aaa;">Choose Classroom</option>
+                                            {%for room in account.classroom.all%}
+                                                <option value="{{room.room_name|stringformat:'s'}}">{{room.room_name}}</option>
+                                            {%endfor%}
+                                        </select>
                                     </div>
                                     <div class="col-2">
                                         <button class="btn btn-sm btn-warning post-btn" type="submit">Post</button>
