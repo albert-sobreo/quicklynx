@@ -161,9 +161,9 @@
                             </span>
                         </div>
                         <div class="col-12">
-                            <form action="/makepostfromhome/">{%csrf_token%}
+                            <form action="/makepostfromhome/" method="POST">{%csrf_token%}
                                 <div class="row" style="margin-top: 10px;">
-                                    <textarea name="" id="" cols="65" rows="2" class="col" placeholder="Create Post..." style="resize: none;" maxlength="240"></textarea>
+                                    <textarea name="text" id="text" cols="65" rows="2" class="col" placeholder="Create Post..." style="resize: none;" maxlength="240"></textarea>
                                 </div>
                                 
                                 <div class="row" style="margin-bottom: 10px;">
