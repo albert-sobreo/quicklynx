@@ -15,7 +15,7 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name='dashboard'),
     path('register-as-professor/', views.register_as_professor, name='register-as-professor'),
     path('registerprofessor/', views.registerprofessor, name='registerprofessor'),
-    path('classroom/<str:room_name>', views.classroom, name='classroom'),
+    path('classroom/<str:room_name>/<str:semester>/<str:year>', views.classroom, name='classroom'),
     path('makepost/<str:room_name>', views.makepost, name='makepost'),
     path('makepostfromhome/', views.makepostfromhome, name='makepostfromhome'),
     path('makeclassroom/', views.makeclassroom, name='makeclassroom'),
@@ -30,5 +30,6 @@ urlpatterns = [
     path('message/', views.messages, name='message'),
     path('messagecontent/<int:message_id>', views.messagecontent, name='messagecontent'),
     path('outbox/', views.outbox, name='outbox'),
-    path('sendmessage/', views.sendmessage, name='sendmessage')
+    path('sendmessage/', views.sendmessage, name='sendmessage'),
+    path('addeventfromdash/<str:page>', views.addeventfromdash, name='addeventfromdash')
 ]

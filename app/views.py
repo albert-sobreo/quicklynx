@@ -39,7 +39,7 @@ def makelogins(request):
         if login.category == "STUDENT":
             context = {
                 'posts': Post.objects.all(),
-                'events': Event.objects.all(),
+                'events': Event.objects.all().order_by('date'),
                 'account': Student.objects.select_related().get(account__login__email=email),
                 'students': Student.objects.all(),
             }
@@ -47,7 +47,7 @@ def makelogins(request):
         elif login.category == "PROFESSOR":
             context = {
                 'posts': Post.objects.all(),
-                'events': Event.objects.all(),
+                'events': Event.objects.all().order_by('date'),
                 'account': Professor.objects.select_related().get(account__login__email=email),
                 'students': Student.objects.all(),
             }
@@ -81,14 +81,14 @@ def home(request):
     if login.category == "STUDENT":
         context = {
             'posts': Post.objects.all(),
-            'events': Event.objects.all(),
+            'events': Event.objects.all().order_by('date'),
             'account': Student.objects.select_related().get(account__login__email=email_session),
             'students': Student.objects.all(),
         }
     elif login.category == "PROFESSOR":
         context = {
             'posts': Post.objects.all(),
-            'events': Event.objects.all(),
+            'events': Event.objects.all().order_by('date'),
             'account': Professor.objects.select_related().get(account__login__email=email_session),
             'students': Student.objects.all(),
         }
@@ -110,14 +110,14 @@ def dashboard(request):
     if login.category == "STUDENT":
         context = {
             'posts': Post.objects.all(),
-            'events': Event.objects.all(),
+            'events': Event.objects.all().order_by('date'),
             'account': Student.objects.select_related().get(account__login__email=email_session),
             'students': Student.objects.all(),
         }
     elif login.category == "PROFESSOR":
             context = {
                 'posts': Post.objects.all(),
-                'events': Event.objects.all(),
+                'events': Event.objects.all().order_by('date'),
                 'account': Professor.objects.select_related().get(account__login__email=email_session),
                 'students': Student.objects.all(),
             }
@@ -268,7 +268,7 @@ def logoutview(request):
     return HttpResponseRedirect('/')
 
 #CLASSROOM VIEW
-def classroom(request, room_name):
+def classroom(request, room_name, semester, year):
     if request.session.is_empty():
         return redirect('/')
 
@@ -282,19 +282,19 @@ def classroom(request, room_name):
     if login.category == "STUDENT":
         context = {
             'posts': Post.objects.all(),
-            'events': Event.objects.all(),
+            'events': Event.objects.all().order_by('date'),
             'account': Student.objects.select_related().get(account__login__email=email_session),
             'students': Student.objects.filter(classroom__room_name=room_name),
-            'classroom': Classroom.objects.get(room_name=room_name),
+            'classroom': Classroom.objects.get(room_name=room_name, semester=semester, year_start=year),
             'lectures': Lecture.objects.select_related().filter(classroom__room_name=room_name)
         }
     elif login.category == "PROFESSOR":
         context = {
             'posts': Post.objects.all(),
-            'events': Event.objects.all(),
+            'events': Event.objects.all().order_by('date'),
             'account': Professor.objects.select_related().get(account__login__email=email_session),
             'students': Student.objects.filter(classroom__room_name=room_name),
-            'classroom': Classroom.objects.get(room_name=room_name),
+            'classroom': Classroom.objects.get(room_name=room_name, semester=semester, year_start=year),
             'lectures': Lecture.objects.select_related().filter(classroom__room_name=room_name)
         }
 
@@ -362,7 +362,7 @@ def makeclassroom(request):
         else:
             return HttpResponse(MyRoomForm.errors)
 
-    return redirect('/classroom/'+room_name)
+    return redirect('/classroom/'+ room_name + '/' + semester + '/' + year_start)
 
     
 
@@ -406,12 +406,12 @@ def makepostfromhome(request):
             classroom = MyPostForm.cleaned_data['classroom']
 
             post = Post()
-
+            classroom = classroom.split()
             post.text = text
             post.date = datetime.datetime.now()
             account = acct.account
             post.account = account
-            post.classroom = Classroom.objects.get(room_name=classroom)
+            post.classroom = Classroom.objects.get(room_name=classroom[0], semester=classroom[1], year_start=classroom[2])
             post.save()
         else:
             return HttpResponse("select a classroom")
@@ -647,3 +647,28 @@ def sendmessage(request):
             msg.save()
 
     return redirect('/message/')
+
+def addeventfromdash(request, page):
+    email = request.session.get('email')
+    category = request.session.get('category')
+
+    if request.method == "POST":
+        event = Event()
+
+        event.title = request.POST['title']
+        event.date = datetime.datetime.strptime(request.POST['date'], '%Y-%m-%d')
+        event.description = request.POST['desc']
+        account = Professor.objects.select_related().get(account__login__email=email)
+        event.account = account.account
+        event.classroom = Classroom.objects.get(room_name=request.POST['classroom'])
+
+        event.save()
+
+    else:
+        return HttpResponse("invalid")
+    if page == "home":
+        return redirect('/')
+    elif page == "dash":
+        return redirect('/dashboard/')
+    else:
+        return redirect('/classroom/' + page.room_name)

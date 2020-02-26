@@ -33,33 +33,34 @@
             </div>
             <form action="/registerstudent/" method="POST">{%csrf_token%}
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="First Name" id="fname" name="first_name" required>
+                    <label for="first_name">First Name</label>
+                    <input type="text" class="col" id="fname" name="first_name" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Last Name" id="lname" name="last_name" required>
+                    <label for="last_name">Last Name</label>
+                    <input type="text" class="col" id="lname" name="last_name" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="School ID" id="studid" name="school_id" required>
+                    <label for="school_id">School ID Number</label>
+                    <input type="text" class="col" id="studid" name="school_id" required>
                 </div>
                 <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Email" id="email" name="email" required>
+                    <label for="email">Email</label>
+                    <input type="email" class="col" id="email" name="email" required>
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password" id="pass" name="password" required>
+                    <label for="password">Password</label>
+                    <input type="password" class="col" id="pass" name="password" required>
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Validate Password" id="vpass" name="vpass" required>
+                    <label for="vpass">Verify Password</label>
+                    <input type="password" class="col" id="vpass" name="vpass" required>
                     <span class="text-danger" id="passmismatch" style="display: none;">Password doesn't match</span>
                     <span class="text-success" id="passmatch" style="display: none;">Password matched</span>
                 </div>
-                <button class="btn btn-warning" id="bttn">Register</button>
+                <button class="post-btn btn-warning" id="bttn">Register</button>
             </form>
         </div>
-        <footer class="page-footer font-small text-center" style="position: fixed; bottom: 0; left:45%; font-size: 10px;font-family: 'Fjalla One', sans-serif">
-            <div class="footer-copyright text-center py-3">
-                © 2019 Copyright: QuickLynx
-            </div>
-        </footer>
     </div>
     <script>
         $("#pass, #vpass").on("keyup", function(){

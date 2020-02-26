@@ -113,7 +113,7 @@ class Event(models.Model):
     description = models.CharField(max_length=500, blank=True, null=True)
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
     classroom = models.ForeignKey(Classroom, on_delete=models.CASCADE)
-    color = models.CharField(max_length=10)
+    color = models.CharField(max_length=10, null=True, blank=True)
 
     class Meta:
         db_table = 'event'

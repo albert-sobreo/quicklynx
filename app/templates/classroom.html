@@ -6,7 +6,7 @@
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../../../static/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Fira+Sans|Fjalla+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Carter+One&display=swap" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC|Carter+One&display=swap" rel="stylesheet"> 
@@ -194,7 +194,7 @@
                                                 <input type="text" id="invite_token" readonly="readonly" value="{{classroom.invite_token}}" class="col">
                                             </div>
                                             <div class="form-group">
-                                                <label for="room_name">Classroom Name</label>
+                                                <label for="room_name">Subject Code</label>
                                                 <input type="text" placeholder="Classroom Name" name="room_name" class="col" value="{{classroom.room_name}}" id="room_name"required>
                                             </div>
                                             <div class="form-group">
@@ -510,31 +510,73 @@
                     </div>
                     <div class="row" style="margin: 0;">
                         <div class="col upcoming text-left">
-                            <span class="upcoming-title">Upcoming</span>
-                            <div class="upcoming-event col">
+                            <span class="upcoming-title">{%if account.account.login.category == "PROFESSOR"%}<i title="Add Event" class="far fa-calendar-plus" id="add-event-button" data-toggle="modal" data-target="#add-event-modal"></i> &nbsp; {%endif%}Upcoming</span>
+                            <!-- add event javascript -->
+                            <div class="upcoming-event-2" id="create-event" style="display: none;">
+                                <div class="font-weight-bold">Create Event</div>
+                                <form action="/addeventfromdash/{{classroom}}" method="POST">{%csrf_token%}
+                                    <input type="text" name="title" class="col mt-1 mb-1" placeholder="Event Name" required>
+                                    <input type="date" name="date" class="col mt-1 mb-1" required>
+                                    <textarea class="textarea-2" name="desc" id="" cols="22" rows="2" placeholder="Description"></textarea>
+                                    <select name="classroom" id="chooseroom" class="col select-css" required>
+                                        <option value="" selected style="color:#aaa;">Choose Classroom</option>
+                                        {%for room in account.classroom.all%}
+                                            <option value="{{room.room_name|stringformat:'s'}}">{{room.room_name}}</option>
+                                        {%endfor%}
+                                    </select>
+                                    <button class="clear-btn" type="submit">Add</button>
+                                </form>
+                            </div>
+                            <!-- end add event javascript -->
+                            {% now "Y-m-d" as todays_date%}
+                            {%for event in events%}
+                            {%if event.classroom in account.classroom.all%}
+                            {%if todays_date < event.date|date:"Y-m-d"%}
+                            <div class="upcoming-event">
                                 <div class="upcoming-date">
                                     <div class="upcoming-date-date">
-                                        <span>21</span>
+                                        <span>{{event.date|date:"d"}}</span>
                                     </div>
                                     <div class="upcoming-date-daymonth">
                                         <div class="upcoming-date-day">
-                                            <span>Tue</span>
+                                            {%with day=event.date|date:"D"|stringformat:"s"%}
+                                                {%if day == "Tue" or day == "Fri"%}
+                                                    <span style="color:#efad2d">{{day}}</span>
+                                                {%elif day == "Mon" or day == "Thu"%}
+                                                    <span style="color:#2dccef">{{day}}</span>
+                                                {%elif day == "Wed"%}
+                                                    <span style="color:#9a2def">{{day}}</span>
+                                                {%elif day == "Sat"%}
+                                                    <span style="color:#ef2d2d">{{day}}</span>
+                                                {%else%}
+                                                    <span>{{day}}</span>
+                                                {%endif%}
+                                            {%endwith%}
                                         </div>
                                         <div class="upcoming-date-month">
-                                            <span>Jul</span>
+                                            <span>{{event.date|date:"M"}}</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="upcoming-name text-right">
-                                    <span>Quiz in BSCS09</span>
+                                    <span>{{event.title}} in {{event.classroom.room_name}}</span>
                                 </div>
                             </div>
+                            {%endif%}
+                            {%endif%}
+                            {%endfor%}
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        $(function(){
+            $("#add-event-button").click(function(e){
+                $("#create-event").toggle("display")
+            })
+        })
+    </script>
     <script>
         function upvote(post_id){
             $.ajax({
