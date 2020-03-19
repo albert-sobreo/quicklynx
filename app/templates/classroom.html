@@ -514,14 +514,14 @@
                             <!-- add event javascript -->
                             <div class="upcoming-event-2" id="create-event" style="display: none;">
                                 <div class="font-weight-bold">Create Event</div>
-                                <form action="/addeventfromdash/{{classroom}}" method="POST">{%csrf_token%}
+                                <form action="/addeventfromdash/{{classroom.room_name}} {{classroom.semester}} {{classroom.year_start}}" method="POST">{%csrf_token%}
                                     <input type="text" name="title" class="col mt-1 mb-1" placeholder="Event Name" required>
                                     <input type="date" name="date" class="col mt-1 mb-1" required>
                                     <textarea class="textarea-2" name="desc" id="" cols="22" rows="2" placeholder="Description"></textarea>
                                     <select name="classroom" id="chooseroom" class="col select-css" required>
                                         <option value="" selected style="color:#aaa;">Choose Classroom</option>
                                         {%for room in account.classroom.all%}
-                                            <option value="{{room.room_name|stringformat:'s'}}">{{room.room_name}}</option>
+                                            <option value="{{room.room_name|stringformat:'s'}} {{room.semester|stringformat:'s'}} {{room.year_start|stringformat:'s'}}">{{room.room_name}} {{room.semester}} {{room.year_start}}</option>
                                         {%endfor%}
                                     </select>
                                     <button class="clear-btn" type="submit">Add</button>

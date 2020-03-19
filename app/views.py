@@ -655,12 +655,16 @@ def addeventfromdash(request, page):
     if request.method == "POST":
         event = Event()
 
+        classroom = request.POST['classroom']
+        classroom = classroom.split()
+
         event.title = request.POST['title']
         event.date = datetime.datetime.strptime(request.POST['date'], '%Y-%m-%d')
         event.description = request.POST['desc']
         account = Professor.objects.select_related().get(account__login__email=email)
         event.account = account.account
-        event.classroom = Classroom.objects.get(room_name=request.POST['classroom'])
+        print(classroom)
+        event.classroom = Classroom.objects.get(room_name=classroom[0], semester=classroom[1], year_start=classroom[2])
 
         event.save()
 
@@ -671,4 +675,5 @@ def addeventfromdash(request, page):
     elif page == "dash":
         return redirect('/dashboard/')
     else:
-        return redirect('/classroom/' + page.room_name)
+        page = page.split()
+        return redirect('/classroom/' + page[0] + '/' + page[1] + '/' + page[2]) 
