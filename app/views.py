@@ -286,7 +286,6 @@ def classroom(request, room_name, semester, year):
             'account': Student.objects.select_related().get(account__login__email=email_session),
             'students': Student.objects.filter(classroom__room_name=room_name),
             'classroom': Classroom.objects.get(room_name=room_name, semester=semester, year_start=year),
-            'lectures': Lecture.objects.select_related().filter(classroom__room_name=room_name)
         }
     elif login.category == "PROFESSOR":
         context = {
@@ -295,14 +294,44 @@ def classroom(request, room_name, semester, year):
             'account': Professor.objects.select_related().get(account__login__email=email_session),
             'students': Student.objects.filter(classroom__room_name=room_name),
             'classroom': Classroom.objects.get(room_name=room_name, semester=semester, year_start=year),
-            'lectures': Lecture.objects.select_related().filter(classroom__room_name=room_name)
         }
 
     return render(request, 'classroom.html', context)
 
+#CLASSROOM MATERIALS VIEW
+def classroommaterial(request, room_name, semester, year):
+    if request.session.is_empty():
+        return redirect('/')
+
+    email_session = request.session.get('email')
+
+    if email_session == None:
+        return redirect('/logout/')
+
+    login = Login.objects.get(email=email_session)
+    
+    if login.category == "STUDENT":
+        context = {
+            'events': Event.objects.all().order_by('date'),
+            'account': Student.objects.select_related().get(account__login__email=email_session),
+            'students': Student.objects.filter(classroom__room_name=room_name),
+            'classroom': Classroom.objects.get(room_name=room_name, semester=semester, year_start=year),
+            'lectures': Lecture.objects.select_related().filter(classroom__room_name=room_name)
+        }
+    elif login.category == "PROFESSOR":
+        context = {
+            'events': Event.objects.all().order_by('date'),
+            'account': Professor.objects.select_related().get(account__login__email=email_session),
+            'students': Student.objects.filter(classroom__room_name=room_name),
+            'classroom': Classroom.objects.get(room_name=room_name, semester=semester, year_start=year),
+            'lectures': Lecture.objects.select_related().filter(classroom__room_name=room_name)
+        }
+
+    return render(request, 'classroommaterial.html', context)
+
 #EDIT CLASSROOM
-def editclassroom(request, room_name):
-    classroom = Classroom.objects.get(room_name=room_name)
+def editclassroom(request, room_name, semester, year):
+    classroom = Classroom.objects.get(room_name=room_name, semester=semester, year_start=year)
     MyEditForm = EditClassroomForm(request.POST)
     if request.method == "POST":
         if MyEditForm.is_valid():
@@ -318,7 +347,7 @@ def editclassroom(request, room_name):
             classroom.save()
         else:
             return HttpResponse('form invalid')
-    return redirect('/classroom/{}'.format(classroom.room_name))
+    return redirect('/classroom/{}/{}/{}'.format(classroom.room_name,classroom.semester,classroom.year_start))
 
 
 #PROCESS FOR CREATING ROOMS

@@ -200,7 +200,7 @@
                             <div class="modal-body">
                                 <form action="/makeclassroom/" method="POST" enctype="multipart/form-data">{%csrf_token%}
                                     <div class="form-group">
-                                        <label for="room_name">Subject Code</label>
+                                        <label for="room_name">Subject Code / Subject Name</label>
                                         <input type="text" name="room_name" class="col" placeholder="Enter Classroom name" required>
                                     </div>
                                     <div class="form-group">
@@ -264,7 +264,7 @@
                                     <select name="classroom" id="chooseroom" class="col select-css" required>
                                         <option value="" selected style="color:#aaa;">Choose Classroom</option>
                                         {%for room in account.classroom.all%}
-                                            <option value="{{room.room_name|stringformat:'s'}}">{{room.room_name}}</option>
+                                        <option value="{{room.room_name|stringformat:'s'}} {{room.semester|stringformat:'s'}} {{room.year_start|stringformat:'s'}}">{{room.room_name}} {{room.semester}} {{room.year_start}}</option>
                                         {%endfor%}
                                     </select>
                                     <button class="clear-btn" type="submit">Add</button>

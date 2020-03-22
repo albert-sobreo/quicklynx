@@ -22,7 +22,7 @@ urlpatterns = [
     path('joinclassroom/', views.joinclassroom, name='joinclassroom'),
     path('upvote/<str:post_id>', views.upvote, name='upvote'),
     path('downvote/<str:post_id>',views.downvote, name='downvote'),
-    path('editclassroom/<str:room_name>', views.editclassroom, name='editclassroom'),
+    path('editclassroom/<str:room_name>/<str:semester>/<str:year>', views.editclassroom, name='editclassroom'),
     path('editheader/<str:room_name>', views.editheader, name='editheader'),
     path('editaccount/', views.editaccount, name='editaccount'),
     path('download/<file_name>', views.download, name='download'),
@@ -31,5 +31,6 @@ urlpatterns = [
     path('messagecontent/<int:message_id>', views.messagecontent, name='messagecontent'),
     path('outbox/', views.outbox, name='outbox'),
     path('sendmessage/', views.sendmessage, name='sendmessage'),
-    path('addeventfromdash/<str:page>', views.addeventfromdash, name='addeventfromdash')
+    path('addeventfromdash/<str:page>', views.addeventfromdash, name='addeventfromdash'),
+    path('classroommaterial/<str:room_name>/<str:semester>/<str:year>', views.classroommaterial, name='classroommaterials'),
 ]

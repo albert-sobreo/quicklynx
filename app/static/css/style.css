@@ -153,7 +153,7 @@ li a.negative:hover{
     color: rgb(33,37,41);
     box-shadow: 2px 2px 4px rgba(0,0,0,.2), -2px -2px 4px rgba(255,255,255,.4);
 }
-.navers:active, .navers:focus{
+.navers:active, .navers:focus, .navers_active{
     border: 1px solid #f9f9f9;
     color: rgb(33,37,41);
     box-shadow: inset 2px 2px 4px rgba(0,0,0,0.2), -2px -2px 4px rgba(255,255,255,.4);
