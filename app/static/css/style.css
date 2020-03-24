@@ -6,6 +6,10 @@
 /* BG    : #E1E3E4 */
 /* FG    : #F0F0F0 */
 
+.oswald{
+    font-family: "Oswald", sans-serif;
+}
+
 html {
     overflow-y: scroll;
 }

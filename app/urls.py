@@ -33,4 +33,5 @@ urlpatterns = [
     path('sendmessage/', views.sendmessage, name='sendmessage'),
     path('addeventfromdash/<str:page>', views.addeventfromdash, name='addeventfromdash'),
     path('classroommaterial/<str:room_name>/<str:semester>/<str:year>', views.classroommaterial, name='classroommaterials'),
+    path('quizmaker/', views.quizmaker, name="quizmaker"),
 ]

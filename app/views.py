@@ -706,3 +706,6 @@ def addeventfromdash(request, page):
     else:
         page = page.split()
         return redirect('/classroom/' + page[0] + '/' + page[1] + '/' + page[2]) 
+
+def quizmaker(request):
+    return render(request, "quizmaker.html", {})

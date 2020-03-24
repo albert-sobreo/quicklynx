@@ -261,15 +261,15 @@
                             </div>
                         </div>
                         <div class="row text-center border-bottom select-buttons-materials">
-                            <div id="lectures" class="col" style="cursor: pointer; color: rgb(102, 188, 238); background: rgb(10, 0, 81)">Lectures</div>
-                            <div id="assignments" class="col border-right border-left" style="cursor: pointer; color: rgb(175, 85, 226);">Assignments</div>
-                            <div id="quizzes" class="col" style="cursor: pointer; color: rgb(236, 105, 105);">Quizzes</div>
+                            <div id="lectures" class="col" style="cursor: pointer; color: rgb(102, 188, 238); background: rgb(10, 0, 81); border-top-left-radius: 15px; border-bottom-left-radius: 15px">Lectures</div>
+                            <div id="assignments" class="col border-right border-left" style="cursor: pointer; background: rgb(255,255,255); color: rgb(175, 85, 226);">Assignments</div>
+                            <div id="quizzes" class="col" style="cursor: pointer; color: rgb(236, 105, 105); background: rgb(255,255,255); border-top-right-radius: 15px; border-bottom-right-radius: 15px">Quizzes</div>
                         </div>
                         <!-- Lecture button -->
                         <div id="mainlecture">
                         {% if account.account.login.category == "PROFESSOR" %}
-                            <div class="row">
-                                <button class="btn btn-success col" style="border-radius: 0; margin-bottom: 20px" type="button" data-toggle="modal" data-target="#addlecture">Add Lecture</button>
+                            <div class="row my-2">
+                                <button class="btn btn-warning post-btn col" style="font-size: smaller;" type="button" data-toggle="modal" data-target="#addlecture">Add Lecture</button>
                             </div>
                         {%endif%}
                         <!-- ADD LECTURE MODAL -->
@@ -327,8 +327,8 @@
                         <!-- ASSIGNMENT MAIN -->
                         <div id="mainassignments" style="display: none;">
                             {% if account.account.login.category == "PROFESSOR" %}
-                            <div class="row">
-                                <button class="btn btn-success col" style="border-radius: 0; margin-bottom: 20px" type="button" data-toggle="modal" data-target="#addassignment">Add Assignment</button>
+                            <div class="row my-2">
+                                <button class="btn btn-warning post-btn col" style="font-size: smaller;" type="button" data-toggle="modal" data-target="#addassignment">Add Assignment</button>
                             </div>
                             {%endif%}
                             <span class="text-danger"><i class="fas fa-exclamation-triangle text-warning"></i> Under construction</span>
@@ -337,11 +337,81 @@
                         <!-- QUIZZES MAIN -->
                         <div id="mainquizzes" style="display: none;">
                             {% if account.account.login.category == "PROFESSOR" %}
-                            <div class="row">
-                                <button class="btn btn-success col" style="border-radius: 0; margin-bottom: 20px" type="button" data-toggle="modal" data-target="#addquiz">Add Quiz</button>
+                            <div class="row my-2">
+                                <button class="btn btn-warning post-btn col" style="font-size: smaller;" type="button" data-toggle="modal" data-target="#addquiz">Add Quiz</button>
+                            </div>
+                            <!-- ADD QUIZ MODAL -->
+                            <div class="modal" id="addquiz">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h6 class="modal-title">
+                                                Create New Quiz
+                                            </h6>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+
+                                        <div class="modal-body">
+                                            <h4 class="oswald font-weight-bold">{{classroom.room_name}}</h4>
+                                            <form action="#" method="POST">{%csrf_token%}
+                                                <div class="form-group col">
+                                                    <label for="quizname">Quiz Name</label>
+                                                    <input type="text" class="col" required>
+                                                </div>
+                                                <div class="form-group col">
+                                                    <label for="deadline">Deadline</label>
+                                                    <input type="datetime-local" class="col" required>
+                                                </div>
+                                                <button type="submit" class="post-btn btn btn-warning col">Proceed to Quiz Maker</button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+
                             </div>
                             {%endif%}
-                            <span class="text-danger"><i class="fas fa-exclamation-triangle text-warning"></i> Under construction 2</span>
+                            <div class="row upcoming-event">
+                                <div class="col col-12 mt-3 mb-1">
+                                    <span class="oswald">New Quizzes</span>
+                                </div>
+                                <div class="col col-12 m-0">
+                                    <hr>
+                                </div>
+                                <div class="col col-12 upcoming-event oswald p-2 m-1">
+                                    <div class="col col-6">
+                                        <h3 class="font-weight-bold" style="display: inline;">Quiz 1</h3>
+                                        <span class="small text-muted">20 Questions | 40 Points</span>
+                                    </div>
+                                    <div class="col col-6">
+                                        <span class="text-muted">Deadline: Tomorrow</span>
+                                    </div>
+                                </div>
+                                <div class="col col-12 upcoming-event oswald p-2 m-1">
+                                    <div class="col col-6">
+                                        <h3 class="font-weight-bold" style="display: inline;">Quiz 2</h3>
+                                        <span class="small text-muted">20 Questions | 40 Points</span>
+                                    </div>
+                                    <div class="col col-6">
+                                        <span class="text-muted">Deadline: Tomorrow</span>
+                                    </div>
+                                </div>
+                                <div class="col col-12 mt-3 mb-1">
+                                    <span class="oswald">Old Quizzes</span>
+                                </div>
+                                <div class="col col-12 m-0">
+                                    <hr>
+                                </div>
+                                <div class="col col-12 upcoming-event oswald p-2">
+                                    <div class="col col-6">
+                                        <h3 class="font-weight-bold" style="display: inline;">Quiz 0</h3>
+                                        <span class="small text-muted">20 Questions | 40 Points</span>
+                                    </div>
+                                    <div class="col col-6">
+                                        <span class="text-muted">Deadline: Tomorrow</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <!-- END QUIZZES -->
                     </div>
@@ -475,6 +545,34 @@
           $("#imgInp").change(function() {
             readURL(this);
           });
+    </script>
+    <script>
+        $(function(){
+            $("#lectures").click(function(e){
+                $("#mainlecture").css("display", "block")
+                $("#mainassignments").css("display", "none")
+                $("#mainquizzes").css("display", "none")
+                $("#lectures").css("background", "rgb(10, 0, 81)")
+                $("#assignments").css("background", "rgb(255,255,255)")
+                $("#quizzes").css("background", "rgb(255,255,255)")
+            })
+            $("#assignments").click(function(e){
+                $("#mainlecture").css("display", "none")
+                $("#mainassignments").css("display", "block")
+                $("#mainquizzes").css("display", "none")
+                $("#lectures").css("background", "rgb(255,255,255)")
+                $("#assignments").css("background", "rgb(70, 22, 97)")
+                $("#quizzes").css("background", "rgb(255,255,255)")
+            })
+            $("#quizzes").click(function(e){
+                $("#mainlecture").css("display", "none")
+                $("#mainassignments").css("display", "none")
+                $("#mainquizzes").css("display", "block")
+                $("#lectures").css("background", "rgb(255,255,255)")
+                $("#assignments").css("background", "rgb(255,255,255)")
+                $("#quizzes").css("background", "rgb(107, 16, 16)")
+            })
+        })
     </script>
 </body>
 </html>

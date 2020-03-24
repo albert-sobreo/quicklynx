@@ -22,6 +22,9 @@
             font-family: Arial, Helvetica, sans-serif;
             margin: 0;
             padding: 0;
+            background: url("../../media/pictures/quicklynx bg.png");
+            background-repeat: no-repeat;
+            background-size:cover;
         }
         .vertical-center {
             min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
@@ -65,8 +68,9 @@
         .this{
             height: 600px;
             width: 900px;
-            box-shadow: 0px 4px 16px rgba(0,0,0,.1);
+            box-shadow: 0px 4px 16px rgba(0,0,0,.5);
             padding: 20px;
+            border-radius: 15px;
         }
         .bigger-font{
             font-size: 80px;
@@ -84,7 +88,7 @@
                 <div class="col-7 flex">
                     <span style="text-shadow: 4px 4px 8px rgba(0,0,0,.4);">
                         <h1 class="bigger-font disable-shadow" style="color: rgb(241, 241, 241);">QuickLynx</h1>
-                        <h3 class="disable-shadow" style="color: #e1e3e4;">The Official LMS of College of Computer Studies</h3>
+                        <h3 class="disable-shadow" style="color: #e1e3e4;">The Official LMS of College of <br> Computer Studies</h3>
                     </span>
                 </div>
                 <!-- <div class="picture col-6 h-50 my-auto vertical-center">
@@ -99,7 +103,7 @@
                 <div class="col-5" style="color: black; padding: 10px; display:flex; justify-content: center;">
                     <div class="container">
                         <div class="row">
-                            <div class="col ">
+                            <div class="col mt-5">
                                 <form action="/makelogins/" method="POST">{%csrf_token%}
                                     <div class="form-group" style="width: 300px;">
                                         <h1>&nbsp;Login</h1>
@@ -111,7 +115,7 @@
                                             <label for="password" style="font-size: larger;">Password</label>
                                             <input type="password" class="col" id="password" placeholder="Enter password" name="password" required>
                                         </div>
-                                        <button type="submit" class="btn btn-danger post-btn col">Log in</button>
+                                        <button type="submit" class="btn post-btn col" style="background: rgb(127, 11, 194); color: white">Log in</button>
                                     </div>
                                 </form>
                             </div>
@@ -121,7 +125,7 @@
                                 <div class="form-group" style="width:300px">
                                     <span style="font-weight: bold;">Get started as:</span>
                                     <div class="text-center">
-                                        <button class="post-btn btn btn-warning" onclick="location.href='/register-as-professor'">Professor</button>
+                                        <button class="post-btn btn btn-warning btn-sm" onclick="location.href='/register-as-professor'">Professor</button>
                                         <button class="post-btn btn btn-warning" onclick="location.href='/register-as-student'">Student</button>
                                     </div>
                                 </div>

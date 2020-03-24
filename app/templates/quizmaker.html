@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../static/css/style2.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans|Fjalla+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Carter+One&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC|Carter+One&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <title>QuickLynx | Quiz Maker</title>
+    <style>
+        body{
+            background: url("../../media/pictures/quicklynx bg.png");
+            background-size: cover;
+        }
+    </style>
+</head>
+<body class="oswald">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col col-1 text-center ">
+                <i class="fas fa-chevron-left text-transparent-8 pointer mt-3" style="font-size: 2em; vertical-align:baseline" onclick="location.href='#'"></i>
+            </div>
+            <div class="col col-4">
+                <div class="row">
+                    <div class="col">
+                        <span class="font-weight-bold text-transparent-8 display-5">QuickLynx Quiz Maker</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span class="font-weight-bold text-transparent-8 display-5">BSIT02</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span class="text-transparent-8 display-6">Quiz 1 Deadline: Dec. 10, 2020</span>
+                    </div>
+                </div>
+
+
+
+                <div class="row mt-4">
+                    <div class="col box mx-3 p-3">
+                        <div class="col col-12">
+                            <span class="display-7 font-weight-bold">Create Quiz Section</span>
+                        </div>
+                        <div class="col col-12">
+                            <form action="#">{%csrf_token%}
+                                <div class="mb-2">
+                                    <label for="noi">Number of Items</label>
+                                    <input type="number" class="col form-control" name="noi">
+                                </div>
+                                <div class="mb-2">
+                                    <label for="ppi">Points per Item</label>
+                                    <input type="number" class="col form-control" name="ppi">
+                                </div>
+                                <div class="mb-2">
+                                    <label for="qt">Question Type</label>
+                                    <select name="qt" id="qt" class="col form-control">
+                                        <option value="multiple choice">Multiple Choice</option>
+                                        <option value="true or false">True or False</option>
+                                    </select>
+                                </div>
+                                <div class="mb-2">
+                                    <button class="post-btn text-center col">Create</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

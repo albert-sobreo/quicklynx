@@ -68,7 +68,7 @@
             var passw = $("#pass").val()
             var vpass = $("#vpass").val()
 
-             if(Number(passw) == Number(vpass)){
+             if(String(passw) == String(vpass)){
                  console.log('hwat')
                  $("#bttn").prop('disabled', false)
                  $("#passmatch").css("display", "inline")
