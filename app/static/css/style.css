@@ -94,9 +94,27 @@ input::placeholder{
     filter: invert();
     cursor: pointer;
 }
-
+.hello{
+    background: black;
+}
 .select-buttons-materials{
     font-family: 'Oswald', sans-serif;
+}
+.select-buttons-materials-left{
+    border: 1px solid white;
+    cursor: pointer;
+    color: rgb(102, 188, 238);
+    background: rgb(10, 0, 81);
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-right: none;
+}
+.select-buttons-materials-center{
+    border: 1px solid white;
+}
+.select-buttons-materials-right{
+    border: 1px solid white;
+    border-left: none;
 }
 .navigation-buttons{
     padding: 5px 20px; 
