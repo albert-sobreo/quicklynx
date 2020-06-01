@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
     'app'
 ]
 
@@ -129,3 +130,8 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'quicklynxgroup@gmail.com'
 EMAIL_HOST_PASSWORD = '4AFXak3V56FuxYw'
+
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
+}
