@@ -352,7 +352,6 @@
         function upvote(post_id){
             $.ajax({
                 url: "/upvote/"+post_id,
-                dataType: 'json'
             })
             $("#refreshup"+post_id).load(location.href + " #refreshup"+post_id)
             $("#nums"+post_id).load(location.href + " #nums"+post_id)
@@ -361,7 +360,6 @@
         function downvote(post_id){
             $.ajax({
                 url: "/downvote/"+post_id,
-                dataType: 'json'
             })
             $("#refreshdown"+post_id).load(location.href + " #refreshdown"+post_id)
             $("#nums"+post_id).load(location.href + " #nums"+post_id)
@@ -376,6 +374,9 @@
                 $("#create-event").toggle("display")
             })
         })
+    </script>
+    <script>
+        $("form").attr('autocomplete', 'off');
     </script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect, HttpResponseRedirect, render_to_response
 from django.http import JsonResponse
 from app.forms import aForm, aFormfromhome, LoginForm, RegisterForm, ClassroomForm, JoinClassroomForm, EditClassroomForm, EditHeaderForm, EditAccountForm, AddLectureForm, SendMessageForm
-from app.models import Classroom, Professor, Student, Post, Lecture, Event, Message, Login, Account, Lecture
+from app.models import Classroom, Professor, Student, Post, Lecture, Event, Message, Login, Account, Lecture, Quiz_Choices, Quiz_Answer, Quiz_Question, Quiz_Section, Quiz_Event
 from passlib.hash import pbkdf2_sha256
 from django.contrib.auth import logout
 from django.views.decorators.cache import never_cache
@@ -15,6 +15,7 @@ from wsgiref.util import FileWrapper
 from django.utils.encoding import smart_str
 import mimetypes
 from django.shortcuts import get_object_or_404
+import datetime
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -316,7 +317,8 @@ def classroommaterial(request, room_name, semester, year):
             'account': Student.objects.select_related().get(account__login__email=email_session),
             'students': Student.objects.filter(classroom__room_name=room_name),
             'classroom': Classroom.objects.get(room_name=room_name, semester=semester, year_start=year),
-            'lectures': Lecture.objects.select_related().filter(classroom__room_name=room_name)
+            'lectures': Lecture.objects.select_related().filter(classroom__room_name=room_name),
+            'quizzes': Quiz_Event.objects.filter(classroom__room_name=room_name)
         }
     elif login.category == "PROFESSOR":
         context = {
@@ -324,7 +326,8 @@ def classroommaterial(request, room_name, semester, year):
             'account': Professor.objects.select_related().get(account__login__email=email_session),
             'students': Student.objects.filter(classroom__room_name=room_name),
             'classroom': Classroom.objects.get(room_name=room_name, semester=semester, year_start=year),
-            'lectures': Lecture.objects.select_related().filter(classroom__room_name=room_name)
+            'lectures': Lecture.objects.select_related().filter(classroom__room_name=room_name),
+            'quizzes': Quiz_Event.objects.filter(classroom__room_name=room_name)
         }
 
     return render(request, 'classroommaterial.html', context)
@@ -579,7 +582,7 @@ def download(request, file_name):
     return response
 
 
-def addlecture(request, room_name):
+def addlecture(request, room_name, semester, year):
     email = request.session.get('email')
     category = request.session.get('category')
     if category == 'STUDENT':
@@ -598,11 +601,11 @@ def addlecture(request, room_name):
             lecture.date = datetime.datetime.now()
             account = acct.account
             lecture.account = account
-            lecture.classroom = Classroom.objects.get(room_name=room_name)
+            lecture.classroom = Classroom.objects.get(room_name=room_name, semester=semester, year_start=year)
             lecture.save()
         else:
             return HttpResponse("form invalid")
-    return redirect('/classroom/'+room_name)
+    return redirect('/classroommaterial/{}/{}/{}'.format(room_name, semester, year))
     
 
 def messages(request):
@@ -707,5 +710,116 @@ def addeventfromdash(request, page):
         page = page.split()
         return redirect('/classroom/' + page[0] + '/' + page[1] + '/' + page[2]) 
 
-def quizmaker(request):
-    return render(request, "quizmaker.html", {})
+def quizmaker(request, pk_classroom):
+    context = {
+        "cl": Classroom.objects.get(pk=pk_classroom),
+        "quiz":Quiz_Event.objects.get(pk=request.session.get('quizKey'))
+    }
+    return render(request, "quizmaker.html", context)
+
+def createquizprocess(request, pk_classroom):
+    classroom = Classroom.objects.get(pk=pk_classroom)
+    quiz_name = request.POST['quiz_name']
+    deadline = datetime.datetime.strptime(request.POST['deadline'].replace('T', " "), '%Y-%m-%d %H:%M')
+    date = datetime.datetime.strftime(datetime.datetime.now(), "%Y-%m-%d %H:%M")
+
+    quiz_event = Quiz_Event()
+
+    quiz_event.quiz_name = quiz_name
+    quiz_event.date = date
+    quiz_event.deadline = deadline
+    quiz_event.classroom = classroom
+    quiz_event.save()
+
+    request.session['quizKey'] = quiz_event.pk
+    return redirect('/quizmaker/' + str(pk_classroom))
+
+def selectquiz(request, quizKey):
+    if request.session.get('category') == "STUDENT":
+        return HttpResponse("<span style='color:red'>PROCEDURE NOT ALLOWED!?</span>")
+    else:
+        request.session['quizKey'] = quizKey
+        return redirect('/quizmaker/')
+
+def deletequiz(request, quizKey):
+    if request.session.get('category') == "STUDENT":
+        return HttpResponse("<span style='color:red'>PROCEDURE NOT ALLOWED!</span>")
+    else:
+        Quiz_Event.objects.filter(pk=quizKey).delete()
+        return redirect('/')
+
+def savequiz(request, pk_classroom):
+    qe_id = request.session.get("quizKey")
+    quizEvent = Quiz_Event.objects.get(pk=qe_id)
+
+    ppi = {}
+    qt = {}
+    tA = {}
+    ch = {}
+    se = {}
+
+    for key, val in request.POST.items():
+        if 'ppi-section' in key:
+            ppi[key[-1]] = val
+
+        elif 'qt-section' in key:
+            qt[key[-1]] = val
+
+        elif 'tArea' in key:
+            tA[key[-2] + key[-1]] = val
+
+        elif 'ch' in key:
+            ch[key[-3] + key[-2] + key[-1]] = val
+
+        elif 'select' in key:
+            se[key[-2] + key[-1]] = val
+
+    for key, val in se.items():
+        globals()['answer_{}'.format(key)] = Quiz_Answer()
+        globals()['answer_{}'.format(key)].quiz_answer = val
+        globals()['answer_{}'.format(key)].save()
+
+    for key, val in ch.items():
+        globals()['ch_{}'.format(key)] = Quiz_Choices()
+        globals()['ch_{}'.format(key)].choice = val
+        globals()['ch_{}'.format(key)].save()
+
+    for key, val in tA.items():
+        globals()['question_{}'.format(key)] = Quiz_Question()
+        globals()['question_{}'.format(key)].question = val
+
+        globals()['question_{}'.format(key)].quiz_answer = globals()['answer_{}'.format(key)]
+
+        k = ''
+        j = ''
+        
+        globals()['question_{}'.format(key)].save()
+        for k, j in globals().items():
+            if "ch_{}".format(key) in k:
+                print(globals()['{}'.format(k)])
+                globals()['question_{}'.format(key)].quiz_choices.add(globals()['{}'.format(k)])
+
+        globals()['question_{}'.format(key)].save()
+
+    for key, val in ppi.items():
+        globals()['section_{}'.format(key)] = Quiz_Section()
+        globals()['section_{}'.format(key)].points_per_item = val
+        globals()['section_{}'.format(key)].save()
+
+        for k, j in globals().items():
+            if "question_{}".format(key) in k:
+                globals()['section_{}'.format(key)].quiz_question.add(globals()['{}'.format(k)])
+
+        globals()['section_{}'.format(key)].save()
+
+    for key, val in qt.items():
+        globals()['section_{}'.format(key)].quiz_type = val
+        globals()['section_{}'.format(key)].save()
+
+    for key, val in ppi.items():
+        quizEvent.quiz_section.add(globals()['section_{}'.format(key)])
+        quizEvent.save()
+
+    cl = Classroom.objects.get(pk=pk_classroom)
+
+    return redirect('/classroommaterial/' + str(cl.room_name) + '/' + str(cl.semester) + '/' + str(cl.year_start))

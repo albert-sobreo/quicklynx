@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
 /* YELLOW: #FFC107 */
 /* RED   : #E76A6A */
 /* GREEN : #60E467 */
@@ -9,6 +9,9 @@ body{
 }
 .oswald{
     font-family: "Oswald", sans-serif;
+}
+.arial{
+    font-family: Arial, Helvetica, sans-serif;
 }
 .pointer{
     cursor: pointer;
@@ -32,11 +35,32 @@ body{
     border-radius: 15px;
     background: white;
 }
+.box-shadow{
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.2);
+}
 .form-control{
-    border-radius: 100px !important ;
+    border-radius: 20px !important ;
 }
 .post-btn{
     border-radius: 20px;
     border: 1px solid #CED4DA;
     background-color: #FFC107;
+}
+.form-control-alt{
+    border: none;
+    border-bottom: rgb(206, 212, 218) 1px solid;
+    width: 100%;
+    transition: .2s;
+}
+.form-control-alt:focus{
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #7cd652;
+}
+.flex{
+    display: flex;
+}
+.add-choice{
+    color: #FF9B9B;
+    cursor: pointer;
 }

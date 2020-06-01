@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,19 +14,40 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <title>QuickLynx | Quiz Maker</title>
+    <title>Quiz Maker | Quiz Maker</title>
     <style>
         body{
             background: url("../../media/pictures/quicklynx bg.png");
             background-size: cover;
+            background-attachment: fixed;
         }
+        .fa-trash-alt{
+            transition: .2s;
+            color: grey;
+        }
+        .fa-trash-alt:hover{
+            color: rgb(255, 75, 75);
+        }
+        .fa-save{
+            transition: .2s;
+            cursor: pointer;
+        }
+        .fa-save:hover{
+            color: rgb(105, 240, 78);
+        }
+        .t-button{
+            background: none;
+            border: none;
+        }
+        
     </style>
 </head>
 <body class="oswald">
+<form action="/savequiz/{{cl.pk}}" method="POST">{%csrf_token%}
     <div class="container-fluid">
         <div class="row">
             <div class="col col-1 text-center ">
-                <i class="fas fa-chevron-left text-transparent-8 pointer mt-3" style="font-size: 2em; vertical-align:baseline" onclick="location.href='#'"></i>
+                <i class="fas fa-chevron-left text-transparent-8 pointer mt-3" style="font-size: 2em; vertical-align:baseline" onclick="location.href='/'"></i>
             </div>
             <div class="col col-4">
                 <div class="row">
@@ -35,48 +57,141 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <span class="font-weight-bold text-transparent-8 display-5">BSIT02</span>
+                        <span class="font-weight-bold text-transparent-8 display-5">{{cl.room_name}} <span class="text-transparent-9">{{quiz.quiz_name}}</span></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <span class="text-transparent-8 display-6">Quiz 1 Deadline: Dec. 10, 2020</span>
+                        <span class="text-transparent-8 display-6">Deadline: {{quiz.deadline|date:"M j, Y @ g:i A"}}</span>
                     </div>
                 </div>
 
 
+                <div class="row my-2" id="section-selector-container">
+                    <div class="col col-11 mx-3 my-1 py-1 px-3 box">
+                        <span>Controls</span>
+                        <button type="submit" class="float-right t-button" title="Save Quiz"><i class="fas fa-save"></i></button>
+                    </div>
+                    <!-- this is where section selector is added -->
+                </div>
 
-                <div class="row mt-4">
-                    <div class="col box mx-3 p-3">
+
+                <div class="row" id="cqs-container">
+                    <div class="col col-11 box mx-3 p-3 border" id="cqs-1">
                         <div class="col col-12">
                             <span class="display-7 font-weight-bold">Create Quiz Section</span>
                         </div>
                         <div class="col col-12">
-                            <form action="#">{%csrf_token%}
-                                <div class="mb-2">
-                                    <label for="noi">Number of Items</label>
-                                    <input type="number" class="col form-control" name="noi">
-                                </div>
-                                <div class="mb-2">
-                                    <label for="ppi">Points per Item</label>
-                                    <input type="number" class="col form-control" name="ppi">
-                                </div>
-                                <div class="mb-2">
-                                    <label for="qt">Question Type</label>
-                                    <select name="qt" id="qt" class="col form-control">
-                                        <option value="multiple choice">Multiple Choice</option>
-                                        <option value="true or false">True or False</option>
-                                    </select>
-                                </div>
-                                <div class="mb-2">
-                                    <button class="post-btn text-center col">Create</button>
-                                </div>
-                            </form>
+                            <div class="mb-2">
+                                <label for="noi">Number of Items</label>
+                                <input type="number" class="col form-control" id="noi-cqs-1" min="1">
+                            </div>
+                            <div class="mb-2">
+                                <label for="ppi">Points per Item</label>
+                                <input type="number" class="col form-control" id="ppi-cqs-1" min="1">
+                            </div>
+                            <div class="mb-2">
+                                <label for="qt">Question Type</label>
+                                <select name="qt-cqs-1" id="qt-cqs-1" class="col form-control">
+                                    <option value="Multiple Choice">Multiple Choice</option>
+                                    <option value="True or False">True or False</option>
+                                </select>
+                            </div>
+                            <div class="mb-2">
+                                <button type="button" class="post-btn text-center col font-weight-bold" onclick="createSection('cqs-1')">Create</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="col col-7" id="section-container">
+                <!-- this is where section is added -->
+            </div>
         </div>
     </div>
+</form>
 </body>
+<script>
+    oldcontainer = ''
+    var choiceID = ''
+    var prevchoiceID = []
+    function addChoice(container){
+        
+        //variable initializations
+        var sectionID = container[container.length - 1];
+        var choicecontainerID = container[9]
+        if(prevchoiceID[sectionID-1][choicecontainerID-1] == 0){
+            prevchoiceID[sectionID-1][choicecontainerID-1] = 1 + prevchoiceID[sectionID-1][choicecontainerID-1]
+        }
+        var wat = prevchoiceID[sectionID-1][choicecontainerID-1]
+        
+        //variable checking
+        console.log(choicecontainerID)
+
+        //adds choice
+        $(container).append('<div class="flex mb-3"><input type="text" class="form-control-alt" onclick="saveMyID(id)" id="ch-' + sectionID + choicecontainerID + wat.toString(16) + '" name="ch-' + sectionID + choicecontainerID + wat.toString(16) + '"><span title="delete choice" onclick=\'deleteChoice("ch-' + sectionID + choicecontainerID + wat.toString(16) + '")\'><i class="fas fa-trash-alt"></i></span></div>')
+        //container saves to old container
+        oldcontainer = container
+        //choiceid is generated
+        choiceID = "ch-" + sectionID + choicecontainerID + wat
+        //variable checking
+        console.log(choiceID)
+
+        //adds an option to select when choice is added as well
+        $('#select-' + sectionID.toString() + choicecontainerID.toString()).append('<option val="' + sectionID + choicecontainerID + wat.toString(16) + '" id="option-' + sectionID + choicecontainerID + wat.toString(16) + '"></option>')
+
+        //adds listener to choice when unfocused
+        var input = document.getElementById(choiceID)
+        input.addEventListener('blur', function(e){
+            console.log('hello world' + choiceID)
+            $("#option-" + sectionID + choicecontainerID + wat.toString(16)).html($('#ch-' + sectionID + choicecontainerID + wat.toString(16)).val())
+        })
+
+        //adds 1 to number of previous choice
+        prevchoiceID[sectionID-1][choicecontainerID-1] = 1 + prevchoiceID[sectionID-1][choicecontainerID-1]
+
+
+    }
+
+    function saveMyID(id){
+        choiceID = id
+        console.log(choiceID)
+    }
+
+    function deleteChoice(sumID){
+        console.log(sumID)
+    }
+
+    function createSection(container){
+        //get the variables
+        var numItems = document.getElementById("noi-" + container).value
+        var ptsItems = document.getElementById("ppi-" + container).value
+        var qtnTypes = document.getElementById("qt-" + container).value
+
+        var sectionNum = container[container.length - 1]
+
+        prevchoiceID.push([])
+        
+        //adds section
+        $("#section-container").append('<div class="row mt-4" id="section-1"><div class="col box mx-3 p-3 border"><div class="col col-12"><span class="display-7 font-weight-bold">Section ' + sectionNum + '</span></div><div class="col col-12" id="question-section-' + sectionNum + '"><input hidden name="ppi-section-' + sectionNum + '" value="' + $('#ppi-cqs-' + sectionNum).val() + '"><input hidden name="qt-section-' + sectionNum + '" value="' + $('#qt-cqs-' + sectionNum).val() + '"></div></div></div>')
+
+        //adds questions
+        for(var i = 1; i <= numItems; i++){
+            $("#question-section-" + sectionNum).append('<div class="col box box-shadow border my-2" id="qq-"' + sectionNum + i + '><div class="row p-2"><div class="col col-2">Question ' + i + '</div><div class="col col-10"><textarea name="tArea-' + sectionNum + i + '" id="tArea-' + sectionNum + i + '" cols="30" rows="5" class="form-control" maxlength="1024" style="resize: none;"></textarea></div></div><div class="row p-2"><div class="col col-2">Choices:</div><div class="col col-10"><div id="choices-' + i + 'container-section-' + sectionNum + '"></div><div class="flex"><span class="add-choice" onclick="addChoice(\'#choices-' + i + 'container-section-' + sectionNum + '\')">+ Add Choice</span></div></div></div><div class="row p-2"><div class="col col-2">Answer:</div><div class="col col-10"><div class="flex mb-3"><select name="select-' + sectionNum.toString() + i.toString() + '" id="select-' + sectionNum.toString() + i.toString() + '" class="form-control-alt"></select></div></div></div></div>')
+            prevchoiceID[sectionNum-1].push(0)
+        }
+
+        //add section selector
+        var qqq = numItems == 1 ? "Question" : "Questions";
+        $("#section-selector-container").append('<div class="col col-11 mx-3 my-1 py-1 px-3 box border" id="ss-' + sectionNum + '"><span>Section ' + sectionNum + '</span>&nbsp;<span class="small text-muted">' + numItems + ' ' + qqq + ' | ' + ptsItems + ' PPI | ' + qtnTypes + '</span></div>')
+
+        //add new CQS
+        $("#cqs-container").append('<div class="col col-11 box mx-3 p-3 border" id="cqs-' + (parseInt(sectionNum) + 1) + '"><div class="col col-12"><span class="display-7 font-weight-bold">Create Quiz Section</span></div><div class="col col-12"><div class="mb-2"><label for="noi">Number of Items</label><input type="number" class="col form-control" name="noi-cqs-' + (parseInt(sectionNum) + 1) + '" id="noi-cqs-' + (parseInt(sectionNum) + 1) + '" min="1"></div><div class="mb-2"><label for="ppi">Points per Item</label><input type="number" class="col form-control" name="ppi-cqs-' + (parseInt(sectionNum) + 1) + '" id="ppi-cqs-' + (parseInt(sectionNum) + 1) + '" min="1"></div><div class="mb-2"><label for="qt">Question Type</label><select name="qt-cqs-' + (parseInt(sectionNum) + 1) + '" id="qt-cqs-' + (parseInt(sectionNum) + 1) + '" class="col form-control"><option value="Multiple Choice">Multiple Choice</option><option value="True or False">True or False</option></select></div><div class="mb-2"><button type="button" class="post-btn text-center col font-weight-bold" onclick="createSection(\'cqs-' + (parseInt(sectionNum) + 1) + '\')">Create</button></div></div>')
+        $("#cqs-" + sectionNum).css("display", "none")
+
+    }
+</script>
+<script>
+    $("form").attr('autocomplete', 'off');
+</script>
 </html>
