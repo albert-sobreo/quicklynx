@@ -38,4 +38,5 @@ urlpatterns = [
     path('deletequiz/<int:quizKey>', views.deletequiz),
     path('selectquiz/<int:quizKey>', views.selectquiz),
     path('savequiz/<int:pk_classroom>', views.savequiz),
+    path('deletelecture/<int:pk_lecture>/<int:pk_classroom>', views.deletelecture),
 ]

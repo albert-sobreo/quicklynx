@@ -731,6 +731,12 @@ def createquizprocess(request, pk_classroom):
     quiz_event.classroom = classroom
     quiz_event.save()
 
+    new_event = Event()
+    new_event.title = quiz_name
+    new_event.date = datetime.datetime.strptime(request.POST['deadline'].replace('T', " "), '%Y-%m-%d %H:%M')
+    new_event.classroom = classroom
+    new_event.save()
+
     request.session['quizKey'] = quiz_event.pk
     return redirect('/quizmaker/' + str(pk_classroom))
 
@@ -822,4 +828,9 @@ def savequiz(request, pk_classroom):
 
     cl = Classroom.objects.get(pk=pk_classroom)
 
+    return redirect('/classroommaterial/' + str(cl.room_name) + '/' + str(cl.semester) + '/' + str(cl.year_start))
+
+def deletelecture(request, pk_lecture, pk_classroom):
+    cl = Classroom.objects.get(pk=pk_classroom)
+    Lecture.objects.filter(pk=pk_lecture).delete()
     return redirect('/classroommaterial/' + str(cl.room_name) + '/' + str(cl.semester) + '/' + str(cl.year_start))

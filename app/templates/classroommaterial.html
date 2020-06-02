@@ -81,6 +81,13 @@
             transition: .2s;
             background-color: #e3e4e5;
         }
+        .fa-trash{
+            color: #7e7e7e;
+            transition: .2s;
+        }
+        .fa-trash:hover{
+            color:#ef2d2d
+        }
     </style>
 </head>
 <body>
@@ -315,16 +322,21 @@
                             <div class="row upcoming-event">
                             {% if lectures|length != 0 %}
                                 {%for lecture in lectures|dictsort:"no"%}
-                                <div class="col col-12 upcoming-event oswald py-1 my-quiz" title="Click to Download">
-                                    <div class="row" onclick="location.href='/download/{{lecture.file_loc|filename}}'" style="cursor: pointer;">
+                                <div class="col col-12 upcoming-event oswald my-2 py-1 ">
+                                    <div class="row">
                                         <div class="col col-1 border-right aligner ">
                                             <i class="fas fa-book-open" style="color: rgb(164, 211, 207);" class="aligner-item"></i>
                                         </div>
-                                        <div class="col col-11">
+                                        <div class="col col-10 my-quiz" title="Click to Download" onclick="location.href='/download/{{lecture.file_loc|filename}}'" style="cursor: pointer;">
                                             <span style="font-weight: bold; color: rgb(63, 150, 201);">LECTURE NO. {{lecture.no}} </span>
                                             <span style="font-weight: bold;">{{lecture.title}}</span><br>
                                             <span style="font-size: .7rem; vertical-align:super; color: #888">{{lecture.file_loc|filename|stringformat:'s'}}</span>
                                         </div>
+                                        {% if account.account.login.category == "PROFESSOR" %}
+                                        <div class="col col-1 border-left aligner">
+                                            <i class="fas fa-trash" title="Delete This Lecture" onclick="location.href='/deletelecture/{{lecture.pk}}/{{classroom.pk}}'"></i>
+                                        </div>
+                                        {%endif%}
                                     </div>
                                 </div>
                                 {%endfor%}
@@ -340,7 +352,7 @@
                         <div id="mainassignments" style="display: none;">
                             {% if account.account.login.category == "PROFESSOR" %}
                             <div class="row my-2">
-                                <button class="btn btn-warning post-btn col" style="font-size: smaller;" type="button" data-toggle="modal" data-target="#addassignment">Add Assignment</button>
+                                <button class="btn btn-warning post-btn col" style="font-size: smaller;" type="button" data-toggle="modal" data-target="#addassignment">Create Assignment</button>
                             </div>
                             {%endif%}
                             <span class="text-danger"><i class="fas fa-exclamation-triangle text-warning"></i> Under construction</span>
@@ -350,7 +362,7 @@
                         <div id="mainquizzes" style="display: none;">
                             {% if account.account.login.category == "PROFESSOR" %}
                             <div class="row my-2">
-                                <button class="btn btn-warning post-btn col" style="font-size: smaller;" type="button" data-toggle="modal" data-target="#addquiz">Add Quiz</button>
+                                <button class="btn btn-warning post-btn col" style="font-size: smaller;" type="button" data-toggle="modal" data-target="#addquiz">Create Quiz</button>
                             </div>
                             <!-- ADD QUIZ MODAL -->
                             <div class="modal" id="addquiz">
