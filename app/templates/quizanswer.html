@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/../static/css/style2.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans|Fjalla+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Carter+One&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC|Carter+One&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <title>Quiz</title>
+    <style>
+        body{
+            background: url("../../media/pictures/quicklynx bg.png");
+            background-size: cover;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <!-- header -->
+        <div class="row">
+            <div class="col col-12 oswald">
+                <span class="font-weight-bold text-transparent-8 display-5">{{classroom.room_name}}</span>&nbsp;
+                <span class="font-weight-bold text-transparent-7 display-5">{{quiz.quiz_name}}</span>
+            </div>
+        </div>
+        <!-- question card -->
+        {% for section in quiz.quiz_section.all %}
+        {% for question in section.quiz_question.all %}
+        <div class="flex aligner-justify quiz-card" style="height: 75vh;" id="{{question.pk}}">
+            <div class="box-radius bg p-4 h-90 w-35">
+                <div class="row">
+                    <div class="col col-2">
+                        <div class="circle box-shadow fg">
+                            <span class="oswald font-weight-bold">{{question.question_num}}</span>
+                        </div>
+                    </div>
+                    <div class="col col-10">
+                        <div class="flex aligner-item" style="height: 8vh;">
+                            <span class="oswald font-weight-bold display-7"> Section {{section.section_num}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white box-radius box-shadow container mt-4 mb-2 h-75 arial">
+                    <div class="row">
+                        <div class="box-header bg col py-3">
+                            <span>{{question.question}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col py-3 px-4">
+                            {% for choice in question.quiz_choices.all %}
+                            <input type="radio" name="{{question.pk}}" value="{{choice.choice}}">
+                            <label for="help me">{{choice.choice}} </label><br>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% endfor %}
+    </div>
+    <!-- footer -->
+    <div class="py-2 px-1 flex w-100" style="position: absolute; bottom: 0; left:0; height: 5rem;">
+        <!-- <div class="box-shadow box-radius px-0025 py-005 mx-1 flex aligner bg-light w-100">
+            <div class="box-radius-10 mx-0025 bg-1 h-auto w-100 answer-box"></div>
+            <div class="box-radius-10 mx-0025 bg-1 h-auto w-100 answer-box"></div>
+        </div>
+        <div class="box-shadow box-radius px-0025 py-005 mx-1 flex aligner bg-light w-100">
+            <div class="box-radius-10 mx-0025 bg-1 h-auto w-100 answer-box"></div>
+        </div> -->
+        {% for section in quiz.quiz_section.all %}
+        <div class="box-shadow box-radius px-0025 py-005 mx-1 flex aligner bg-light w-100">
+            {% for question in section.quiz_question.all %}
+            <div class="box-radius-10 mx-0025 bg-1 h-auto w-100 answer-box" data-toggle="#{{question.pk}}"></div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+        <button class="box-shadow btn box-radius mx-1 flex alinger-item-end w-25 btn-warning">
+            <span class="oswald font-weight-bold">Submit</span>
+        </button>
+    </div>
+</body>
+<script>
+    $(".quiz-card").hide()
+    $(".answer-box[data-toggle]").on('click', function(e){
+        e.preventDefault();
+        var selector = $(this).data('toggle');
+        $(".quiz-card").hide();
+        $(selector).show();
+    })
+</script>
+</html>

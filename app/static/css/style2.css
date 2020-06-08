@@ -4,6 +4,26 @@
 /* GREEN : #60E467 */
 /* BG    : #E1E3E4 */
 /* FG    : #F0F0F0 */
+
+.yellow{
+    color: #FFC107;
+}
+.red{
+    color: #e76a6a;
+}
+.green{
+    color: #60e467;
+}
+.bg{
+    background: #e1e3e4
+}
+.bg-1{
+    background: #cacdce
+}
+.fg{
+    background: #f0f0f0
+}
+
 body{
     padding: 25px;
 }
@@ -22,6 +42,9 @@ body{
 .text-transparent-8{
     color: rgba(255,255,255,.8)
 }
+.text-transparent-7{
+    color: rgba(255,255,255,.7)
+}
 .display-5{
     font-size: 2.5em;
 }
@@ -35,8 +58,18 @@ body{
     border-radius: 15px;
     background: white;
 }
+.box-radius{
+    border-radius: 15px;
+}
+.box-radius-10{
+    border-radius: 10px;
+}
 .box-shadow{
     box-shadow: 0px 0px 8px rgba(0,0,0,0.2);
+}
+.box-header{
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
 }
 .form-control{
     border-radius: 20px !important ;
@@ -60,7 +93,84 @@ body{
 .flex{
     display: flex;
 }
+.aligner{
+    align-content: center;
+}
+.aligner-item{
+    align-items: center;
+}
+.aligner-item-end{
+    align-self: flex-end;
+}
+.aligner-justify{
+    justify-content: center;
+    align-items: center;
+}
 .add-choice{
     color: #FF9B9B;
     cursor: pointer;
+}
+.px-0025{
+    padding-left: 2.5px;
+    padding-right: 2.5px;
+}
+.py-005{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.mx-0025{
+    margin-left: 2.5px;
+    margin-right: 2.5px;
+}
+.font-5vh{
+    font-size: 5vh;
+}
+.font-4vh{
+    font-size: 4vh;
+}
+.font-3vh{
+    font-size: 3vh;
+}
+.font-2vh{
+    font-size: 2vh;
+}
+.font-1vh{
+    font-size: 1vh;
+}
+.h-80{
+    height: 80%
+}
+.w-80{
+    width: 80%
+}
+.w-30{
+    width: 30%
+}
+.h-85{
+    height: 85%;
+}
+.h-90{
+    height: 90%;
+}
+.w-35{
+    width: 35%
+}
+.circle{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100px;
+    height: 8vh;
+    width: 8vh;
+}
+.answer-box{
+    cursor: pointer;
+    transition: 0.2s;
+}
+.answer-box:hover{
+    background: #b5b7b8;
+}
+.answer-box:active{
+    background: #7d7f80;
+    transition: 0s;
 }

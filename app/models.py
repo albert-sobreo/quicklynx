@@ -173,6 +173,7 @@ class Quiz_Answer(models.Model):
 
 
 class Quiz_Question(models.Model):
+    question_num = models.CharField(max_length=255, null=True, blank=True)
     question = models.CharField(max_length=1024)
     quiz_choices = models.ManyToManyField(Quiz_Choices, blank=True)
     quiz_answer = models.ForeignKey(Quiz_Answer, on_delete=models.CASCADE, blank=True, null=True)
@@ -185,6 +186,7 @@ class Quiz_Question(models.Model):
 
 
 class Quiz_Section(models.Model):
+    section_num = models.CharField(max_length=255, null=True, blank=True)
     quiz_type = models.CharField(max_length=256, null=True)
     instruction = models.CharField(max_length=512, null=True, blank=True)
     points_per_item = models.IntegerField(null=True)

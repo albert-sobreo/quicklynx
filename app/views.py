@@ -751,7 +751,15 @@ def deletequiz(request, quizKey):
     if request.session.get('category') == "STUDENT":
         return HttpResponse("<span style='color:red'>PROCEDURE NOT ALLOWED!</span>")
     else:
-        Quiz_Event.objects.filter(pk=quizKey).delete()
+        quiz = Quiz_Event.objects.get(pk=quizKey)
+        for section in quiz.quiz_section.all():
+            for question in section.quiz_question.all():
+                for choices in question.quiz_choices.all():
+                    choices.delete()
+                question.quiz_answer.delete()
+                question.delete()
+            section.delete()
+        quiz.delete()
         return redirect('/')
 
 def savequiz(request, pk_classroom):
@@ -763,6 +771,8 @@ def savequiz(request, pk_classroom):
     tA = {}
     ch = {}
     se = {}
+    section_num = {}
+    question_num = {}
 
     for key, val in request.POST.items():
         if 'ppi-section' in key:
@@ -779,6 +789,12 @@ def savequiz(request, pk_classroom):
 
         elif 'select' in key:
             se[key[-2] + key[-1]] = val
+
+        elif 'section-num' in key:
+            section_num[key[-1]] = val
+
+        elif 'question-num' in key:
+            question_num[key[-2] + key[-1]] = val
 
     for key, val in se.items():
         globals()['answer_{}'.format(key)] = Quiz_Answer()
@@ -807,6 +823,10 @@ def savequiz(request, pk_classroom):
 
         globals()['question_{}'.format(key)].save()
 
+    for key, val in question_num.items():
+        globals()['question_{}'.format(key)].question_num = val
+        globals()['question_{}'.format(key)].save()
+
     for key, val in ppi.items():
         globals()['section_{}'.format(key)] = Quiz_Section()
         globals()['section_{}'.format(key)].points_per_item = val
@@ -822,6 +842,10 @@ def savequiz(request, pk_classroom):
         globals()['section_{}'.format(key)].quiz_type = val
         globals()['section_{}'.format(key)].save()
 
+    for key, val in section_num.items():
+        globals()['section_{}'.format(key)].section_num = val
+        globals()['section_{}'.format(key)].save()
+
     for key, val in ppi.items():
         quizEvent.quiz_section.add(globals()['section_{}'.format(key)])
         quizEvent.save()
@@ -834,3 +858,10 @@ def deletelecture(request, pk_lecture, pk_classroom):
     cl = Classroom.objects.get(pk=pk_classroom)
     Lecture.objects.filter(pk=pk_lecture).delete()
     return redirect('/classroommaterial/' + str(cl.room_name) + '/' + str(cl.semester) + '/' + str(cl.year_start))
+
+def quizanswer(request,classroom_pk ,quiz_pk):
+    context = {
+        "quiz": Quiz_Event.objects.get(pk=quiz_pk),
+        "classroom": Classroom.objects.get(pk=classroom_pk)
+    }
+    return render(request, 'quizanswer.html', context)
