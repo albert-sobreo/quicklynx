@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect, HttpResponseRedirect, render_to_response
 from django.http import JsonResponse
 from app.forms import aForm, aFormfromhome, LoginForm, RegisterForm, ClassroomForm, JoinClassroomForm, EditClassroomForm, EditHeaderForm, EditAccountForm, AddLectureForm, SendMessageForm
-from app.models import Classroom, Professor, Student, Post, Lecture, Event, Message, Login, Account, Lecture, Quiz_Choices, Quiz_Answer, Quiz_Question, Quiz_Section, Quiz_Event
+from app.models import Classroom, Professor, Student, Post, Lecture, Event, Message, Login, Account, Lecture, Quiz_Choices, Quiz_Answer, Quiz_Question, Quiz_Section, Quiz_Event, Student_Quiz_Event
 from passlib.hash import pbkdf2_sha256
 from django.contrib.auth import logout
 from django.views.decorators.cache import never_cache
@@ -318,7 +318,9 @@ def classroommaterial(request, room_name, semester, year):
             'students': Student.objects.filter(classroom__room_name=room_name),
             'classroom': Classroom.objects.get(room_name=room_name, semester=semester, year_start=year),
             'lectures': Lecture.objects.select_related().filter(classroom__room_name=room_name),
-            'quizzes': Quiz_Event.objects.filter(classroom__room_name=room_name)
+            'quizzes': Quiz_Event.objects.filter(classroom__room_name=room_name),
+            'scores': Student_Quiz_Event.objects.filter(classroom__room_name=room_name, student__account__login__email=email_session),
+            "fields": list(Student_Quiz_Event.objects.filter(student__account__login__email=email_session).values_list('quiz_event', flat=True)),
         }
     elif login.category == "PROFESSOR":
         context = {
@@ -860,8 +862,47 @@ def deletelecture(request, pk_lecture, pk_classroom):
     return redirect('/classroommaterial/' + str(cl.room_name) + '/' + str(cl.semester) + '/' + str(cl.year_start))
 
 def quizanswer(request,classroom_pk ,quiz_pk):
+    request.session["quizKey"] = quiz_pk
     context = {
         "quiz": Quiz_Event.objects.get(pk=quiz_pk),
         "classroom": Classroom.objects.get(pk=classroom_pk)
     }
     return render(request, 'quizanswer.html', context)
+
+def saveanswer(request, classroom_pk):
+    qe_id = request.session.get("quizKey")
+    quizEvent = Quiz_Event.objects.get(pk=qe_id)
+    cl = Classroom.objects.get(pk=classroom_pk)
+
+    answer = {}
+
+    for key, val in request.POST.items():
+        answer[key] = val
+
+    score = 0
+    items = 0
+    
+    print(answer)
+    for section in quizEvent.quiz_section.all():
+        for question in section.quiz_question.all():
+            if answer[str(question.pk)] == question.quiz_answer.quiz_answer:
+                score = score + (1 * section.points_per_item)
+            items = items + (1 * section.points_per_item)
+
+    try:
+        student_qe = Student_Quiz_Event.objects.select_related().get(quiz_event=quizEvent, student__account__login__email=request.session.get('email'))
+    except:
+        student_qe = Student_Quiz_Event()
+
+    student_qe.quiz_event = quizEvent
+    student_qe.total_points = score
+    student_qe.total_items = items
+
+    student_qe.save()
+
+    student_qe.student.add(Student.objects.select_related().get(account__login__email=request.session.get('email')))
+    student_qe.classroom.add(Classroom.objects.get(pk=classroom_pk))
+
+    student_qe.save()
+
+    return redirect('/classroommaterial/' + str(cl.room_name) + '/' + str(cl.semester) + '/' + str(cl.year_start))

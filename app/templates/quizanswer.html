@@ -24,6 +24,7 @@
     </style>
 </head>
 <body>
+<form action="/saveanswer/{{classroom.pk}}" method=POST>{%csrf_token%}
     <div class="container-fluid">
         <!-- header -->
         <div class="row">
@@ -89,6 +90,7 @@
             <span class="oswald font-weight-bold">Submit</span>
         </button>
     </div>
+</form>
 </body>
 <script>
     $(".quiz-card").hide()

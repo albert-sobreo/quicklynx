@@ -211,3 +211,13 @@ class Quiz_Event(models.Model):
 
     def __str__(self):
         return self.quiz_name
+
+class Student_Quiz_Event(models.Model):
+    quiz_event = models.ForeignKey(Quiz_Event, on_delete=models.CASCADE, null=True, blank=True)
+    student = models.ManyToManyField(Student)
+    classroom = models.ManyToManyField(Classroom)
+    total_points = models.CharField(max_length=255)
+    total_items = models.CharField(max_length=255, null=True, blank=True)
+
+    def __str__(self):
+        return str(self.pk)

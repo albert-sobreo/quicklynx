@@ -406,9 +406,10 @@
                                 {% now "Y-m-d" as todays_date%}
                                 {% for quiz in quizzes.all %}
                                 {%if todays_date <= quiz.deadline|date:"Y-m-d"%}
+                                {%if quiz.pk not in fields%}
                                 <div class="col col-12 upcoming-event oswald py-2 my-1 my-quiz">
                                     <div class="row">
-                                        <div class="col col-11" onclick="window.open('/quiz/{{classroom.pk}}/{{quiz.pk}}', '', 'width=1366,height=768')">
+                                        <div class="col col-11" onclick="location.href='/quiz/{{classroom.pk}}/{{quiz.pk}}'">
                                             <div class="col col-12">
                                                 <h3 class="font-weight-bold" style="display: inline;">{{quiz.quiz_name}} <i class="far fa-circle" style="color: rgb(105, 255, 92); font-size: 1rem; vertical-align:5px"></i></h3>
                                                 <!-- <span class="small text-muted">20 Questions | 40 Points</span> -->
@@ -422,6 +423,24 @@
                                         </div>
                                     </div>
                                 </div>
+                                {%else%}
+                                <div class="col col-12 upcoming-event oswald py-2 my-1 my-quiz" style="background-color:antiquewhite; cursor:auto">
+                                    <div class="row">
+                                        <div class="col col-11">
+                                            <div class="col col-12">
+                                                <h3 class="font-weight-bold" style="display: inline;">{{quiz.quiz_name}} <i class="far fa-circle" style="color: rgb(105, 255, 92); font-size: 1rem; vertical-align:5px"></i></h3>
+                                                <!-- <span class="small text-muted">20 Questions | 40 Points</span> -->
+                                            </div>
+                                            <div class="col col-12">
+                                                <span class="text-muted">Deadline: {{quiz.deadline}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col col-1 border-left" style="display: flex; justify-content:center; align-items: center;">
+                                            <i class="fas fa-trash" title="Delete This Lecture" onclick="location.href='/deletequiz/{{quiz.pk}}'"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                {%endif%}
                                 {%endif%}
                                 {%endfor%}
                                 <div class="col col-12 mt-3 mb-1">
