@@ -906,3 +906,31 @@ def saveanswer(request, classroom_pk):
     student_qe.save()
 
     return redirect('/classroommaterial/' + str(cl.room_name) + '/' + str(cl.semester) + '/' + str(cl.year_start))
+
+def classroomattendance(request, room_name, semester, year):
+    if request.session.is_empty():
+        return redirect('/')
+
+    email_session = request.session.get('email')
+
+    if email_session == None:
+        return redirect('/logout/')
+
+    login = Login.objects.get(email=email_session)
+    
+    if login.category == "STUDENT":
+        context = {
+            'events': Event.objects.all().order_by('date'),
+            'account': Student.objects.select_related().get(account__login__email=email_session),
+            'students': Student.objects.filter(classroom__room_name=room_name),
+            'classroom': Classroom.objects.get(room_name=room_name, semester=semester, year_start=year),
+        }
+    elif login.category == "PROFESSOR":
+        context = {
+            'events': Event.objects.all().order_by('date'),
+            'account': Professor.objects.select_related().get(account__login__email=email_session),
+            'students': Student.objects.filter(classroom__room_name=room_name),
+            'classroom': Classroom.objects.get(room_name=room_name, semester=semester, year_start=year),
+        }
+
+    return render(request, 'classroomattendance.html', context)
