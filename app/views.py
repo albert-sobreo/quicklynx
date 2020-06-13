@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect, HttpResponseRedirect, render_to_response
 from django.http import JsonResponse
 from app.forms import aForm, aFormfromhome, LoginForm, RegisterForm, ClassroomForm, JoinClassroomForm, EditClassroomForm, EditHeaderForm, EditAccountForm, AddLectureForm, SendMessageForm
-from app.models import Classroom, Professor, Student, Post, Lecture, Event, Message, Login, Account, Lecture, Quiz_Choices, Quiz_Answer, Quiz_Question, Quiz_Section, Quiz_Event, Student_Quiz_Event
+from app.models import Classroom, Professor, Student, Post, Lecture, Event, Message, Login, Account, Lecture, Quiz_Choices, Quiz_Answer, Quiz_Question, Quiz_Section, Quiz_Event, Student_Quiz_Event, Attendance_This_Day, Attendance
 from passlib.hash import pbkdf2_sha256
 from django.contrib.auth import logout
 from django.views.decorators.cache import never_cache
@@ -285,7 +285,7 @@ def classroom(request, room_name, semester, year):
             'posts': Post.objects.all(),
             'events': Event.objects.all().order_by('date'),
             'account': Student.objects.select_related().get(account__login__email=email_session),
-            'students': Student.objects.filter(classroom__room_name=room_name),
+            'students': Student.objects.filter(classroom__room_name=room_name, classroom__semester=semester, classroom__year_start=year),
             'classroom': Classroom.objects.get(room_name=room_name, semester=semester, year_start=year),
         }
     elif login.category == "PROFESSOR":
@@ -293,7 +293,7 @@ def classroom(request, room_name, semester, year):
             'posts': Post.objects.all(),
             'events': Event.objects.all().order_by('date'),
             'account': Professor.objects.select_related().get(account__login__email=email_session),
-            'students': Student.objects.filter(classroom__room_name=room_name),
+            'students': Student.objects.filter(classroom__room_name=room_name, classroom__semester=semester, classroom__year_start=year),
             'classroom': Classroom.objects.get(room_name=room_name, semester=semester, year_start=year),
         }
 
@@ -315,21 +315,21 @@ def classroommaterial(request, room_name, semester, year):
         context = {
             'events': Event.objects.all().order_by('date'),
             'account': Student.objects.select_related().get(account__login__email=email_session),
-            'students': Student.objects.filter(classroom__room_name=room_name),
+            'students': Student.objects.filter(classroom__room_name=room_name, classroom__semester=semester, classroom__year_start=year),
             'classroom': Classroom.objects.get(room_name=room_name, semester=semester, year_start=year),
-            'lectures': Lecture.objects.select_related().filter(classroom__room_name=room_name),
-            'quizzes': Quiz_Event.objects.filter(classroom__room_name=room_name),
-            'scores': Student_Quiz_Event.objects.filter(classroom__room_name=room_name, student__account__login__email=email_session),
+            'lectures': Lecture.objects.select_related().filter(classroom__room_name=room_name, classroom__semester=semester, classroom__year_start=year),
+            'quizzes': Quiz_Event.objects.filter(classroom__room_name=room_name, classroom__semester=semester, classroom__year_start=year),
+            'scores': Student_Quiz_Event.objects.filter(classroom__room_name=room_name, classroom__semester=semester, classroom__year_start=year, student__account__login__email=email_session),
             "fields": list(Student_Quiz_Event.objects.filter(student__account__login__email=email_session).values_list('quiz_event', flat=True)),
         }
     elif login.category == "PROFESSOR":
         context = {
             'events': Event.objects.all().order_by('date'),
             'account': Professor.objects.select_related().get(account__login__email=email_session),
-            'students': Student.objects.filter(classroom__room_name=room_name),
+            'students': Student.objects.filter(classroom__room_name=room_name, classroom__semester=semester, classroom__year_start=year),
             'classroom': Classroom.objects.get(room_name=room_name, semester=semester, year_start=year),
-            'lectures': Lecture.objects.select_related().filter(classroom__room_name=room_name),
-            'quizzes': Quiz_Event.objects.filter(classroom__room_name=room_name)
+            'lectures': Lecture.objects.select_related().filter(classroom__room_name=room_name, classroom__semester=semester, classroom__year_start=year),
+            'quizzes': Quiz_Event.objects.filter(classroom__room_name=room_name, classroom__semester=semester, classroom__year_start=year)
         }
 
     return render(request, 'classroommaterial.html', context)
@@ -400,7 +400,7 @@ def makeclassroom(request):
 
     
 
-def makepost(request, room_name):
+def makepost(request, room_name, semester, year):
     email = request.session.get('email')
     category = request.session.get('category')
     if category == 'STUDENT':
@@ -422,7 +422,7 @@ def makepost(request, room_name):
             post.classroom = Classroom.objects.get(room_name=room_name)
             post.save()
     
-    return redirect('/classroom/{}'.format(room_name))
+    return redirect('/classroom/{}/{}/{}'.format(room_name, semester, year))
 
 def makepostfromhome(request):
     email = request.session.get('email')
@@ -922,15 +922,105 @@ def classroomattendance(request, room_name, semester, year):
         context = {
             'events': Event.objects.all().order_by('date'),
             'account': Student.objects.select_related().get(account__login__email=email_session),
-            'students': Student.objects.filter(classroom__room_name=room_name),
+            'students': Student.objects.filter(classroom__room_name=room_name, classroom__semester=semester, classroom__year_start=year),
+            'classroom': Classroom.objects.get(room_name=room_name, semester=semester, year_start=year),
+            'attendances': Attendance_This_Day.objects.select_related().filter(classroom__room_name=room_name, classroom__semester=semester, classroom__year_start=year)
+        }
+    elif login.category == "PROFESSOR":
+        context = {
+            'events': Event.objects.all().order_by('date'),
+            'account': Professor.objects.select_related().get(account__login__email=email_session),
+            'students': Student.objects.filter(classroom__room_name=room_name, classroom__semester=semester, classroom__year_start=year),
+            'classroom': Classroom.objects.get(room_name=room_name, semester=semester, year_start=year),
+            'attendances': Attendance_This_Day.objects.select_related().filter(classroom__room_name=room_name, classroom__semester=semester, classroom__year_start=year)
+        }
+
+    return render(request, 'classroomattendance.html', context)
+
+def saveattendance(request, classroom_pk):
+    inp = {}
+    date = request.POST['date']
+    for key, val in request.POST.items():
+        if "input-" in key:
+            inp[key[-1]] = val
+
+    attendance_this_day = Attendance_This_Day()
+
+    students = Student.objects.filter(classroom__pk=classroom_pk).order_by('account__last_name')
+
+    attendance_this_day.classroom = Classroom.objects.get(pk=classroom_pk)
+    attendance_this_day.date = date
+    attendance_this_day.save()
+
+    for i in range(0, len(inp)):
+        print(students[i])
+        print(inp[str(i+1)])
+
+        attendance = Attendance()
+        attendance.student = students[i]
+        attendance.status = inp[str(i+1)]
+        attendance.save()
+        attendance_this_day.attendance.add(attendance)
+
+    cl = Classroom.objects.get(pk=classroom_pk)
+    return redirect('/classroomattendance/' + str(cl.room_name) + '/' + str(cl.semester) + '/' + str(cl.year_start))
+
+def classroomscore(request, room_name, semester, year):
+    if request.session.is_empty():
+        return redirect('/')
+
+    email_session = request.session.get('email')
+
+    if email_session == None:
+        return redirect('/logout/')
+
+    login = Login.objects.get(email=email_session)
+    
+    if login.category == "STUDENT":
+        context = {
+            'events': Event.objects.all().order_by('date'),
+            'account': Student.objects.select_related().get(account__login__email=email_session),
+            'students': Student.objects.filter(classroom__room_name=room_name, classroom__semester=semester, classroom__year_start=year),
+            'classroom': Classroom.objects.get(room_name=room_name, semester=semester, year_start=year),
+            'quiz': Student_Quiz_Event.objects.filter(classroom__room_name=room_name, classroom__semester=semester, classroom__year_start=year).order_by('quiz_event__quiz_name'),
+            'quiz_event': Quiz_Event.objects.filter(classroom__room_name=room_name, classroom__semester=semester, classroom__year_start=year).order_by('quiz_name')
+        }
+    elif login.category == "PROFESSOR":
+        context = {
+            'events': Event.objects.all().order_by('date'),
+            'account': Professor.objects.select_related().get(account__login__email=email_session),
+            'students': Student.objects.filter(classroom__room_name=room_name, classroom__semester=semester, classroom__year_start=year),
+            'classroom': Classroom.objects.get(room_name=room_name, semester=semester, year_start=year),
+            'quiz': Student_Quiz_Event.objects.filter(classroom__room_name=room_name, classroom__semester=semester, classroom__year_start=year).order_by('quiz_event__quiz_name'),
+            'quiz_event': Quiz_Event.objects.filter(classroom__room_name=room_name, classroom__semester=semester, classroom__year_start=year).order_by('quiz_name')
+        }
+
+    return render(request, 'classroomscore.html', context)
+
+def classroommembers(request, room_name, semester, year):
+    if request.session.is_empty():
+        return redirect('/')
+
+    email_session = request.session.get('email')
+
+    if email_session == None:
+        return redirect('/logout/')
+
+    login = Login.objects.get(email=email_session)
+    
+    if login.category == "STUDENT":
+        context = {
+            'events': Event.objects.all().order_by('date'),
+            'account': Student.objects.select_related().get(account__login__email=email_session),
+            'students': Student.objects.filter(classroom__room_name=room_name, classroom__semester=semester, classroom__year_start=year),
             'classroom': Classroom.objects.get(room_name=room_name, semester=semester, year_start=year),
         }
     elif login.category == "PROFESSOR":
         context = {
             'events': Event.objects.all().order_by('date'),
             'account': Professor.objects.select_related().get(account__login__email=email_session),
-            'students': Student.objects.filter(classroom__room_name=room_name),
+            'students': Student.objects.filter(classroom__room_name=room_name, classroom__semester=semester, classroom__year_start=year),
             'classroom': Classroom.objects.get(room_name=room_name, semester=semester, year_start=year),
         }
 
-    return render(request, 'classroomattendance.html', context)
+    return render(request, 'classroommembers.html', context)

@@ -122,8 +122,8 @@
                     <div class="row f text-center">
                         <div class="col-2"><a class="navers" href="/classroom/{{classroom.room_name}}/{{classroom.semester}}/{{classroom.year_start}}" id="POST">Posts</a></div>
                         <div class="col-2"><a class="navers" href="/classroommaterial/{{classroom.room_name}}/{{classroom.semester}}/{{classroom.year_start}}" id="MATERIALS">Materials</a></div>
-                        <div class="col-4"><a class="navers navers_active" href="#" id="ATTENDANCE">Attendance</a></div>
-                        <div class="col-2"><a class="navers" href="/classroomscore/{{classroom.room_name}}/{{classroom.semester}}/{{classroom.year_start}}" id="GRADES">Scores</a></div>
+                        <div class="col-4"><a class="navers" href="/classroomattendance/{{classroom.room_name}}/{{classroom.semester}}/{{classroom.year_start}}" id="ATTENDANCE">Attendance</a></div>
+                        <div class="col-2"><a class="navers navers_active" href="#" id="GRADES">Scores</a></div>
                         <div class="col-2"><a class="navers" href="/classroommembers/{{classroom.room_name}}/{{classroom.semester}}/{{classroom.year_start}}" id="MEMBERS">Members</a></div>
                         <!-- <ul class="navers">
                             <li class="col-2"><a href="#" id="POST">Posts</a></li>
@@ -251,89 +251,36 @@
                         </div>
                         <div class="col-12">
                             <div class="row">
-                                <h1 class="text-center col">Attendance</h1>
+                                <h1 class="text-center col">Scores</h1>
                             </div>
                         </div>
                     </div>
                     <div class="row header p-2">
-                        <form action="/saveattendance/{{classroom.pk}}" method="POST" style="width: 100%;">{%csrf_token%}
-                        {% if account.account.login.category == "PROFESSOR" %}
-                        <button class="btn btn-warning btn-sm m-1 float-right"><span class="font-weight-bold oswald">Save</span></button>
-                        {% endif %}
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>DATES</th>
-                                    {% for student in students|dictsort:'account.last_name' %}
-                                    <th class="text-center m-0 p-0 py-1"><span style="writing-mode: vertical-lr;text-transform: uppercase;">{{student.account.last_name}}</span></th>
+                                    <th>NAMES</th>
+                                    {% for quiz_name in quiz_event %}
+                                    <th class="text-center m-0 p-0 py-1"><span style="writing-mode: vertical-lr;text-transform: uppercase;">{{quiz_name.quiz_name}}</span></th>
                                     {% endfor %}
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for attendance in attendances %}
+                                {% for student in students %}
+                                
                                 <tr>
-                                    <td>{{attendance.date}}</td>
-                                    {% for status in attendance.attendance.all|dictsort:'student.account.last_name' %}
-                                    {% if status.status == "PRESENT" %}
-                                    <td class="text-center m-0 p-0 py-1" style="color: green; font-weight:bolder">&check;</td>
-                                    {% elif status.status == "ABSENT" %}
-                                    <td class="text-center m-0 p-0 py-1" style="color: red; font-weight:bolder">&cross;</td>
-                                    {% elif status.status == "EXCUSED" %}
-                                    <td class="text-center m-0 p-0 py-1" style="color: orange; font-weight: bolder">&#69;</td>
+                                    <td>{{student}}</td>
+                                    {% for score in quiz %}
+                                    {% if student == score.student %}
+                                    <td class="text-center m-0 p-0 py-1">{{score.total_points}}/{{score.total_items}}</td>
                                     {% endif %}
                                     {% endfor %}
                                 </tr>
                                 {% endfor %}
-                                {% if account.account.login.category == "PROFESSOR" %}
-                                <tr id="new-attendance">
-                                    <td id="add-date-container"><button id="add-date-button" class="btn btn-warning btn-sm m-1"><span class="font-weight-bold oswald">Add Date</span></button></td>
-                                </tr>
-                                {%endif%}
                             </tbody>
                         </table>
-                        </form>
                     </div>
                 </div>
-
-                <script>
-                    $(document).ready(function(){
-                        $("#add-date-button").click(function(){
-                            var count = '{{students.count}}';
-                            $("#add-date-container").html('<input name="date" type=date required>')
-                            for(var i = 1; i <= 2; i++){
-                                $("#new-attendance").append('<td onclick="changeStatus(' + i + ')" id="' + i + '" class="text-center m-0 p-0 py-1" style="color: cadetblue; font-weight:bolder">?<input type="text" name="input-' + i + '" value="" hidden></td>')
-                            }
-                        })
-                    })
-                    function changeStatus(id){
-                        var inner = $("#"+id).html()
-                        console.log($("#"+id).html())
-                        if(inner.includes('?')){
-                            $("#"+id).css("color", 'green')
-                            $("#"+id).css("font-weight", "bolder")
-                            $("#"+id).css("user-select", "none")
-                            $("#"+id).html('&check;<input type="text" name="input-' + id + '" value="PRESENT" hidden>')
-                        }
-                        else if(inner.includes('✓')){
-                            $("#"+id).css("color", 'red')
-                            $("#"+id).css("font-weight", "bolder")
-                            $("#"+id).css("user-select", "none")
-                            $("#"+id).html('&cross;<input type="text" name="input-' + id + '" value="ABSENT" hidden>')
-                        }
-                        else if(inner.includes('✗')){
-                            $("#"+id).css("color", 'orange')
-                            $("#"+id).css("font-weight", "bolder")
-                            $("#"+id).css("user-select", "none")
-                            $("#"+id).html('ℰ<input type="text" name="input-' + id + '" value="EXCUSED" hidden>')
-                        }
-                        else if(inner.includes('ℰ')){
-                            $("#"+id).css("color", 'green')
-                            $("#"+id).css("font-weight", "bolder")
-                            $("#"+id).css("user-select", "none")
-                            $("#"+id).html('&check;<input type="text" name="input-' + id + '" value="PRESENT" hidden>')
-                        }
-                    }
-                </script>
 
                 <!-- RIGHT COLUMN -->
                 <div class="col-3 text-center sticky-top" style="min-height: 100vh; padding-top: 10px; padding-bottom: 10px">

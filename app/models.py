@@ -20,7 +20,7 @@ class Login(models.Model):
     email = models.EmailField(max_length=50)
     password = models.CharField(max_length=255)
     category = models.CharField(max_length=50)
-    verification_string = models.CharField(max_length=10, blank=True, null=True)
+    verification_string = models.CharField(max_length=50, blank=True, null=True)
     verified = models.BooleanField(blank=True, null=True)
 
     class Meta:
@@ -214,10 +214,24 @@ class Quiz_Event(models.Model):
 
 class Student_Quiz_Event(models.Model):
     quiz_event = models.ForeignKey(Quiz_Event, on_delete=models.CASCADE, null=True, blank=True)
-    student = models.ManyToManyField(Student)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, null=True, blank=True)
     classroom = models.ManyToManyField(Classroom)
     total_points = models.CharField(max_length=255)
     total_items = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):
         return str(self.pk)
+
+
+class Attendance(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    status = models.CharField(max_length=32)
+
+    def __str__(self):
+        return str(self.pk)
+
+
+class Attendance_This_Day(models.Model):
+    classroom = models.ForeignKey(Classroom, on_delete=models.CASCADE, null=True, blank=True)
+    attendance = models.ManyToManyField(Attendance)
+    date = models.DateField()

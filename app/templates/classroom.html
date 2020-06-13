@@ -1,4 +1,5 @@
 {% load filename %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -122,8 +123,8 @@
                         <div class="col-2"><a class="navers navers_active" href="#" id="POST">Posts</a></div>
                         <div class="col-2"><a class="navers" href="/classroommaterial/{{classroom.room_name}}/{{classroom.semester}}/{{classroom.year_start}}" id="MATERIALS">Materials</a></div>
                         <div class="col-4"><a class="navers" href="/classroomattendance/{{classroom.room_name}}/{{classroom.semester}}/{{classroom.year_start}}" id="ATTENDANCE">Attendance</a></div>
-                        <div class="col-2"><a class="navers" href="#" id="GRADES">Grades</a></div>
-                        <div class="col-2"><a class="navers" href="#" id="MEMBERS">Members</a></div>
+                        <div class="col-2"><a class="navers" href="/classroomscore/{{classroom.room_name}}/{{classroom.semester}}/{{classroom.year_start}}" id="GRADES">Scores</a></div>
+                        <div class="col-2"><a class="navers" href="/classroommembers/{{classroom.room_name}}/{{classroom.semester}}/{{classroom.year_start}}" id="MEMBERS">Members</a></div>
                         <!-- <ul class="navers">
                             <li class="col-2"><a href="#" id="POST">Posts</a></li>
                             <li class="col-2"><a href="#" id="MATERIALS">Materials</a></li>
@@ -245,7 +246,7 @@
                                 <div style="height: 100%; width: 100px; cursor: pointer" title="Change Header" data-toggle="modal" data-target="#changeheaderpix"></div>
                                 <span><span class="your-name" data-toggle="modal" data-target="#editaccount">{{account.account.first_name}}</span>
                                     {%if account.account.propix|length == 0 %}
-                                        <img src="../media/pictures/default_avatar-2.gif" alt="" style="object-fit: cover; border-radius: 50px; margin: 0 10px 0" height="50px" width="50px">
+                                        <img src="../../../media/pictures/default_avatar-2.gif" alt="" style="object-fit: cover; border-radius: 50px; margin: 0 10px 0" height="50px" width="50px">
                                     {%endif%}
                                     {%if account.account.propix|length > 0 %}
                                         <img src="{{account.account.propix.url}}" alt="" style="object-fit: cover; border-radius: 50px; margin: 0 10px 0" height="50px" width="50px">
@@ -253,7 +254,7 @@
                                 </span>
                             </div>
                             <div class="col-12">
-                                <form action="/makepost/{{classroom.room_name}}" method="POST">
+                                <form action="/makepost/{{classroom.room_name}}/{{classroom.semester}}/{{classroom.year_start}}" method="POST">
                                     {%csrf_token%}
                                     <div class="row" style="margin-top: 10px;">
                                         <textarea name="text" id="" cols="65" rows="2" class="col" placeholder="Create Post..." style="resize: none;" maxlength="240"></textarea>

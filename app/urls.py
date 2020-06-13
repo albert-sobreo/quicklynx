@@ -16,7 +16,7 @@ urlpatterns = [
     path('register-as-professor/', views.register_as_professor, name='register-as-professor'),
     path('registerprofessor/', views.registerprofessor, name='registerprofessor'),
     path('classroom/<str:room_name>/<str:semester>/<str:year>', views.classroom, name='classroom'),
-    path('makepost/<str:room_name>', views.makepost, name='makepost'),
+    path('makepost/<str:room_name>/<str:semester>/<str:year>', views.makepost, name='makepost'),
     path('makepostfromhome/', views.makepostfromhome, name='makepostfromhome'),
     path('makeclassroom/', views.makeclassroom, name='makeclassroom'),
     path('joinclassroom/', views.joinclassroom, name='joinclassroom'),
@@ -41,5 +41,8 @@ urlpatterns = [
     path('deletelecture/<int:pk_lecture>/<int:pk_classroom>', views.deletelecture),
     path('quiz/<int:classroom_pk>/<int:quiz_pk>', views.quizanswer),
     path('saveanswer/<int:classroom_pk>', views.saveanswer),
-    path('classroomattendance/<str:room_name>/<str:semester>/<str:year>', views.classroomattendance)
+    path('classroomattendance/<str:room_name>/<str:semester>/<str:year>', views.classroomattendance),
+    path('saveattendance/<int:classroom_pk>', views.saveattendance),
+    path('classroomscore/<str:room_name>/<str:semester>/<str:year>', views.classroomscore),
+    path('classroommembers/<str:room_name>/<str:semester>/<str:year>', views.classroommembers)
 ]
